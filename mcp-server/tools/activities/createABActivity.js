@@ -248,7 +248,7 @@ REFERENCE - Complete Payload Structure:
 
 See full API documentation for complete field reference.
 
-⚠️ REMINDER: For normal use cases, create offers with createOffer tool instead of using this advanced API.`,
+ REMINDER: For normal use cases, create offers with createOffer tool instead of using this advanced API.`,
   inputSchema: {
     type: 'object',
     properties: {
