@@ -84,9 +84,7 @@ If only code was generated (no offers created), provide these instructions:
 "I've generated {N} code variations for your A/B test:
 
 VARIATION {N}: {variation_name}
-```html
-[code here]
-```
+[Show the HTML/CSS/JS code here]
 
 TO USE THIS CODE MANUALLY:
 1. Go to Adobe Target → Activities → Create Activity → A/B Test
