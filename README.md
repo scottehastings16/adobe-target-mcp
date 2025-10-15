@@ -28,7 +28,6 @@ This approach gives you the best of both worlds: AI-generated code + full UI edi
 - **ES5-Compatible Code Generation**: All generated code works in legacy browsers (no ES6+ features)
 - **Responsive Design Support**: Auto-generates mobile and desktop CSS with media queries
 - **Live Browser Integration**: Requires Chrome DevTools MCP for DOM analysis and page preview
-- **File System Access**: Requires Filesystem MCP for reading/writing project files
 
 ## Quick Start
 
@@ -50,9 +49,6 @@ This project requires three MCP servers working together:
 - Automatically installed via `npx` when configured
 - Requires Chrome or Chromium browser
 
-**c) Filesystem MCP Server** (REQUIRED)
-- Provides file read/write capabilities
-- Automatically installed via `npx` when configured
 
 **Install Chrome Browser:**
 ```bash
@@ -132,14 +128,6 @@ Copy `.claude.json.example` to your MCP client's configuration file and update t
         "CHROME_PATH": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
       }
     },
-    "filesystem": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "C:\\Users\\YourUsername\\at-cursor-extension"
-      ]
-    }
   }
 }
 ```
