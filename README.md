@@ -2,7 +2,11 @@
 
 **Version 2.0.0**
 
-Model Context Protocol server for Adobe Target, enabling AI agents to create and manage Target activities, offers, audiences, and conversion tracking with automated dataLayer event generation. This is an experimental tool, and some feature may be quirky. Feel free to fork the tool and modify as you see fit.
+Model Context Protocol server for Adobe Target, enabling AI agents to create and manage Target activities, offers, audiences, and conversion tracking with automated dataLayer event generation.
+
+**MCP Standard Compliance:** This server follows the open Model Context Protocol standard and works with any MCP-compatible client (Claude Desktop, Claude Code, or other MCP clients). Configuration examples below use Claude Desktop/Code, but the same `mcpServers` format applies to all MCP clients.
+
+This is an experimental tool, and some features may be quirky. Feel free to fork and modify as you see fit.
 
 ## Critical: API Activity Limitations
 
@@ -49,17 +53,21 @@ This project requires three MCP servers working together:
 - Provides file read/write capabilities
 - Automatically installed via `npx` when configured
 
-**Install Chrome DevTools dependencies:**
+**Install Chrome Browser:**
 ```bash
-# The chrome-devtools-mcp package will be auto-installed by npx
-# But you need Chrome browser installed:
+# You ONLY need Chrome browser installed
+# The chrome-devtools-mcp package is auto-installed by npx
 
 # Windows: Download from https://www.google.com/chrome/
 # Mac: brew install --cask google-chrome
 # Linux: sudo apt install google-chrome-stable
 ```
 
-**Note:** The first time you use chrome-devtools-mcp, `npx` will download and cache it. Subsequent runs will be faster.
+**Important Notes:**
+- **No Puppeteer installation needed** - chrome-devtools-mcp handles all dependencies automatically
+- **First run** - `npx` will download and cache chrome-devtools-mcp (~20-30 seconds)
+- **Chromium download** - If chrome-devtools-mcp uses Puppeteer internally, it may download Chromium (~300MB) on first run UNLESS you set `CHROME_PATH` to use your existing Chrome installation
+- **Subsequent runs** - Much faster after initial cache/download
 
 ### 3. Configure Environment
 
@@ -86,13 +94,17 @@ TARGET_DEFAULT_METRIC_TYPE=engagement
 TARGET_DEFAULT_ENGAGEMENT_METRIC=page_count
 ```
 
-### 4. Add to Claude Code Configuration
+### 4. Configure MCP Client
 
-Copy `.claude.json.example` to your Claude Code config location and update the paths and credentials:
+Copy `.claude.json.example` to your MCP client's configuration file and update the paths and credentials.
+
+**For Claude Desktop/Code:**
 
 **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
 **Mac:** `~/Library/Application Support/Claude/claude_desktop_config.json`
 **Linux:** `~/.config/Claude/claude_desktop_config.json`
+
+**For other MCP clients:** Refer to your client's documentation for the MCP server configuration file location.
 
 ```json
 {
@@ -140,13 +152,15 @@ Copy `.claude.json.example` to your Claude Code config location and update the p
 - **Windows:** Use backslashes with escaping: `"C:\\Users\\YourUsername\\..."`
 - **Mac/Linux:** Use forward slashes: `"/Users/yourname/..."`
 
-### 5. Start Using with Claude
+### 5. Start Using
 
-Ask Claude to:
+Once configured, you can ask your AI assistant to:
 - "Create an HTML offer for a hero banner with a green CTA button"
 - "Generate conversion tracking for my signup button using GTM"
 - "List all active Target activities"
 - "Create an audience for mobile users in California"
+
+The AI will use the MCP tools to interact with Adobe Target on your behalf.
 
 ## Project Structure
 
@@ -446,7 +460,7 @@ TARGET_DEFAULT_METRIC_ACTION=count_once
 - **Node.js**: 20+
 - **Adobe Target**: Account with Admin API access
 - **Chrome Browser**: Required for Chrome DevTools MCP integration
-- **Claude Code**: Desktop application with MCP support
+- **MCP Client**: Claude Desktop, Claude Code, or any MCP-compatible client
 
 ## Architecture
 
