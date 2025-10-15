@@ -10,7 +10,7 @@ This is an experimental tool, and some features may be quirky. Feel free to fork
 
 ## Critical: API Activity Limitations
 
-**Activities created via the Admin API CANNOT be edited in the Adobe Target UI.** This is an Adobe Target platform restriction.
+**Activities created via the Admin API CANNOT be edited in the Adobe Target UI.** [This is an Adobe Target platform restriction.](https://experienceleaguecommunities.adobe.com/t5/adobe-target-questions/target-admin-api-update-a-b-activity-api-does-not-make-the/td-p/423516)
 
 **Recommended workflow:**
 1. Create offers via API (fully editable in UI)
