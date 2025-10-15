@@ -2,7 +2,7 @@
 
 **Version 2.0.0**
 
-Model Context Protocol server for Adobe Target, enabling AI agents to create and manage Target activities, offers, audiences, and conversion tracking with automated dataLayer event generation.
+Model Context Protocol server for Adobe Target, enabling AI agents to create and manage Target activities, offers, audiences, and conversion tracking with automated dataLayer event generation. This is an experimental tool, and some feature may be quirky. Feel free to fork the tool and modify as you see fit.
 
 ## Critical: API Activity Limitations
 
