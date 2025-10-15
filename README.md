@@ -165,7 +165,6 @@ The AI will use the MCP tools to interact with Adobe Target on your behalf.
 ## Project Structure
 
 ```
-at-cursor-extension/
 ├── mcp-server/
 │   ├── index.js                    # Main MCP server
 │   ├── .env.example                # Environment template
