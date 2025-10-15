@@ -4,7 +4,7 @@
 
 The (**Unofficial**) Model Context Protocol server for Adobe Target, enabling AI agents to create and manage Target activities, content creation, offers, mboxes, audiences, at_properties, conversion reports, response tokens, revisions and conversion tracking with automated dataLayer event generation.
 
-**MCP Standard Compliance:** This server follows the open Model Context Protocol standard and works with any MCP-compatible client (Claude Desktop, Claude Code, or other MCP clients). Configuration examples below use Claude Desktop/Code, but the same `mcpServers` format applies to all MCP clients.
+**MCP Standard Compliance:** This server follows the open Model Context Protocol standard and works with any MCP-compatible client (Claude Desktop, Cursor, or other MCP clients). Configuration examples below use Claude Desktop/Code, but the same `mcpServers` format applies to all MCP clients.
 
 This is an experimental tool, and some features may be quirky. Feel free to fork and modify as you see fit.
 
