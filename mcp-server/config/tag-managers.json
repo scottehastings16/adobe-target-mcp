@@ -1,0 +1,85 @@
+{
+  "gtm": {
+    "name": "Google Tag Manager",
+    "description": "Standard Google Tag Manager dataLayer implementation",
+    "eventObject": "window.dataLayer",
+    "method": "push",
+    "eventStructure": {
+      "eventKey": "event",
+      "activityKey": "at_activity",
+      "experienceKey": "at_experience",
+      "defaultEventName": "target_conversion"
+    },
+    "template": "window.dataLayer = window.dataLayer || [];\nwindow.dataLayer.push({\n  {{EVENT_KEY}}: '{{EVENT_NAME}}',\n  {{ACTIVITY_KEY}}: '{{ACTIVITY_NAME}}',\n  {{EXPERIENCE_KEY}}: '{{EXPERIENCE_NAME}}'\n});",
+    "example": "window.dataLayer.push({\n  event: 'target_conversion',\n  at_activity: 'Homepage CTA Test',\n  at_experience: 'Variant A'\n});"
+  },
+  "adobeLaunch": {
+    "name": "Adobe Launch (Experience Platform Tags)",
+    "description": "Adobe Experience Platform Launch direct call rules",
+    "eventObject": "_satellite",
+    "method": "track",
+    "eventStructure": {
+      "eventKey": "event",
+      "activityKey": "activityName",
+      "experienceKey": "experienceName",
+      "defaultEventName": "target-conversion"
+    },
+    "template": "if (typeof _satellite !== 'undefined') {\n  _satellite.track('{{EVENT_NAME}}', {\n    {{ACTIVITY_KEY}}: '{{ACTIVITY_NAME}}',\n    {{EXPERIENCE_KEY}}: '{{EXPERIENCE_NAME}}'\n  });\n}",
+    "example": "_satellite.track('target-conversion', {\n  activityName: 'Homepage CTA Test',\n  experienceName: 'Variant A'\n});"
+  },
+  "tealium": {
+    "name": "Tealium iQ",
+    "description": "Tealium Universal Tag (utag) link tracking",
+    "eventObject": "utag",
+    "method": "link",
+    "eventStructure": {
+      "eventKey": "event_name",
+      "activityKey": "target_activity",
+      "experienceKey": "target_experience",
+      "defaultEventName": "target_conversion"
+    },
+    "template": "if (typeof utag !== 'undefined') {\n  utag.link({\n    {{EVENT_KEY}}: '{{EVENT_NAME}}',\n    {{ACTIVITY_KEY}}: '{{ACTIVITY_NAME}}',\n    {{EXPERIENCE_KEY}}: '{{EXPERIENCE_NAME}}'\n  });\n}",
+    "example": "utag.link({\n  event_name: 'target_conversion',\n  target_activity: 'Homepage CTA Test',\n  target_experience: 'Variant A'\n});"
+  },
+  "segment": {
+    "name": "Segment Analytics",
+    "description": "Segment analytics.track() implementation",
+    "eventObject": "analytics",
+    "method": "track",
+    "eventStructure": {
+      "eventKey": "event",
+      "activityKey": "activity",
+      "experienceKey": "experience",
+      "defaultEventName": "target_conversion"
+    },
+    "template": "if (typeof analytics !== 'undefined') {\n  analytics.track('{{EVENT_NAME}}', {\n    {{ACTIVITY_KEY}}: '{{ACTIVITY_NAME}}',\n    {{EXPERIENCE_KEY}}: '{{EXPERIENCE_NAME}}'\n  });\n}",
+    "example": "analytics.track('Target Conversion', {\n  activity: 'Homepage CTA Test',\n  experience: 'Variant A'\n});"
+  },
+  "customDataLayer": {
+    "name": "Custom DataLayer",
+    "description": "Custom dataLayer object with configurable name",
+    "eventObject": "window.customDataLayer",
+    "method": "push",
+    "eventStructure": {
+      "eventKey": "eventName",
+      "activityKey": "activity",
+      "experienceKey": "experience",
+      "defaultEventName": "conversion"
+    },
+    "template": "window.customDataLayer = window.customDataLayer || [];\nwindow.customDataLayer.push({\n  {{EVENT_KEY}}: '{{EVENT_NAME}}',\n  {{ACTIVITY_KEY}}: '{{ACTIVITY_NAME}}',\n  {{EXPERIENCE_KEY}}: '{{EXPERIENCE_NAME}}'\n});",
+    "example": "window.customDataLayer.push({\n  eventName: 'conversion',\n  activity: 'Homepage CTA Test',\n  experience: 'Variant A'\n});"
+  },
+
+    "addANewTagManager": {
+      "name": "My New Tag Manager",
+      "eventObject": "window.myNewTM",
+      "method": "track",
+      "eventStructure": {
+        "eventKey": "eventName",
+        "activityKey": "activity",
+        "experienceKey": "experience",
+        "defaultEventName": "conversion"
+      },
+      "template": "window.myNewTM.track({ ... })"
+    }
+}

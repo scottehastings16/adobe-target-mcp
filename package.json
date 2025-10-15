@@ -1,0 +1,28 @@
+{
+  "name": "adobe-target-admin-api-mcp",
+  "version": "2.0.0",
+  "description": "MCP server for Adobe Target Admin API - manage Target activities, offers, and audiences from Cursor IDE",
+  "type": "module",
+  "scripts": {
+    "dev": "node mcp-server/index.js",
+    "start": "node mcp-server/index.js"
+  },
+  "keywords": [
+    "adobe-target",
+    "cursor",
+    "mcp",
+    "admin-api",
+    "activities",
+    "offers",
+    "audiences"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "dotenv": "^17.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0"
+  }
+}

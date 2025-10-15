@@ -1,0 +1,26 @@
+# Environment variables
+.env
+mcp-server/.env
+
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Claude Code
+.claude/
+.claude.json
+.claude.json.backup
+
+# Temp files
+*.tmp

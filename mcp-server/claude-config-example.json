@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "adobe-target": {
+      "command": "node",
+      "args": ["C:\\Users\\scott\\at-cursor-extension\\mcp-server\\index.js"],
+      "env": {
+        "MCP_TRANSPORT": "stdio",
+        "WS_PORT": "8767"
+      }
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp"
+      ],
+      "env": {
+        "CHROME_PATH": ""
+      }
+    }
+  }
+}

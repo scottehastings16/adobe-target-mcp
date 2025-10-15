@@ -1,0 +1,102 @@
+{
+  "firingConditions": {
+    "always": {
+      "name": "Every time (no limit)",
+      "userDescription": "Fire the event every time the user clicks/interacts with the element. Use for actions that should be tracked repeatedly.",
+      "useCases": [
+        "Tracking repeated interactions",
+        "Engagement metrics",
+        "Non-conversion events"
+      ],
+      "implementation": "none",
+      "template": "{{TRACKING_CODE}}"
+    },
+    "once_per_session": {
+      "name": "Once per session",
+      "userDescription": "Fire the event only once per user session (until they close their browser or session expires). Best for conversion tracking to prevent duplicate conversions.",
+      "useCases": [
+        "Conversion tracking",
+        "Form submissions",
+        "Sign-ups",
+        "Purchases"
+      ],
+      "implementation": "sessionStorage",
+      "template": "// Fire once per session\nvar sessionKey = 'target_fired_{{UNIQUE_KEY}}';\nif (!sessionStorage.getItem(sessionKey)) {\n  {{TRACKING_CODE}}\n  sessionStorage.setItem(sessionKey, 'true');\n}"
+    },
+    "once_per_page": {
+      "name": "Once per page load",
+      "userDescription": "Fire the event only once per page load, even if the user clicks multiple times. Useful for preventing rapid duplicate events on the same page.",
+      "useCases": [
+        "Single-page applications",
+        "Preventing double-clicks",
+        "Page-specific conversions"
+      ],
+      "implementation": "flag",
+      "template": "// Fire once per page load\nvar pageFiredKey_{{UNIQUE_KEY}} = window.pageFiredKey_{{UNIQUE_KEY}} || false;\nif (!pageFiredKey_{{UNIQUE_KEY}}) {\n  {{TRACKING_CODE}}\n  window.pageFiredKey_{{UNIQUE_KEY}} = true;\n}"
+    },
+    "throttle": {
+      "name": "Throttle (limit frequency)",
+      "userDescription": "Limit how often the event can fire (e.g., maximum once per second). Use for high-frequency events like scrolling or mouse movements.",
+      "useCases": [
+        "Scroll tracking",
+        "Hover events",
+        "Resize events",
+        "High-frequency interactions"
+      ],
+      "implementation": "timer",
+      "requiresParams": true,
+      "params": {
+        "interval": {
+          "type": "number",
+          "default": 1000,
+          "description": "Minimum time between events in milliseconds (default: 1000ms = 1 second)"
+        }
+      },
+      "template": "// Throttle: Fire at most once every {{INTERVAL}}ms\nvar throttleKey_{{UNIQUE_KEY}} = window.throttleKey_{{UNIQUE_KEY}} || 0;\nvar now = Date.now();\nif (now - throttleKey_{{UNIQUE_KEY}} >= {{INTERVAL}}) {\n  {{TRACKING_CODE}}\n  window.throttleKey_{{UNIQUE_KEY}} = now;\n}"
+    },
+    "debounce": {
+      "name": "Debounce (wait for idle)",
+      "userDescription": "Wait until the user stops interacting for a specified time before firing. Use for search inputs or actions where you want to wait for the user to finish.",
+      "useCases": [
+        "Search input tracking",
+        "Form field tracking",
+        "Auto-save functionality",
+        "Typeahead/autocomplete"
+      ],
+      "implementation": "timer",
+      "requiresParams": true,
+      "params": {
+        "delay": {
+          "type": "number",
+          "default": 500,
+          "description": "Time to wait after last interaction in milliseconds (default: 500ms)"
+        }
+      },
+      "template": "// Debounce: Wait {{DELAY}}ms after last interaction\nvar debounceTimer_{{UNIQUE_KEY}} = window.debounceTimer_{{UNIQUE_KEY}};\nclearTimeout(debounceTimer_{{UNIQUE_KEY}});\nwindow.debounceTimer_{{UNIQUE_KEY}} = setTimeout(function() {\n  {{TRACKING_CODE}}\n}, {{DELAY}});"
+    },
+    "once_ever": {
+      "name": "Once ever (persistent)",
+      "userDescription": "Fire the event only once per user, ever (stored in localStorage). Use for one-time events like first-time user actions or onboarding completions.",
+      "useCases": [
+        "First-time user actions",
+        "Onboarding completions",
+        "Tutorial completions",
+        "One-time offers"
+      ],
+      "implementation": "localStorage",
+      "template": "// Fire once ever (persistent across sessions)\nvar localKey = 'target_fired_{{UNIQUE_KEY}}';\nif (!localStorage.getItem(localKey)) {\n  {{TRACKING_CODE}}\n  localStorage.setItem(localKey, 'true');\n}"
+    }
+  },
+  "llmGuidance": {
+    "promptTemplate": "When should this conversion event fire? Choose one:\n\n1. **Every time** - Track every interaction (no limit)\n2. **Once per session** - Track only once per session (recommended for conversions)\n3. **Once per page** - Track only once per page load\n4. **Once ever** - Track only once, ever (stored permanently)\n5. **Throttle** - Limit frequency (e.g., max once per second)\n6. **Debounce** - Wait for user to stop interacting\n\nWhich option works best for your use case?",
+    "defaultRecommendation": {
+      "conversion": "once_per_session",
+      "engagement": "throttle",
+      "form": "once_per_page",
+      "search": "debounce",
+      "scroll": "throttle",
+      "click": "once_per_session"
+    },
+    "whenToAsk": "Always ask the user about firing conditions when generating conversion tracking code, unless they've explicitly specified a preference."
+  }
+}
