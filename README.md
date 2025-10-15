@@ -22,7 +22,8 @@ This approach gives you the best of both worlds: AI-generated code + full UI edi
 - **Default Configuration System**: Pre-configure mboxes, priorities, A4T settings for consistent deployments
 - **ES5-Compatible Code Generation**: All generated code works in legacy browsers (no ES6+ features)
 - **Responsive Design Support**: Auto-generates mobile and desktop CSS with media queries
-- **Chrome DevTools MCP Integration**: Live browser analysis and preview (optional)
+- **Live Browser Integration**: Requires Chrome DevTools MCP for DOM analysis and page preview
+- **File System Access**: Requires Filesystem MCP for reading/writing project files
 
 ## Quick Start
 
@@ -32,7 +33,35 @@ This approach gives you the best of both worlds: AI-generated code + full UI edi
 npm install
 ```
 
-### 2. Configure Environment
+### 2. Install Required MCP Servers
+
+This project requires three MCP servers working together:
+
+**a) Adobe Target MCP Server** (this project)
+- Already installed with `npm install`
+
+**b) Chrome DevTools MCP Server** (REQUIRED)
+- Provides live browser DOM access and page analysis
+- Automatically installed via `npx` when configured
+- Requires Chrome or Chromium browser
+
+**c) Filesystem MCP Server** (REQUIRED)
+- Provides file read/write capabilities
+- Automatically installed via `npx` when configured
+
+**Install Chrome DevTools dependencies:**
+```bash
+# The chrome-devtools-mcp package will be auto-installed by npx
+# But you need Chrome browser installed:
+
+# Windows: Download from https://www.google.com/chrome/
+# Mac: brew install --cask google-chrome
+# Linux: sudo apt install google-chrome-stable
+```
+
+**Note:** The first time you use chrome-devtools-mcp, `npx` will download and cache it. Subsequent runs will be faster.
+
+### 3. Configure Environment
 
 Copy `.env.example` to `.env` and configure:
 
@@ -57,28 +86,61 @@ TARGET_DEFAULT_METRIC_TYPE=engagement
 TARGET_DEFAULT_ENGAGEMENT_METRIC=page_count
 ```
 
-### 3. Add to Claude Code Configuration
+### 4. Add to Claude Code Configuration
 
-Edit your `.claude.json` (or `claude_desktop_config.json`):
+Copy `.claude.json.example` to your Claude Code config location and update the paths and credentials:
+
+**Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+**Mac:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+**Linux:** `~/.config/Claude/claude_desktop_config.json`
 
 ```json
 {
   "mcpServers": {
     "adobe-target": {
       "command": "node",
-      "args": ["C:/path/to/mcp-server/index.js"],
+      "args": ["C:\\Users\\YourUsername\\at-cursor-extension\\mcp-server\\index.js"],
       "env": {
         "TARGET_TENANT_ID": "your-tenant-id",
         "TARGET_API_KEY": "your-api-key",
         "TARGET_ACCESS_TOKEN": "your-access-token",
-        "TARGET_WORKSPACE_ID": "your-workspace-id"
+        "TARGET_WORKSPACE_ID": "your-workspace-id",
+        "TARGET_DEFAULT_MBOXES": "target-global-mbox",
+        "TARGET_DEFAULT_PRIORITY": "5",
+        "TARGET_A4T_DATA_COLLECTION_HOST": "company.sc.omtrdc.net",
+        "TARGET_A4T_COMPANY_NAME": "Your Company",
+        "TARGET_A4T_REPORT_SUITES": "prod-rsid"
       }
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp"],
+      "env": {
+        "CHROME_PATH": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      }
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\Users\\YourUsername\\at-cursor-extension"
+      ]
     }
   }
 }
 ```
 
-### 4. Start Using with Claude
+**Platform-specific Chrome paths:**
+- **Windows:** `"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"`
+- **Mac:** `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"`
+- **Linux:** `"/usr/bin/google-chrome"` or `"/usr/bin/chromium"`
+
+**Platform-specific path formats:**
+- **Windows:** Use backslashes with escaping: `"C:\\Users\\YourUsername\\..."`
+- **Mac/Linux:** Use forward slashes: `"/Users/yourname/..."`
+
+### 5. Start Using with Claude
 
 Ask Claude to:
 - "Create an HTML offer for a hero banner with a green CTA button"
@@ -383,23 +445,41 @@ TARGET_DEFAULT_METRIC_ACTION=count_once
 
 - **Node.js**: 20+
 - **Adobe Target**: Account with Admin API access
-- **Browser**: Chrome (for Chrome DevTools MCP integration - optional)
+- **Chrome Browser**: Required for Chrome DevTools MCP integration
+- **Claude Code**: Desktop application with MCP support
 
 ## Architecture
 
-### MCP Server (this project)
+This project uses three MCP servers working together:
+
+### 1. Adobe Target MCP Server (this project)
 - Communicates with Adobe Target Admin API
 - Provides 33 tools for Claude to manage Target resources
 - Generates ES5-compatible code with dataLayer tracking
-- Auto-applies default configurations
+- Auto-applies default configurations from `.env`
 
-### Chrome DevTools MCP (optional)
-- Controls live Chrome browser
-- Executes JavaScript in page context
+**Installation:** `npm install` in this directory
+
+### 2. Chrome DevTools MCP Server (REQUIRED)
+- Controls live Chrome browser via Chrome DevTools Protocol
+- Executes JavaScript in page context for live DOM analysis
 - Takes screenshots and DOM snapshots
 - Handles navigation and interaction
+- Enables `extractDOMWithChromeDevTools` tool
 
-**Setup:** Install `@modelcontextprotocol/chrome-devtools` separately and configure in Claude Code.
+**Installation:** Automatically installed via `npx chrome-devtools-mcp` when configured
+
+**Package:** `chrome-devtools-mcp` (installed on first run)
+
+### 3. Filesystem MCP Server (REQUIRED)
+- Provides file read/write capabilities for project files
+- Allows Claude to read configurations, write generated code
+- Scoped to project directory for security
+- Enables file-based workflows
+
+**Installation:** Automatically installed via `npx @modelcontextprotocol/server-filesystem` when configured
+
+**Package:** `@modelcontextprotocol/server-filesystem` (installed on first run)
 
 ## Recommended Workflow
 
