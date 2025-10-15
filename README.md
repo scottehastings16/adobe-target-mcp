@@ -177,7 +177,7 @@ The AI will use the MCP tools to interact with Adobe Target on your behalf.
 │   │   └── applyDefaults.js        # Auto-fill default values
 │   └── tools/
 │       ├── activities/             # Activity management (6 tools)
-│       ├── offers/                 # Offer management (4 tools)
+│       ├── offers/                 # Offer management (5 tools)
 │       ├── audiences/              # Audience management (2 tools)
 │       ├── mboxes/                 # Mbox resources (3 tools)
 │       ├── properties/             # Properties (1 tool)
@@ -259,7 +259,7 @@ Defines when and how conversion events should fire. Prevents duplicate tracking 
 2. Add new condition with template using placeholders: `{{TRACKING_CODE}}`, `{{UNIQUE_KEY}}`, `{{INTERVAL}}`, `{{DELAY}}`
 3. Restart MCP server
 
-## Available Tools (33 total)
+## Available Tools (34 total)
 
 ### Activities (6 tools)
 - `listActivities` - List all Target activities with filtering
@@ -269,9 +269,10 @@ Defines when and how conversion events should fire. Prevents duplicate tracking 
 - `updateActivityState` - Activate, pause, or deactivate activities
 - `deleteABActivity` - Delete activity
 
-### Offers (4 tools)
+### Offers (5 tools)
 - `listOffers` - List all offers with filtering
-- `createOffer` - **PRIMARY TOOL** - Create HTML/JSON offer with ES5 code
+- `createOffer` - **PRIMARY TOOL** - Create HTML offer with ES5 code
+- `createJsonOffer` - Create JSON offer for SPAs, mobile apps, headless experiences
 - `getOffer` - Get offer details by ID
 - `updateOffer` - Update offer content
 
@@ -468,7 +469,7 @@ This project uses three MCP servers working together:
 
 ### 1. Adobe Target MCP Server (this project)
 - Communicates with Adobe Target Admin API
-- Provides 33 tools for Claude to manage Target resources
+- Provides 34 tools for managing Target resources
 - Generates ES5-compatible code with dataLayer tracking
 - Auto-applies default configurations from `.env`
 
