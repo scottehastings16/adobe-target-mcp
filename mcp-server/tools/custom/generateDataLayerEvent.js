@@ -54,7 +54,7 @@ WORKFLOW:
 6. **LLM MUST ASK**: "When should this conversion event fire?" and present these options:
 
    **1. Every time (no limit)** - Track every interaction
-   **2. Once per session** ⭐ RECOMMENDED for conversions - Track only once per session
+   **2. Once per session**  RECOMMENDED for conversions - Track only once per session
    **3. Once per page** - Track only once per page load
    **4. Once ever** - Track only once, stored permanently
    **5. Throttle** - Limit frequency (e.g., max once per second)
