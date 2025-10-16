@@ -1,0 +1,61 @@
+{
+  "name": "Tabbed Interface",
+  "type": "html",
+  "description": "Interactive tabbed content interface with responsive mobile support. Great for organizing content into sections.",
+  "tags": ["tabs", "tabbed", "interface", "navigation", "sections", "content"],
+  "content": "<script>\n(function() {\n  var container = document.querySelector('{{SELECTOR}}');\n  if (!container) return;\n  \n  var tabs = [\n    { id: 'tab1', label: '{{TAB_1_LABEL}}', content: '{{TAB_1_CONTENT}}' },\n    { id: 'tab2', label: '{{TAB_2_LABEL}}', content: '{{TAB_2_CONTENT}}' },\n    { id: 'tab3', label: '{{TAB_3_LABEL}}', content: '{{TAB_3_CONTENT}}' }\n  ];\n  \n  // Remove empty tabs\n  tabs = tabs.filter(function(tab) { return tab.label !== ''; });\n  \n  // Inject CSS\n  var style = document.createElement('style');\n  style.textContent = '' +\n    '.at-tabs { width: 100%; }' +\n    '.at-tabs-nav { display: flex; border-bottom: 2px solid #dee2e6; margin-bottom: 20px; gap: 5px; }' +\n    '.at-tab-button { background: transparent; border: none; padding: 12px 24px; cursor: pointer; font-size: 16px; font-weight: 500; color: #6c757d; border-bottom: 3px solid transparent; transition: all 0.3s ease; }' +\n    '.at-tab-button:hover { color: #495057; background: rgba(0,0,0,0.02); }' +\n    '.at-tab-button.active { color: {{ACTIVE_COLOR}}; border-bottom-color: {{ACTIVE_COLOR}}; }' +\n    '.at-tab-content { display: none; padding: 20px 0; animation: fadeIn 0.3s ease; }' +\n    '.at-tab-content.active { display: block; }' +\n    '@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }' +\n    '@media (max-width: 768px) {' +\n    '  .at-tabs-nav { flex-direction: column; border-bottom: none; }' +\n    '  .at-tab-button { text-align: left; padding: 12px 16px; border-bottom: 1px solid #dee2e6; border-left: 3px solid transparent; }' +\n    '  .at-tab-button.active { border-bottom-color: #dee2e6; border-left-color: {{ACTIVE_COLOR}}; }' +\n    '}';\n  document.head.appendChild(style);\n  \n  // Build tabs HTML\n  container.className = 'at-tabs';\n  container.innerHTML = '';\n  \n  var nav = document.createElement('div');\n  nav.className = 'at-tabs-nav';\n  \n  var contentContainer = document.createElement('div');\n  \n  // Create tab buttons and content\n  for (var i = 0; i < tabs.length; i++) {\n    var tab = tabs[i];\n    \n    // Create button\n    var button = document.createElement('button');\n    button.className = 'at-tab-button' + (i === 0 ? ' active' : '');\n    button.textContent = tab.label;\n    button.setAttribute('data-tab', tab.id);\n    button.setAttribute('role', 'tab');\n    button.setAttribute('aria-selected', i === 0 ? 'true' : 'false');\n    nav.appendChild(button);\n    \n    // Create content\n    var content = document.createElement('div');\n    content.className = 'at-tab-content' + (i === 0 ? ' active' : '');\n    content.id = tab.id;\n    content.setAttribute('role', 'tabpanel');\n    content.innerHTML = tab.content;\n    contentContainer.appendChild(content);\n  }\n  \n  container.appendChild(nav);\n  container.appendChild(contentContainer);\n  \n  // Add click handlers\n  var buttons = nav.querySelectorAll('.at-tab-button');\n  for (var j = 0; j < buttons.length; j++) {\n    buttons[j].addEventListener('click', function() {\n      var targetId = this.getAttribute('data-tab');\n      \n      // Deactivate all\n      var allButtons = nav.querySelectorAll('.at-tab-button');\n      var allContents = contentContainer.querySelectorAll('.at-tab-content');\n      for (var k = 0; k < allButtons.length; k++) {\n        allButtons[k].classList.remove('active');\n        allButtons[k].setAttribute('aria-selected', 'false');\n      }\n      for (var l = 0; l < allContents.length; l++) {\n        allContents[l].classList.remove('active');\n      }\n      \n      // Activate target\n      this.classList.add('active');\n      this.setAttribute('aria-selected', 'true');\n      document.getElementById(targetId).classList.add('active');\n    });\n  }\n})();\n</script>",
+  "variables": [
+    {
+      "name": "{{SELECTOR}}",
+      "description": "CSS selector for tabs container",
+      "example": "#tabs-section",
+      "required": true
+    },
+    {
+      "name": "{{TAB_1_LABEL}}",
+      "description": "First tab label",
+      "example": "Features",
+      "required": true
+    },
+    {
+      "name": "{{TAB_1_CONTENT}}",
+      "description": "First tab content (HTML allowed)",
+      "example": "<h3>Amazing Features</h3><p>Check out our incredible features...</p>",
+      "required": true
+    },
+    {
+      "name": "{{TAB_2_LABEL}}",
+      "description": "Second tab label",
+      "example": "Pricing",
+      "required": true
+    },
+    {
+      "name": "{{TAB_2_CONTENT}}",
+      "description": "Second tab content (HTML allowed)",
+      "example": "<h3>Affordable Pricing</h3><p>Plans starting at $9/month...</p>",
+      "required": true
+    },
+    {
+      "name": "{{TAB_3_LABEL}}",
+      "description": "Third tab label (leave empty if only 2 tabs needed)",
+      "example": "Reviews",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{TAB_3_CONTENT}}",
+      "description": "Third tab content (HTML allowed)",
+      "example": "<h3>Customer Reviews</h3><p>See what our customers say...</p>",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ACTIVE_COLOR}}",
+      "description": "Active tab color",
+      "example": "#007bff",
+      "required": false,
+      "default": "#007bff"
+    }
+  ],
+  "notes": "This template creates 2-3 tabs. For more tabs, duplicate the tab variables pattern in the template."
+}

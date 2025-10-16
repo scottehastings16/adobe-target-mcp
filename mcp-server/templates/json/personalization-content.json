@@ -1,0 +1,312 @@
+{
+  "name": "Personalization Content",
+  "type": "json",
+  "description": "Personalized content data for audience-specific messaging, dynamic headlines, and targeted offers. Perfect for personalization campaigns.",
+  "tags": ["personalization", "dynamic-content", "messaging", "targeting", "segmentation", "offers"],
+  "content": {
+    "messaging": {
+      "headline": "{{HEADLINE}}",
+      "subheadline": "{{SUBHEADLINE}}",
+      "bodyText": "{{BODY_TEXT}}",
+      "disclaimer": "{{DISCLAIMER}}"
+    },
+    "offer": {
+      "type": "{{OFFER_TYPE}}",
+      "title": "{{OFFER_TITLE}}",
+      "description": "{{OFFER_DESC}}",
+      "value": "{{OFFER_VALUE}}",
+      "code": "{{OFFER_CODE}}",
+      "expiryDate": "{{EXPIRY_DATE}}",
+      "termsUrl": "{{TERMS_URL}}"
+    },
+    "cta": {
+      "primary": {
+        "text": "{{PRIMARY_CTA_TEXT}}",
+        "url": "{{PRIMARY_CTA_URL}}",
+        "variant": "{{PRIMARY_CTA_VARIANT}}"
+      },
+      "secondary": {
+        "text": "{{SECONDARY_CTA_TEXT}}",
+        "url": "{{SECONDARY_CTA_URL}}",
+        "variant": "{{SECONDARY_CTA_VARIANT}}"
+      }
+    },
+    "social_proof": {
+      "enabled": {{SOCIAL_PROOF_ENABLED}},
+      "type": "{{SOCIAL_PROOF_TYPE}}",
+      "value": "{{SOCIAL_PROOF_VALUE}}",
+      "message": "{{SOCIAL_PROOF_MESSAGE}}"
+    },
+    "urgency": {
+      "enabled": {{URGENCY_ENABLED}},
+      "type": "{{URGENCY_TYPE}}",
+      "message": "{{URGENCY_MESSAGE}}",
+      "countdown": "{{COUNTDOWN_END}}"
+    },
+    "media": {
+      "hero_image": "{{HERO_IMAGE}}",
+      "hero_image_mobile": "{{HERO_IMAGE_MOBILE}}",
+      "logo": "{{LOGO}}",
+      "icons": [
+        "{{ICON_1}}",
+        "{{ICON_2}}",
+        "{{ICON_3}}"
+      ]
+    },
+    "personalization": {
+      "segment": "{{SEGMENT}}",
+      "audience": "{{AUDIENCE}}",
+      "variant": "{{VARIANT}}",
+      "test_id": "{{TEST_ID}}"
+    }
+  },
+  "variables": [
+    {
+      "name": "{{HEADLINE}}",
+      "description": "Main personalized headline",
+      "example": "Welcome Back, Valued Customer",
+      "required": true
+    },
+    {
+      "name": "{{SUBHEADLINE}}",
+      "description": "Subheadline text",
+      "example": "We have a special offer just for you",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{BODY_TEXT}}",
+      "description": "Body text/description",
+      "example": "As a loyal customer, enjoy exclusive benefits and early access to new products.",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{DISCLAIMER}}",
+      "description": "Disclaimer or fine print",
+      "example": "Offer valid for limited time only. Terms and conditions apply.",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{OFFER_TYPE}}",
+      "description": "Type of offer",
+      "example": "percentage_discount",
+      "options": ["percentage_discount", "fixed_amount", "free_shipping", "bundle", "gift"],
+      "required": false,
+      "default": "percentage_discount"
+    },
+    {
+      "name": "{{OFFER_TITLE}}",
+      "description": "Offer title",
+      "example": "Exclusive 25% Off",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{OFFER_DESC}}",
+      "description": "Offer description",
+      "example": "Save 25% on your next purchase",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{OFFER_VALUE}}",
+      "description": "Offer value (percentage, dollar amount, etc.)",
+      "example": "25",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{OFFER_CODE}}",
+      "description": "Promotional code",
+      "example": "WELCOME25",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{EXPIRY_DATE}}",
+      "description": "Offer expiry date (ISO format)",
+      "example": "2025-12-31T23:59:59Z",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{TERMS_URL}}",
+      "description": "Terms and conditions URL",
+      "example": "/terms-and-conditions",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PRIMARY_CTA_TEXT}}",
+      "description": "Primary CTA button text",
+      "example": "Claim Your Offer",
+      "required": true
+    },
+    {
+      "name": "{{PRIMARY_CTA_URL}}",
+      "description": "Primary CTA URL",
+      "example": "/shop?promo=WELCOME25",
+      "required": true
+    },
+    {
+      "name": "{{PRIMARY_CTA_VARIANT}}",
+      "description": "Primary CTA visual variant",
+      "example": "primary",
+      "options": ["primary", "secondary", "outline"],
+      "required": false,
+      "default": "primary"
+    },
+    {
+      "name": "{{SECONDARY_CTA_TEXT}}",
+      "description": "Secondary CTA text (optional)",
+      "example": "Learn More",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{SECONDARY_CTA_URL}}",
+      "description": "Secondary CTA URL (optional)",
+      "example": "/about",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{SECONDARY_CTA_VARIANT}}",
+      "description": "Secondary CTA visual variant",
+      "example": "outline",
+      "options": ["primary", "secondary", "outline"],
+      "required": false,
+      "default": "secondary"
+    },
+    {
+      "name": "{{SOCIAL_PROOF_ENABLED}}",
+      "description": "Enable social proof display (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{SOCIAL_PROOF_TYPE}}",
+      "description": "Type of social proof",
+      "example": "customer_count",
+      "options": ["customer_count", "rating", "testimonial", "usage_stat"],
+      "required": false,
+      "default": "customer_count"
+    },
+    {
+      "name": "{{SOCIAL_PROOF_VALUE}}",
+      "description": "Social proof value/number",
+      "example": "50000",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{SOCIAL_PROOF_MESSAGE}}",
+      "description": "Social proof message",
+      "example": "Join 50,000+ happy customers",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{URGENCY_ENABLED}}",
+      "description": "Enable urgency messaging (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{URGENCY_TYPE}}",
+      "description": "Type of urgency",
+      "example": "time_limited",
+      "options": ["time_limited", "stock_limited", "demand"],
+      "required": false,
+      "default": "time_limited"
+    },
+    {
+      "name": "{{URGENCY_MESSAGE}}",
+      "description": "Urgency message",
+      "example": "Offer ends soon!",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{COUNTDOWN_END}}",
+      "description": "Countdown end date/time (ISO format)",
+      "example": "2025-10-31T23:59:59Z",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{HERO_IMAGE}}",
+      "description": "Hero image URL",
+      "example": "https://example.com/hero.jpg",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{HERO_IMAGE_MOBILE}}",
+      "description": "Mobile hero image URL",
+      "example": "https://example.com/hero-mobile.jpg",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{LOGO}}",
+      "description": "Logo image URL",
+      "example": "https://example.com/logo.png",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ICON_1}}",
+      "description": "First icon URL",
+      "example": "https://example.com/icon1.svg",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ICON_2}}",
+      "description": "Second icon URL",
+      "example": "https://example.com/icon2.svg",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ICON_3}}",
+      "description": "Third icon URL",
+      "example": "https://example.com/icon3.svg",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{SEGMENT}}",
+      "description": "Target segment name",
+      "example": "returning_customers",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{AUDIENCE}}",
+      "description": "Target audience name",
+      "example": "high_value_customers",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{VARIANT}}",
+      "description": "Test variant identifier",
+      "example": "variant_a",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{TEST_ID}}",
+      "description": "Test/campaign identifier",
+      "example": "personalization_q4_2025",
+      "required": false,
+      "default": ""
+    }
+  ]
+}

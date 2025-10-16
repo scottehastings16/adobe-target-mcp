@@ -1,0 +1,308 @@
+{
+  "name": "Navigation Menu",
+  "type": "json",
+  "description": "Navigation menu structure for SPAs and dynamic navigation. Supports nested menus, icons, and badges.",
+  "tags": ["navigation", "menu", "nav", "links", "header", "spa"],
+  "content": {
+    "menuItems": [
+      {
+        "id": "{{ITEM_1_ID}}",
+        "label": "{{ITEM_1_LABEL}}",
+        "url": "{{ITEM_1_URL}}",
+        "icon": "{{ITEM_1_ICON}}",
+        "badge": "{{ITEM_1_BADGE}}",
+        "target": "{{ITEM_1_TARGET}}",
+        "children": []
+      },
+      {
+        "id": "{{ITEM_2_ID}}",
+        "label": "{{ITEM_2_LABEL}}",
+        "url": "{{ITEM_2_URL}}",
+        "icon": "{{ITEM_2_ICON}}",
+        "badge": "{{ITEM_2_BADGE}}",
+        "target": "{{ITEM_2_TARGET}}",
+        "children": [
+          {
+            "id": "{{ITEM_2_CHILD_1_ID}}",
+            "label": "{{ITEM_2_CHILD_1_LABEL}}",
+            "url": "{{ITEM_2_CHILD_1_URL}}"
+          },
+          {
+            "id": "{{ITEM_2_CHILD_2_ID}}",
+            "label": "{{ITEM_2_CHILD_2_LABEL}}",
+            "url": "{{ITEM_2_CHILD_2_URL}}"
+          }
+        ]
+      },
+      {
+        "id": "{{ITEM_3_ID}}",
+        "label": "{{ITEM_3_LABEL}}",
+        "url": "{{ITEM_3_URL}}",
+        "icon": "{{ITEM_3_ICON}}",
+        "badge": "{{ITEM_3_BADGE}}",
+        "target": "{{ITEM_3_TARGET}}",
+        "children": []
+      },
+      {
+        "id": "{{ITEM_4_ID}}",
+        "label": "{{ITEM_4_LABEL}}",
+        "url": "{{ITEM_4_URL}}",
+        "icon": "{{ITEM_4_ICON}}",
+        "badge": "{{ITEM_4_BADGE}}",
+        "target": "{{ITEM_4_TARGET}}",
+        "children": []
+      }
+    ],
+    "config": {
+      "layout": "{{LAYOUT}}",
+      "mobileBreakpoint": {{MOBILE_BREAKPOINT}},
+      "showIcons": {{SHOW_ICONS}},
+      "showBadges": {{SHOW_BADGES}},
+      "highlightActive": {{HIGHLIGHT_ACTIVE}}
+    }
+  },
+  "variables": [
+    {
+      "name": "{{ITEM_1_ID}}",
+      "description": "First menu item ID",
+      "example": "home",
+      "required": true
+    },
+    {
+      "name": "{{ITEM_1_LABEL}}",
+      "description": "First menu item label",
+      "example": "Home",
+      "required": true
+    },
+    {
+      "name": "{{ITEM_1_URL}}",
+      "description": "First menu item URL",
+      "example": "/",
+      "required": true
+    },
+    {
+      "name": "{{ITEM_1_ICON}}",
+      "description": "First menu item icon (icon class or URL)",
+      "example": "icon-home",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_1_BADGE}}",
+      "description": "First menu item badge text (e.g., 'New', '5')",
+      "example": "",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_1_TARGET}}",
+      "description": "First menu item link target",
+      "example": "_self",
+      "options": ["_self", "_blank"],
+      "required": false,
+      "default": "_self"
+    },
+    {
+      "name": "{{ITEM_2_ID}}",
+      "description": "Second menu item ID",
+      "example": "products",
+      "required": true
+    },
+    {
+      "name": "{{ITEM_2_LABEL}}",
+      "description": "Second menu item label",
+      "example": "Products",
+      "required": true
+    },
+    {
+      "name": "{{ITEM_2_URL}}",
+      "description": "Second menu item URL",
+      "example": "/products",
+      "required": true
+    },
+    {
+      "name": "{{ITEM_2_ICON}}",
+      "description": "Second menu item icon",
+      "example": "icon-products",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_2_BADGE}}",
+      "description": "Second menu item badge",
+      "example": "New",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_2_TARGET}}",
+      "description": "Second menu item target",
+      "example": "_self",
+      "required": false,
+      "default": "_self"
+    },
+    {
+      "name": "{{ITEM_2_CHILD_1_ID}}",
+      "description": "Second menu item - first submenu ID",
+      "example": "product-a",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_2_CHILD_1_LABEL}}",
+      "description": "Second menu item - first submenu label",
+      "example": "Product A",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_2_CHILD_1_URL}}",
+      "description": "Second menu item - first submenu URL",
+      "example": "/products/a",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_2_CHILD_2_ID}}",
+      "description": "Second menu item - second submenu ID",
+      "example": "product-b",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_2_CHILD_2_LABEL}}",
+      "description": "Second menu item - second submenu label",
+      "example": "Product B",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_2_CHILD_2_URL}}",
+      "description": "Second menu item - second submenu URL",
+      "example": "/products/b",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_3_ID}}",
+      "description": "Third menu item ID",
+      "example": "about",
+      "required": false,
+      "default": "item3"
+    },
+    {
+      "name": "{{ITEM_3_LABEL}}",
+      "description": "Third menu item label",
+      "example": "About",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_3_URL}}",
+      "description": "Third menu item URL",
+      "example": "/about",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_3_ICON}}",
+      "description": "Third menu item icon",
+      "example": "icon-info",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_3_BADGE}}",
+      "description": "Third menu item badge",
+      "example": "",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_3_TARGET}}",
+      "description": "Third menu item target",
+      "example": "_self",
+      "required": false,
+      "default": "_self"
+    },
+    {
+      "name": "{{ITEM_4_ID}}",
+      "description": "Fourth menu item ID",
+      "example": "contact",
+      "required": false,
+      "default": "item4"
+    },
+    {
+      "name": "{{ITEM_4_LABEL}}",
+      "description": "Fourth menu item label",
+      "example": "Contact",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_4_URL}}",
+      "description": "Fourth menu item URL",
+      "example": "/contact",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_4_ICON}}",
+      "description": "Fourth menu item icon",
+      "example": "icon-contact",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_4_BADGE}}",
+      "description": "Fourth menu item badge",
+      "example": "",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_4_TARGET}}",
+      "description": "Fourth menu item target",
+      "example": "_self",
+      "required": false,
+      "default": "_self"
+    },
+    {
+      "name": "{{LAYOUT}}",
+      "description": "Navigation layout style",
+      "example": "horizontal",
+      "options": ["horizontal", "vertical", "mega-menu"],
+      "required": false,
+      "default": "horizontal"
+    },
+    {
+      "name": "{{MOBILE_BREAKPOINT}}",
+      "description": "Mobile breakpoint in pixels",
+      "example": "768",
+      "required": false,
+      "default": "768"
+    },
+    {
+      "name": "{{SHOW_ICONS}}",
+      "description": "Show icons in menu (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "true"
+    },
+    {
+      "name": "{{SHOW_BADGES}}",
+      "description": "Show badges in menu (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "true"
+    },
+    {
+      "name": "{{HIGHLIGHT_ACTIVE}}",
+      "description": "Highlight active/current page (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "true"
+    }
+  ],
+  "notes": "Template includes 4 top-level menu items with Item 2 having 2 submenu items. Remove children arrays if no submenu needed. Your application loops through menuItems to render the navigation."
+}

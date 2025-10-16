@@ -1,0 +1,404 @@
+{
+  "name": "Pricing Plans Data",
+  "type": "json",
+  "description": "Pricing table/plans configuration for testing different pricing strategies, tiers, and promotional offers. Perfect for pricing page A/B tests.",
+  "tags": ["pricing", "plans", "tiers", "subscription", "commerce", "pricing-table", "offers"],
+  "content": {
+    "heading": "{{HEADING}}",
+    "subheading": "{{SUBHEADING}}",
+    "billingCycle": "{{BILLING_CYCLE}}",
+    "currency": "{{CURRENCY}}",
+    "plans": [
+      {
+        "id": "{{PLAN_1_ID}}",
+        "name": "{{PLAN_1_NAME}}",
+        "description": "{{PLAN_1_DESC}}",
+        "price": "{{PLAN_1_PRICE}}",
+        "interval": "{{PLAN_1_INTERVAL}}",
+        "badge": "{{PLAN_1_BADGE}}",
+        "featured": {{PLAN_1_FEATURED}},
+        "features": [
+          "{{PLAN_1_FEATURE_1}}",
+          "{{PLAN_1_FEATURE_2}}",
+          "{{PLAN_1_FEATURE_3}}",
+          "{{PLAN_1_FEATURE_4}}"
+        ],
+        "cta": {
+          "text": "{{PLAN_1_CTA}}",
+          "url": "{{PLAN_1_URL}}"
+        }
+      },
+      {
+        "id": "{{PLAN_2_ID}}",
+        "name": "{{PLAN_2_NAME}}",
+        "description": "{{PLAN_2_DESC}}",
+        "price": "{{PLAN_2_PRICE}}",
+        "interval": "{{PLAN_2_INTERVAL}}",
+        "badge": "{{PLAN_2_BADGE}}",
+        "featured": {{PLAN_2_FEATURED}},
+        "features": [
+          "{{PLAN_2_FEATURE_1}}",
+          "{{PLAN_2_FEATURE_2}}",
+          "{{PLAN_2_FEATURE_3}}",
+          "{{PLAN_2_FEATURE_4}}",
+          "{{PLAN_2_FEATURE_5}}"
+        ],
+        "cta": {
+          "text": "{{PLAN_2_CTA}}",
+          "url": "{{PLAN_2_URL}}"
+        }
+      },
+      {
+        "id": "{{PLAN_3_ID}}",
+        "name": "{{PLAN_3_NAME}}",
+        "description": "{{PLAN_3_DESC}}",
+        "price": "{{PLAN_3_PRICE}}",
+        "interval": "{{PLAN_3_INTERVAL}}",
+        "badge": "{{PLAN_3_BADGE}}",
+        "featured": {{PLAN_3_FEATURED}},
+        "features": [
+          "{{PLAN_3_FEATURE_1}}",
+          "{{PLAN_3_FEATURE_2}}",
+          "{{PLAN_3_FEATURE_3}}",
+          "{{PLAN_3_FEATURE_4}}",
+          "{{PLAN_3_FEATURE_5}}",
+          "{{PLAN_3_FEATURE_6}}"
+        ],
+        "cta": {
+          "text": "{{PLAN_3_CTA}}",
+          "url": "{{PLAN_3_URL}}"
+        }
+      }
+    ],
+    "additionalInfo": "{{ADDITIONAL_INFO}}",
+    "showAnnualDiscount": {{SHOW_ANNUAL_DISCOUNT}},
+    "annualDiscountPercent": "{{ANNUAL_DISCOUNT}}"
+  },
+  "variables": [
+    {
+      "name": "{{HEADING}}",
+      "description": "Pricing section heading",
+      "example": "Choose Your Plan",
+      "required": true
+    },
+    {
+      "name": "{{SUBHEADING}}",
+      "description": "Pricing section subheading",
+      "example": "Start free, upgrade when you're ready",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{BILLING_CYCLE}}",
+      "description": "Default billing cycle",
+      "example": "monthly",
+      "options": ["monthly", "annual"],
+      "required": false,
+      "default": "monthly"
+    },
+    {
+      "name": "{{CURRENCY}}",
+      "description": "Currency symbol",
+      "example": "$",
+      "required": false,
+      "default": "$"
+    },
+    {
+      "name": "{{PLAN_1_ID}}",
+      "description": "First plan ID",
+      "example": "starter",
+      "required": true
+    },
+    {
+      "name": "{{PLAN_1_NAME}}",
+      "description": "First plan name",
+      "example": "Starter",
+      "required": true
+    },
+    {
+      "name": "{{PLAN_1_DESC}}",
+      "description": "First plan description",
+      "example": "Perfect for individuals and small projects",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PLAN_1_PRICE}}",
+      "description": "First plan price",
+      "example": "0",
+      "required": true
+    },
+    {
+      "name": "{{PLAN_1_INTERVAL}}",
+      "description": "First plan billing interval",
+      "example": "month",
+      "required": false,
+      "default": "month"
+    },
+    {
+      "name": "{{PLAN_1_BADGE}}",
+      "description": "First plan badge (e.g., 'Free', 'Popular')",
+      "example": "Free",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PLAN_1_FEATURED}}",
+      "description": "First plan featured status (true/false)",
+      "example": "false",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{PLAN_1_FEATURE_1}}",
+      "description": "First plan feature 1",
+      "example": "Up to 5 users",
+      "required": true
+    },
+    {
+      "name": "{{PLAN_1_FEATURE_2}}",
+      "description": "First plan feature 2",
+      "example": "Basic analytics",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PLAN_1_FEATURE_3}}",
+      "description": "First plan feature 3",
+      "example": "Email support",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PLAN_1_FEATURE_4}}",
+      "description": "First plan feature 4",
+      "example": "Community access",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PLAN_1_CTA}}",
+      "description": "First plan CTA text",
+      "example": "Get Started",
+      "required": true
+    },
+    {
+      "name": "{{PLAN_1_URL}}",
+      "description": "First plan signup URL",
+      "example": "/signup?plan=starter",
+      "required": true
+    },
+    {
+      "name": "{{PLAN_2_ID}}",
+      "description": "Second plan ID",
+      "example": "professional",
+      "required": true
+    },
+    {
+      "name": "{{PLAN_2_NAME}}",
+      "description": "Second plan name",
+      "example": "Professional",
+      "required": true
+    },
+    {
+      "name": "{{PLAN_2_DESC}}",
+      "description": "Second plan description",
+      "example": "For growing teams and businesses",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PLAN_2_PRICE}}",
+      "description": "Second plan price",
+      "example": "49",
+      "required": true
+    },
+    {
+      "name": "{{PLAN_2_INTERVAL}}",
+      "description": "Second plan billing interval",
+      "example": "month",
+      "required": false,
+      "default": "month"
+    },
+    {
+      "name": "{{PLAN_2_BADGE}}",
+      "description": "Second plan badge",
+      "example": "Most Popular",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PLAN_2_FEATURED}}",
+      "description": "Second plan featured status (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{PLAN_2_FEATURE_1}}",
+      "description": "Second plan feature 1",
+      "example": "Up to 25 users",
+      "required": true
+    },
+    {
+      "name": "{{PLAN_2_FEATURE_2}}",
+      "description": "Second plan feature 2",
+      "example": "Advanced analytics",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PLAN_2_FEATURE_3}}",
+      "description": "Second plan feature 3",
+      "example": "Priority support",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PLAN_2_FEATURE_4}}",
+      "description": "Second plan feature 4",
+      "example": "Custom integrations",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PLAN_2_FEATURE_5}}",
+      "description": "Second plan feature 5",
+      "example": "API access",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PLAN_2_CTA}}",
+      "description": "Second plan CTA text",
+      "example": "Start Free Trial",
+      "required": true
+    },
+    {
+      "name": "{{PLAN_2_URL}}",
+      "description": "Second plan signup URL",
+      "example": "/signup?plan=professional",
+      "required": true
+    },
+    {
+      "name": "{{PLAN_3_ID}}",
+      "description": "Third plan ID",
+      "example": "enterprise",
+      "required": true
+    },
+    {
+      "name": "{{PLAN_3_NAME}}",
+      "description": "Third plan name",
+      "example": "Enterprise",
+      "required": true
+    },
+    {
+      "name": "{{PLAN_3_DESC}}",
+      "description": "Third plan description",
+      "example": "For large organizations with advanced needs",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PLAN_3_PRICE}}",
+      "description": "Third plan price (use 'Custom' for contact pricing)",
+      "example": "199",
+      "required": true
+    },
+    {
+      "name": "{{PLAN_3_INTERVAL}}",
+      "description": "Third plan billing interval",
+      "example": "month",
+      "required": false,
+      "default": "month"
+    },
+    {
+      "name": "{{PLAN_3_BADGE}}",
+      "description": "Third plan badge",
+      "example": "Best Value",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PLAN_3_FEATURED}}",
+      "description": "Third plan featured status (true/false)",
+      "example": "false",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{PLAN_3_FEATURE_1}}",
+      "description": "Third plan feature 1",
+      "example": "Unlimited users",
+      "required": true
+    },
+    {
+      "name": "{{PLAN_3_FEATURE_2}}",
+      "description": "Third plan feature 2",
+      "example": "Custom analytics",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PLAN_3_FEATURE_3}}",
+      "description": "Third plan feature 3",
+      "example": "Dedicated account manager",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PLAN_3_FEATURE_4}}",
+      "description": "Third plan feature 4",
+      "example": "SLA guarantee",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PLAN_3_FEATURE_5}}",
+      "description": "Third plan feature 5",
+      "example": "Custom contracts",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PLAN_3_FEATURE_6}}",
+      "description": "Third plan feature 6",
+      "example": "On-premise deployment",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PLAN_3_CTA}}",
+      "description": "Third plan CTA text",
+      "example": "Contact Sales",
+      "required": true
+    },
+    {
+      "name": "{{PLAN_3_URL}}",
+      "description": "Third plan signup/contact URL",
+      "example": "/contact-sales?plan=enterprise",
+      "required": true
+    },
+    {
+      "name": "{{ADDITIONAL_INFO}}",
+      "description": "Additional pricing information",
+      "example": "All plans include 14-day free trial. No credit card required.",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{SHOW_ANNUAL_DISCOUNT}}",
+      "description": "Show annual discount badge (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{ANNUAL_DISCOUNT}}",
+      "description": "Annual discount percentage",
+      "example": "20",
+      "required": false,
+      "default": "0"
+    }
+  ]
+}

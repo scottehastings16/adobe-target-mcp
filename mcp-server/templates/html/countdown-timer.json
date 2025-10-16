@@ -1,0 +1,48 @@
+{
+  "name": "Countdown Timer",
+  "type": "html",
+  "description": "Countdown timer for promotions, sales, or events. Shows days, hours, minutes, and seconds. Fully responsive and customizable.",
+  "tags": ["countdown", "timer", "urgency", "sale", "promotion", "deadline", "scarcity"],
+  "content": "<script>\n(function() {\n  var container = document.querySelector('{{SELECTOR}}');\n  if (!container) return;\n  \n  var endDate = new Date('{{END_DATE}}').getTime();\n  var heading = '{{HEADING}}';\n  \n  // Inject CSS\n  var style = document.createElement('style');\n  style.textContent = '' +\n    '.at-countdown { text-align: center; padding: 30px 20px; }' +\n    '.at-countdown-heading { font-size: 24px; font-weight: bold; margin: 0 0 20px 0; }' +\n    '.at-countdown-timer { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }' +\n    '.at-countdown-unit { display: flex; flex-direction: column; align-items: center; min-width: 80px; }' +\n    '.at-countdown-value { font-size: 48px; font-weight: bold; line-height: 1; margin: 0 0 5px 0; }' +\n    '.at-countdown-label { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; }' +\n    '.at-countdown-expired { font-size: 20px; font-weight: bold; }' +\n    '@media (max-width: 768px) {' +\n    '  .at-countdown-heading { font-size: 20px; }' +\n    '  .at-countdown-timer { gap: 15px; }' +\n    '  .at-countdown-unit { min-width: 60px; }' +\n    '  .at-countdown-value { font-size: 36px; }' +\n    '  .at-countdown-label { font-size: 12px; }' +\n    '}';\n  document.head.appendChild(style);\n  \n  // Build countdown HTML\n  container.className = 'at-countdown';\n  container.style.backgroundColor = '{{BACKGROUND_COLOR}}';\n  container.style.color = '{{TEXT_COLOR}}';\n  \n  var headingEl = document.createElement('div');\n  headingEl.className = 'at-countdown-heading';\n  headingEl.textContent = heading;\n  \n  var timerEl = document.createElement('div');\n  timerEl.className = 'at-countdown-timer';\n  \n  var daysUnit = document.createElement('div');\n  daysUnit.className = 'at-countdown-unit';\n  var daysValue = document.createElement('div');\n  daysValue.className = 'at-countdown-value';\n  daysValue.id = 'at-days';\n  var daysLabel = document.createElement('div');\n  daysLabel.className = 'at-countdown-label';\n  daysLabel.textContent = 'Days';\n  daysUnit.appendChild(daysValue);\n  daysUnit.appendChild(daysLabel);\n  \n  var hoursUnit = document.createElement('div');\n  hoursUnit.className = 'at-countdown-unit';\n  var hoursValue = document.createElement('div');\n  hoursValue.className = 'at-countdown-value';\n  hoursValue.id = 'at-hours';\n  var hoursLabel = document.createElement('div');\n  hoursLabel.className = 'at-countdown-label';\n  hoursLabel.textContent = 'Hours';\n  hoursUnit.appendChild(hoursValue);\n  hoursUnit.appendChild(hoursLabel);\n  \n  var minutesUnit = document.createElement('div');\n  minutesUnit.className = 'at-countdown-unit';\n  var minutesValue = document.createElement('div');\n  minutesValue.className = 'at-countdown-value';\n  minutesValue.id = 'at-minutes';\n  var minutesLabel = document.createElement('div');\n  minutesLabel.className = 'at-countdown-label';\n  minutesLabel.textContent = 'Minutes';\n  minutesUnit.appendChild(minutesValue);\n  minutesUnit.appendChild(minutesLabel);\n  \n  var secondsUnit = document.createElement('div');\n  secondsUnit.className = 'at-countdown-unit';\n  var secondsValue = document.createElement('div');\n  secondsValue.className = 'at-countdown-value';\n  secondsValue.id = 'at-seconds';\n  var secondsLabel = document.createElement('div');\n  secondsLabel.className = 'at-countdown-label';\n  secondsLabel.textContent = 'Seconds';\n  secondsUnit.appendChild(secondsValue);\n  secondsUnit.appendChild(secondsLabel);\n  \n  timerEl.appendChild(daysUnit);\n  timerEl.appendChild(hoursUnit);\n  timerEl.appendChild(minutesUnit);\n  timerEl.appendChild(secondsUnit);\n  \n  container.innerHTML = '';\n  container.appendChild(headingEl);\n  container.appendChild(timerEl);\n  \n  // Countdown logic\n  function updateCountdown() {\n    var now = new Date().getTime();\n    var distance = endDate - now;\n    \n    if (distance < 0) {\n      container.innerHTML = '<div class=\"at-countdown-expired\">{{EXPIRED_MESSAGE}}</div>';\n      return;\n    }\n    \n    var days = Math.floor(distance / (1000 * 60 * 60 * 24));\n    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));\n    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));\n    var seconds = Math.floor((distance % (1000 * 60)) / 1000);\n    \n    document.getElementById('at-days').textContent = String(days).padStart(2, '0');\n    document.getElementById('at-hours').textContent = String(hours).padStart(2, '0');\n    document.getElementById('at-minutes').textContent = String(minutes).padStart(2, '0');\n    document.getElementById('at-seconds').textContent = String(seconds).padStart(2, '0');\n  }\n  \n  // Update immediately and then every second\n  updateCountdown();\n  setInterval(updateCountdown, 1000);\n})();\n</script>",
+  "variables": [
+    {
+      "name": "{{SELECTOR}}",
+      "description": "CSS selector for countdown container",
+      "example": "#countdown-timer",
+      "required": true
+    },
+    {
+      "name": "{{END_DATE}}",
+      "description": "End date/time in ISO format (YYYY-MM-DDTHH:MM:SS)",
+      "example": "2025-12-31T23:59:59",
+      "required": true
+    },
+    {
+      "name": "{{HEADING}}",
+      "description": "Heading text above countdown",
+      "example": "Sale Ends In:",
+      "required": true
+    },
+    {
+      "name": "{{EXPIRED_MESSAGE}}",
+      "description": "Message to show when countdown reaches zero",
+      "example": "This offer has expired",
+      "required": false,
+      "default": "Offer Expired"
+    },
+    {
+      "name": "{{BACKGROUND_COLOR}}",
+      "description": "Background color of countdown container",
+      "example": "#FF5733",
+      "required": false,
+      "default": "#f8f9fa"
+    },
+    {
+      "name": "{{TEXT_COLOR}}",
+      "description": "Text color",
+      "example": "#000000",
+      "required": false,
+      "default": "#000000"
+    }
+  ]
+}

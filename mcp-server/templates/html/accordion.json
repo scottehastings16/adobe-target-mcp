@@ -1,0 +1,110 @@
+{
+  "name": "Accordion (Collapsible Sections)",
+  "type": "html",
+  "description": "Accordion/collapsible sections for FAQ, product details, or any expandable content. Mobile-friendly with smooth animations.",
+  "tags": ["accordion", "collapsible", "expandable", "faq", "details", "toggle"],
+  "content": "<script>\n(function() {\n  var container = document.querySelector('{{SELECTOR}}');\n  if (!container) return;\n  \n  var items = [\n    { title: '{{ITEM_1_TITLE}}', content: '{{ITEM_1_CONTENT}}' },\n    { title: '{{ITEM_2_TITLE}}', content: '{{ITEM_2_CONTENT}}' },\n    { title: '{{ITEM_3_TITLE}}', content: '{{ITEM_3_CONTENT}}' },\n    { title: '{{ITEM_4_TITLE}}', content: '{{ITEM_4_CONTENT}}' }\n  ];\n  \n  // Remove empty items\n  items = items.filter(function(item) { return item.title !== ''; });\n  \n  var allowMultiple = {{ALLOW_MULTIPLE}};\n  var openFirst = {{OPEN_FIRST}};\n  \n  // Inject CSS\n  var style = document.createElement('style');\n  style.textContent = '' +\n    '.at-accordion { width: 100%; }' +\n    '.at-accordion-item { border: 1px solid #dee2e6; margin-bottom: 10px; border-radius: 4px; overflow: hidden; }' +\n    '.at-accordion-header { background: {{HEADER_BG}}; padding: 15px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s ease; user-select: none; }' +\n    '.at-accordion-header:hover { background: {{HEADER_HOVER_BG}}; }' +\n    '.at-accordion-header.active { background: {{HEADER_ACTIVE_BG}}; color: {{HEADER_ACTIVE_COLOR}}; }' +\n    '.at-accordion-title { font-size: 16px; font-weight: 600; margin: 0; }' +\n    '.at-accordion-icon { font-size: 20px; transition: transform 0.3s ease; }' +\n    '.at-accordion-header.active .at-accordion-icon { transform: rotate(180deg); }' +\n    '.at-accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; background: white; }' +\n    '.at-accordion-content.active { max-height: 1000px; padding: 20px; }' +\n    '.at-accordion-body { font-size: 14px; line-height: 1.6; color: #495057; }' +\n    '@media (max-width: 768px) {' +\n    '  .at-accordion-header { padding: 12px 15px; }' +\n    '  .at-accordion-title { font-size: 14px; }' +\n    '  .at-accordion-content.active { padding: 15px; }' +\n    '}';\n  document.head.appendChild(style);\n  \n  // Build accordion HTML\n  container.className = 'at-accordion';\n  container.innerHTML = '';\n  \n  for (var i = 0; i < items.length; i++) {\n    var item = items[i];\n    var isOpen = openFirst && i === 0;\n    \n    var accordionItem = document.createElement('div');\n    accordionItem.className = 'at-accordion-item';\n    \n    var header = document.createElement('div');\n    header.className = 'at-accordion-header' + (isOpen ? ' active' : '');\n    header.setAttribute('role', 'button');\n    header.setAttribute('aria-expanded', isOpen ? 'true' : 'false');\n    \n    var title = document.createElement('h3');\n    title.className = 'at-accordion-title';\n    title.textContent = item.title;\n    \n    var icon = document.createElement('span');\n    icon.className = 'at-accordion-icon';\n    icon.innerHTML = '&#9660;';\n    \n    header.appendChild(title);\n    header.appendChild(icon);\n    \n    var content = document.createElement('div');\n    content.className = 'at-accordion-content' + (isOpen ? ' active' : '');\n    \n    var body = document.createElement('div');\n    body.className = 'at-accordion-body';\n    body.innerHTML = item.content;\n    \n    content.appendChild(body);\n    \n    accordionItem.appendChild(header);\n    accordionItem.appendChild(content);\n    container.appendChild(accordionItem);\n  }\n  \n  // Add click handlers\n  var headers = container.querySelectorAll('.at-accordion-header');\n  for (var j = 0; j < headers.length; j++) {\n    headers[j].addEventListener('click', function() {\n      var isActive = this.classList.contains('active');\n      var content = this.nextElementSibling;\n      \n      // If not allowing multiple, close all others\n      if (!allowMultiple) {\n        var allHeaders = container.querySelectorAll('.at-accordion-header');\n        var allContents = container.querySelectorAll('.at-accordion-content');\n        for (var k = 0; k < allHeaders.length; k++) {\n          allHeaders[k].classList.remove('active');\n          allHeaders[k].setAttribute('aria-expanded', 'false');\n          allContents[k].classList.remove('active');\n        }\n      }\n      \n      // Toggle this item\n      if (isActive && allowMultiple) {\n        this.classList.remove('active');\n        this.setAttribute('aria-expanded', 'false');\n        content.classList.remove('active');\n      } else {\n        this.classList.add('active');\n        this.setAttribute('aria-expanded', 'true');\n        content.classList.add('active');\n      }\n    });\n  }\n})();\n</script>",
+  "variables": [
+    {
+      "name": "{{SELECTOR}}",
+      "description": "CSS selector for accordion container",
+      "example": "#faq-section",
+      "required": true
+    },
+    {
+      "name": "{{ITEM_1_TITLE}}",
+      "description": "First accordion item title",
+      "example": "What is your return policy?",
+      "required": true
+    },
+    {
+      "name": "{{ITEM_1_CONTENT}}",
+      "description": "First accordion item content (HTML allowed)",
+      "example": "We offer a 30-day money-back guarantee on all products.",
+      "required": true
+    },
+    {
+      "name": "{{ITEM_2_TITLE}}",
+      "description": "Second accordion item title",
+      "example": "How long does shipping take?",
+      "required": true
+    },
+    {
+      "name": "{{ITEM_2_CONTENT}}",
+      "description": "Second accordion item content (HTML allowed)",
+      "example": "Most orders ship within 24 hours and arrive in 3-5 business days.",
+      "required": true
+    },
+    {
+      "name": "{{ITEM_3_TITLE}}",
+      "description": "Third accordion item title (optional)",
+      "example": "Do you offer international shipping?",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_3_CONTENT}}",
+      "description": "Third accordion item content (HTML allowed)",
+      "example": "Yes, we ship to over 50 countries worldwide.",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_4_TITLE}}",
+      "description": "Fourth accordion item title (optional)",
+      "example": "How can I track my order?",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ITEM_4_CONTENT}}",
+      "description": "Fourth accordion item content (HTML allowed)",
+      "example": "You'll receive a tracking number via email once your order ships.",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ALLOW_MULTIPLE}}",
+      "description": "Allow multiple items open at once (true/false)",
+      "example": "false",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{OPEN_FIRST}}",
+      "description": "Open first item by default (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "true"
+    },
+    {
+      "name": "{{HEADER_BG}}",
+      "description": "Header background color",
+      "example": "#f8f9fa",
+      "required": false,
+      "default": "#f8f9fa"
+    },
+    {
+      "name": "{{HEADER_HOVER_BG}}",
+      "description": "Header background on hover",
+      "example": "#e9ecef",
+      "required": false,
+      "default": "#e9ecef"
+    },
+    {
+      "name": "{{HEADER_ACTIVE_BG}}",
+      "description": "Header background when active/open",
+      "example": "#007bff",
+      "required": false,
+      "default": "#007bff"
+    },
+    {
+      "name": "{{HEADER_ACTIVE_COLOR}}",
+      "description": "Header text color when active/open",
+      "example": "#ffffff",
+      "required": false,
+      "default": "#ffffff"
+    }
+  ],
+  "notes": "Supports 2-4 accordion items. For more items, duplicate the ITEM_X variables pattern."
+}

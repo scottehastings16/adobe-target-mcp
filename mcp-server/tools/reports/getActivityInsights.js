@@ -143,8 +143,8 @@ function generateInsights(comparisons, activity) {
   const typeInfo = getActivityTypeInfo(activity.type);
 
   // Add activity type context
-  insights.push(`📊 Activity Type: ${typeInfo.name}`);
-  insights.push(`ℹ️ ${typeInfo.description}`);
+  insights.push(`Activity Type: ${typeInfo.name}`);
+  insights.push(`${typeInfo.description}`);
 
   // Find best performing experience
   const sortedByConversion = [...comparisons].sort((a, b) => {
@@ -159,11 +159,11 @@ function generateInsights(comparisons, activity) {
   if (activity.type === 'ab') {
     // A/B Test specific insights
     if (comparisons.length === 1) {
-      insights.push('⚠️ Only one experience found. A/B tests typically have 2+ experiences to compare.');
+      insights.push('Only one experience found. A/B tests typically have 2+ experiences to compare.');
       recommendations.push('Add additional experiences (variants) to test against the control.');
     } else {
       if (winner.experienceId !== control.experienceId) {
-        insights.push(`🏆 Winner: ${winner.experienceName} with ${winner.metrics.conversionRate} conversion rate (${winner.performance.lift} lift)`);
+        insights.push(`Winner: ${winner.experienceName} with ${winner.metrics.conversionRate} conversion rate (${winner.performance.lift} lift)`);
 
         if (totalVisitors >= 1000) {
           recommendations.push(`Strong results with ${totalVisitors} visitors. Consider implementing ${winner.experienceName} site-wide.`);
@@ -183,16 +183,16 @@ function generateInsights(comparisons, activity) {
       });
 
       if (trafficImbalance && totalVisitors > 100) {
-        insights.push('⚠️ Traffic split is uneven across experiences.');
+        insights.push('Traffic split is uneven across experiences.');
         recommendations.push('Verify traffic allocation settings (should typically be 50/50 or evenly split).');
       }
     }
   } else if (activity.type === 'xt') {
     // Experience Targeting specific insights
-    insights.push(`📌 Note: ${typeInfo.comparisonNote}`);
+    insights.push(`Note: ${typeInfo.comparisonNote}`);
 
     if (comparisons.length === 1) {
-      insights.push('⚠️ Only one experience found. XT activities typically target multiple audience segments.');
+      insights.push('Only one experience found. XT activities typically target multiple audience segments.');
       recommendations.push('Add experiences targeted to different audience segments to maximize personalization.');
     } else {
       insights.push(`${comparisons.length} targeted experiences are active.`);
@@ -212,15 +212,15 @@ function generateInsights(comparisons, activity) {
     }
   } else if (activity.type === 'abt') {
     // Automated Personalization specific insights
-    insights.push(`🤖 ${typeInfo.comparisonNote}`);
+    insights.push(`${typeInfo.comparisonNote}`);
 
     insights.push(`The algorithm is testing ${comparisons.length} experiences.`);
 
     if (totalVisitors < 1000) {
-      insights.push('⚠️ AP activities require substantial traffic (1000+ visitors) for the algorithm to learn effectively.');
+      insights.push('AP activities require substantial traffic (1000+ visitors) for the algorithm to learn effectively.');
       recommendations.push('Allow more time for the machine learning algorithm to optimize performance.');
     } else {
-      insights.push(`✓ Sufficient traffic (${totalVisitors} visitors) for algorithm optimization.`);
+      insights.push(`Sufficient traffic (${totalVisitors} visitors) for algorithm optimization.`);
 
       // Show top performers
       const topPerformers = sortedByConversion.slice(0, 3);
@@ -235,27 +235,27 @@ function generateInsights(comparisons, activity) {
 
   // Check for low traffic
   if (totalVisitors < 100) {
-    insights.push(`⚠️ Low traffic detected: Only ${totalVisitors} total visitors. Results may not be statistically significant.`);
+    insights.push(`Low traffic detected: Only ${totalVisitors} total visitors. Results may not be statistically significant.`);
     recommendations.push('Continue running the activity to gather more data before making decisions.');
   }
 
   // Check for zero conversions
   const hasConversions = comparisons.some(exp => exp.metrics.conversions > 0);
   if (!hasConversions) {
-    insights.push('⚠️ No conversions recorded yet for any experience.');
+    insights.push('No conversions recorded yet for any experience.');
     recommendations.push('Verify that conversion tracking is properly configured.');
     recommendations.push('Check that visitors are reaching the conversion goal (e.g., checkout, form submission).');
   }
 
   // Activity state recommendations
   if (activity.state === 'saved') {
-    insights.push('⚠️ Activity Status: SAVED (not running)');
+    insights.push('Activity Status: SAVED (not running)');
     recommendations.push('Activate the activity to start collecting meaningful data.');
   } else if (activity.state === 'deactivated') {
-    insights.push('⚠️ Activity Status: DEACTIVATED');
+    insights.push('Activity Status: DEACTIVATED');
     recommendations.push('Activity is deactivated. No new data is being collected.');
   } else if (activity.state === 'approved') {
-    insights.push('✓ Activity Status: APPROVED (running)');
+    insights.push('Activity Status: APPROVED (running)');
   }
 
   return { insights, recommendations, typeInfo };

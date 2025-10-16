@@ -14,8 +14,9 @@
     "example": "window.dataLayer.push({\n  event: 'target_conversion',\n  at_activity: 'Homepage CTA Test',\n  at_experience: 'Variant A'\n});"
   },
   "adobeLaunch": {
-    "name": "Adobe Launch (Experience Platform Tags)",
-    "description": "Adobe Experience Platform Launch direct call rules",
+    "name": "Adobe Launch (Experience Platform Tags) - Direct Call",
+    "description": "Adobe Experience Platform Launch direct call rules using _satellite.track()",
+    "note": "When Adobe Launch is detected, ask user if they prefer 'adobeLaunch' (_satellite.track) or 'adobeDataLayer' (adobeDataLayer.push)",
     "eventObject": "_satellite",
     "method": "track",
     "eventStructure": {
@@ -26,6 +27,21 @@
     },
     "template": "if (typeof _satellite !== 'undefined') {\n  _satellite.track('{{EVENT_NAME}}', {\n    {{ACTIVITY_KEY}}: '{{ACTIVITY_NAME}}',\n    {{EXPERIENCE_KEY}}: '{{EXPERIENCE_NAME}}'\n  });\n}",
     "example": "_satellite.track('target-conversion', {\n  activityName: 'Homepage CTA Test',\n  experienceName: 'Variant A'\n});"
+  },
+  "adobeDataLayer": {
+    "name": "Adobe Client Data Layer",
+    "description": "Adobe Client Data Layer (ACDL) for Adobe Experience Platform Tags",
+    "note": "When Adobe Launch is detected, ask user if they prefer '_satellite' (_satellite.track) or 'adobeDataLayer' (adobeDataLayer.push)",
+    "eventObject": "adobeDataLayer",
+    "method": "push",
+    "eventStructure": {
+      "eventKey": "event",
+      "activityKey": "target_activity",
+      "experienceKey": "target_experience",
+      "defaultEventName": "target-conversion"
+    },
+    "template": "window.adobeDataLayer = window.adobeDataLayer || [];\nwindow.adobeDataLayer.push({\n  {{EVENT_KEY}}: '{{EVENT_NAME}}',\n  {{ACTIVITY_KEY}}: '{{ACTIVITY_NAME}}',\n  {{EXPERIENCE_KEY}}: '{{EXPERIENCE_NAME}}'\n});",
+    "example": "adobeDataLayer.push({\n  event: 'target-conversion',\n  target_activity: 'Homepage CTA Test',\n  target_experience: 'Variant A'\n});"
   },
   "tealium": {
     "name": "Tealium iQ",

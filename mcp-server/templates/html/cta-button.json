@@ -1,0 +1,42 @@
+{
+  "name": "CTA Button",
+  "type": "html",
+  "description": "Styled call-to-action button with hover effects and conversion tracking ready. Can modify existing button or create new one.",
+  "tags": ["cta", "button", "call-to-action", "conversion", "click", "tracking"],
+  "content": "<script>\n(function() {\n  var button = document.querySelector('{{SELECTOR}}');\n  if (!button) return;\n  \n  // Inject CSS\n  var style = document.createElement('style');\n  style.textContent = '' +\n    '.at-cta-button { display: inline-block; padding: 15px 40px; font-size: 18px; font-weight: bold; text-decoration: none; border-radius: 5px; transition: all 0.3s ease; cursor: pointer; border: none; text-align: center; }' +\n    '.at-cta-button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.3); opacity: 0.9; }' +\n    '.at-cta-button:active { transform: translateY(0); }' +\n    '@media (max-width: 768px) {' +\n    '  .at-cta-button { padding: 12px 30px; font-size: 16px; min-width: 200px; }' +\n    '}';\n  document.head.appendChild(style);\n  \n  // Apply styles and modifications\n  button.className = button.className + ' at-cta-button';\n  button.textContent = '{{BUTTON_TEXT}}';\n  button.style.backgroundColor = '{{BUTTON_COLOR}}';\n  button.style.color = '{{TEXT_COLOR}}';\n  \n  // Update URL if it's a link\n  if (button.tagName === 'A') {\n    button.href = '{{BUTTON_URL}}';\n  }\n  \n  // Add click event for buttons\n  if (button.tagName === 'BUTTON') {\n    button.addEventListener('click', function() {\n      window.location.href = '{{BUTTON_URL}}';\n    });\n  }\n})();\n</script>",
+  "variables": [
+    {
+      "name": "{{SELECTOR}}",
+      "description": "CSS selector for the button element to modify",
+      "example": "#main-cta",
+      "required": true
+    },
+    {
+      "name": "{{BUTTON_TEXT}}",
+      "description": "Button text/label",
+      "example": "Get Started Now",
+      "required": true
+    },
+    {
+      "name": "{{BUTTON_URL}}",
+      "description": "Button destination URL",
+      "example": "/signup",
+      "required": true
+    },
+    {
+      "name": "{{BUTTON_COLOR}}",
+      "description": "Button background color (hex or CSS color)",
+      "example": "#28a745",
+      "required": false,
+      "default": "#007bff"
+    },
+    {
+      "name": "{{TEXT_COLOR}}",
+      "description": "Button text color (hex or CSS color)",
+      "example": "#FFFFFF",
+      "required": false,
+      "default": "#FFFFFF"
+    }
+  ],
+  "notes": "This template is conversion-tracking ready. After populating variables, use the generateDataLayerEvent tool to add tracking code."
+}

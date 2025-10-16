@@ -1,0 +1,59 @@
+{
+  "name": "Hero Banner with CTA",
+  "type": "html",
+  "description": "Full-width hero banner with heading, subheading, CTA button, and background image. Fully responsive with mobile optimizations.",
+  "tags": ["hero", "banner", "cta", "button", "heading", "responsive", "background"],
+  "content": "<script>\n(function() {\n  var container = document.querySelector('{{SELECTOR}}');\n  if (!container) return;\n  \n  // Inject CSS\n  var style = document.createElement('style');\n  style.textContent = '' +\n    '.at-hero-banner { position: relative; width: 100%; min-height: 500px; display: flex; align-items: center; justify-content: center; text-align: center; background-size: cover; background-position: center; background-repeat: no-repeat; }' +\n    '.at-hero-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); }' +\n    '.at-hero-content { position: relative; z-index: 2; max-width: 800px; padding: 40px 20px; color: white; }' +\n    '.at-hero-heading { font-size: 48px; font-weight: bold; margin: 0 0 20px 0; line-height: 1.2; }' +\n    '.at-hero-subheading { font-size: 24px; margin: 0 0 30px 0; line-height: 1.4; }' +\n    '.at-hero-cta { display: inline-block; padding: 15px 40px; font-size: 18px; font-weight: bold; text-decoration: none; border-radius: 5px; transition: all 0.3s ease; cursor: pointer; border: none; }' +\n    '.at-hero-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }' +\n    '@media (max-width: 768px) {' +\n    '  .at-hero-banner { min-height: 400px; }' +\n    '  .at-hero-heading { font-size: 32px; }' +\n    '  .at-hero-subheading { font-size: 18px; }' +\n    '  .at-hero-cta { padding: 12px 30px; font-size: 16px; }' +\n    '  .at-hero-content { padding: 30px 15px; }' +\n    '}';\n  document.head.appendChild(style);\n  \n  // Build hero banner HTML\n  container.className = 'at-hero-banner';\n  container.style.backgroundImage = \"url('{{BACKGROUND_IMAGE}}')\";\n  \n  var overlay = document.createElement('div');\n  overlay.className = 'at-hero-overlay';\n  \n  var content = document.createElement('div');\n  content.className = 'at-hero-content';\n  \n  var heading = document.createElement('h1');\n  heading.className = 'at-hero-heading';\n  heading.textContent = '{{HEADING}}';\n  \n  var subheading = document.createElement('p');\n  subheading.className = 'at-hero-subheading';\n  subheading.textContent = '{{SUBHEADING}}';\n  \n  var cta = document.createElement('a');\n  cta.className = 'at-hero-cta';\n  cta.href = '{{CTA_URL}}';\n  cta.textContent = '{{CTA_TEXT}}';\n  cta.style.backgroundColor = '{{CTA_COLOR}}';\n  cta.style.color = '{{CTA_TEXT_COLOR}}';\n  \n  content.appendChild(heading);\n  content.appendChild(subheading);\n  content.appendChild(cta);\n  \n  container.innerHTML = '';\n  container.appendChild(overlay);\n  container.appendChild(content);\n})();\n</script>",
+  "variables": [
+    {
+      "name": "{{SELECTOR}}",
+      "description": "CSS selector for hero banner container",
+      "example": "#hero-section",
+      "required": true
+    },
+    {
+      "name": "{{BACKGROUND_IMAGE}}",
+      "description": "URL of the background image",
+      "example": "https://example.com/hero-bg.jpg",
+      "required": true
+    },
+    {
+      "name": "{{HEADING}}",
+      "description": "Main heading text",
+      "example": "Transform Your Business Today",
+      "required": true
+    },
+    {
+      "name": "{{SUBHEADING}}",
+      "description": "Subheading/description text",
+      "example": "Join thousands of companies already using our platform",
+      "required": true
+    },
+    {
+      "name": "{{CTA_TEXT}}",
+      "description": "Call-to-action button text",
+      "example": "Get Started Now",
+      "required": true
+    },
+    {
+      "name": "{{CTA_URL}}",
+      "description": "Call-to-action button URL",
+      "example": "/signup",
+      "required": true
+    },
+    {
+      "name": "{{CTA_COLOR}}",
+      "description": "CTA button background color (hex or CSS color)",
+      "example": "#FF5733",
+      "required": false,
+      "default": "#007bff"
+    },
+    {
+      "name": "{{CTA_TEXT_COLOR}}",
+      "description": "CTA button text color (hex or CSS color)",
+      "example": "#FFFFFF",
+      "required": false,
+      "default": "#FFFFFF"
+    }
+  ]
+}

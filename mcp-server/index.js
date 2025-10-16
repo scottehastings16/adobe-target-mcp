@@ -6,21 +6,24 @@
  */
 
 import dotenv from 'dotenv';
-import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
+  ListResourcesRequestSchema,
+  ReadResourceRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
 import { loadTools } from './tools/index.js';
 import { randomBytes } from 'crypto';
 import { tmpdir } from 'os';
-import { unlinkSync, existsSync } from 'fs';
+import { unlinkSync, existsSync, readdirSync, readFileSync } from 'fs';
 
 // Get the directory of this script
-const __filename = fileURLToPath(import.meta.url);
+// Use process.argv[1] instead of import.meta.url to get the actual invoked script path
+// This ensures we get the project directory, not the Claude installation directory
+const __filename = process.argv[1];
 const __dirname = dirname(__filename);
 
 // Load .env from the mcp-server directory
@@ -37,6 +40,10 @@ const config = {
   apiKey: process.env.TARGET_API_KEY || '',
   accessToken: process.env.TARGET_ACCESS_TOKEN || '',
   workspaceId: process.env.TARGET_WORKSPACE_ID || '', // Optional: Filter to specific workspace
+
+  // Paths
+  // Hardcoded to project directory since __dirname resolves to Claude's installation directory
+  templatesDir: 'C:\\Users\\scott\\at-mcp\\mcp-server\\templates',
 
   // Activity Defaults
   defaults: {
@@ -111,15 +118,54 @@ function createServer() {
     {
       capabilities: {
         tools: {},
+        resources: {},
       },
     }
   );
+}
+
+// Load templates from filesystem and cache them
+function loadTemplates(templatesDir) {
+  const templates = {
+    html: [],
+    json: []
+  };
+
+  try {
+    const htmlDir = join(templatesDir, 'html');
+    if (existsSync(htmlDir)) {
+      const htmlFiles = readdirSync(htmlDir).filter(f => f.endsWith('.json'));
+      templates.html = htmlFiles.map(f => f.replace('.json', ''));
+      console.error(`[MCP Server] Loaded ${templates.html.length} HTML templates`);
+    }
+
+    const jsonDir = join(templatesDir, 'json');
+    if (existsSync(jsonDir)) {
+      const jsonFiles = readdirSync(jsonDir).filter(f => f.endsWith('.json'));
+      templates.json = jsonFiles.map(f => f.replace('.json', ''));
+      console.error(`[MCP Server] Loaded ${templates.json.length} JSON templates`);
+    }
+  } catch (error) {
+    console.error('[MCP Server] Error loading templates:', error.message);
+    console.error('[MCP Server] Using fallback template list');
+    // Fallback to known templates if filesystem access fails
+    templates.html = ['accordion', 'carousel', 'countdown-timer', 'cta-button', 'form-field',
+      'hero-banner', 'modal', 'notification-banner', 'sticky-header', 'tabs'];
+    templates.json = ['ab-test-variant', 'feature-flags', 'form-config', 'hero-config',
+      'navigation-menu', 'personalization-content', 'pricing-data',
+      'product-recommendations', 'testimonials'];
+  }
+
+  return templates;
 }
 
 // Setup request handlers for a server instance
 async function setupServerHandlers(server) {
   // Load all tools dynamically
   const { tools, handlers } = await loadTools();
+
+  // Load and cache templates on startup
+  const cachedTemplates = loadTemplates(config.templatesDir);
 
   // List all available tools
   server.setRequestHandler(ListToolsRequestSchema, async () => {
@@ -140,6 +186,8 @@ async function setupServerHandlers(server) {
       // Create context object with shared resources
       const context = {
         config,
+        baseDir: __dirname, // Base directory for the MCP server
+        templatesDir: config.templatesDir, // Templates directory
         tempFilePath, // Shared temp file path for page HTML
         tempCSSPath, // Shared temp file path for page CSS
       };
@@ -167,6 +215,68 @@ async function setupServerHandlers(server) {
       };
     }
   });
+
+  // List available templates as resources
+  server.setRequestHandler(ListResourcesRequestSchema, async () => {
+    // Use cached templates loaded on startup
+    const resources = [];
+
+    // Add HTML templates
+    for (const name of cachedTemplates.html) {
+      resources.push({
+        uri: `template://html/${name}`,
+        mimeType: 'application/json',
+        name: `HTML Template: ${name}`,
+        description: `Adobe Target HTML offer template`
+      });
+    }
+
+    // Add JSON templates
+    for (const name of cachedTemplates.json) {
+      resources.push({
+        uri: `template://json/${name}`,
+        mimeType: 'application/json',
+        name: `JSON Template: ${name}`,
+        description: `Adobe Target JSON offer template`
+      });
+    }
+
+    return { resources };
+  });
+
+  // Read template content
+  server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
+    const uri = request.params.uri;
+
+    try {
+      // Parse URI: template://html/carousel or template://json/feature-flags
+      const match = uri.match(/^template:\/\/(html|json)\/(.+)$/);
+      if (!match) {
+        throw new Error(`Invalid template URI: ${uri}`);
+      }
+
+      const [, type, name] = match;
+      const filePath = join(config.templatesDir, type, `${name}.json`);
+
+      if (!existsSync(filePath)) {
+        throw new Error(`Template not found: ${uri}`);
+      }
+
+      const content = readFileSync(filePath, 'utf-8');
+
+      return {
+        contents: [
+          {
+            uri,
+            mimeType: 'application/json',
+            text: content
+          }
+        ]
+      };
+    } catch (error) {
+      throw new Error(`Failed to read template: ${error.message}`);
+    }
+  });
 }
 
 // Start the server
@@ -188,7 +298,7 @@ async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
 
-  console.error('[MCP Server] ✓ Server ready - connected via stdio transport');
+  console.error('[MCP Server] Server ready - connected via stdio transport');
 }
 
 main().catch((error) => {

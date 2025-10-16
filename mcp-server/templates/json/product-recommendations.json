@@ -1,0 +1,152 @@
+{
+  "name": "Product Recommendations",
+  "type": "json",
+  "description": "Product recommendation data for e-commerce sites, SPAs, and headless experiences. Includes product details, images, pricing, and layout configuration.",
+  "tags": ["products", "recommendations", "commerce", "ecommerce", "personalization", "merchandising", "catalog"],
+  "content": {
+    "heading": "{{HEADING}}",
+    "subheading": "{{SUBHEADING}}",
+    "layout": "{{LAYOUT}}",
+    "products": [
+      {
+        "id": "{{PRODUCT_1_ID}}",
+        "name": "{{PRODUCT_1_NAME}}",
+        "description": "{{PRODUCT_1_DESC}}",
+        "price": "{{PRODUCT_1_PRICE}}",
+        "compareAtPrice": "{{PRODUCT_1_COMPARE_PRICE}}",
+        "imageUrl": "{{PRODUCT_1_IMAGE}}",
+        "url": "{{PRODUCT_1_URL}}",
+        "badge": "{{PRODUCT_1_BADGE}}"
+      },
+      {
+        "id": "{{PRODUCT_2_ID}}",
+        "name": "{{PRODUCT_2_NAME}}",
+        "description": "{{PRODUCT_2_DESC}}",
+        "price": "{{PRODUCT_2_PRICE}}",
+        "compareAtPrice": "{{PRODUCT_2_COMPARE_PRICE}}",
+        "imageUrl": "{{PRODUCT_2_IMAGE}}",
+        "url": "{{PRODUCT_2_URL}}",
+        "badge": "{{PRODUCT_2_BADGE}}"
+      },
+      {
+        "id": "{{PRODUCT_3_ID}}",
+        "name": "{{PRODUCT_3_NAME}}",
+        "description": "{{PRODUCT_3_DESC}}",
+        "price": "{{PRODUCT_3_PRICE}}",
+        "compareAtPrice": "{{PRODUCT_3_COMPARE_PRICE}}",
+        "imageUrl": "{{PRODUCT_3_IMAGE}}",
+        "url": "{{PRODUCT_3_URL}}",
+        "badge": "{{PRODUCT_3_BADGE}}"
+      },
+      {
+        "id": "{{PRODUCT_4_ID}}",
+        "name": "{{PRODUCT_4_NAME}}",
+        "description": "{{PRODUCT_4_DESC}}",
+        "price": "{{PRODUCT_4_PRICE}}",
+        "compareAtPrice": "{{PRODUCT_4_COMPARE_PRICE}}",
+        "imageUrl": "{{PRODUCT_4_IMAGE}}",
+        "url": "{{PRODUCT_4_URL}}",
+        "badge": "{{PRODUCT_4_BADGE}}"
+      }
+    ],
+    "ctaText": "{{CTA_TEXT}}",
+    "showPrices": {{SHOW_PRICES}},
+    "showBadges": {{SHOW_BADGES}}
+  },
+  "variables": [
+    {
+      "name": "{{HEADING}}",
+      "description": "Main heading for the recommendations section",
+      "example": "You Might Also Like",
+      "required": true
+    },
+    {
+      "name": "{{SUBHEADING}}",
+      "description": "Subheading/description",
+      "example": "Curated picks based on your interests",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{LAYOUT}}",
+      "description": "Display layout type",
+      "example": "grid",
+      "options": ["grid", "carousel", "list"],
+      "required": false,
+      "default": "grid"
+    },
+    {
+      "name": "{{PRODUCT_1_ID}}",
+      "description": "First product ID",
+      "example": "12345",
+      "required": true
+    },
+    {
+      "name": "{{PRODUCT_1_NAME}}",
+      "description": "First product name",
+      "example": "Premium Wireless Headphones",
+      "required": true
+    },
+    {
+      "name": "{{PRODUCT_1_DESC}}",
+      "description": "First product description",
+      "example": "High-quality sound with active noise cancellation",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PRODUCT_1_PRICE}}",
+      "description": "First product price",
+      "example": "299.99",
+      "required": true
+    },
+    {
+      "name": "{{PRODUCT_1_COMPARE_PRICE}}",
+      "description": "First product original/compare price (for sales)",
+      "example": "399.99",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PRODUCT_1_IMAGE}}",
+      "description": "First product image URL",
+      "example": "https://example.com/product1.jpg",
+      "required": true
+    },
+    {
+      "name": "{{PRODUCT_1_URL}}",
+      "description": "First product page URL",
+      "example": "/products/headphones",
+      "required": true
+    },
+    {
+      "name": "{{PRODUCT_1_BADGE}}",
+      "description": "First product badge text (e.g., 'Sale', 'New')",
+      "example": "Best Seller",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{CTA_TEXT}}",
+      "description": "Call-to-action button text",
+      "example": "Add to Cart",
+      "required": false,
+      "default": "View Product"
+    },
+    {
+      "name": "{{SHOW_PRICES}}",
+      "description": "Show product prices (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "true"
+    },
+    {
+      "name": "{{SHOW_BADGES}}",
+      "description": "Show product badges (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "true"
+    }
+  ],
+  "notes": "This template includes 4 products. Repeat PRODUCT_X variables for each additional product (2, 3, 4). Your application should loop through the products array to render them."
+}

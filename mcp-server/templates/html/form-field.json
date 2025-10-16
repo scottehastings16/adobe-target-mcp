@@ -1,0 +1,70 @@
+{
+  "name": "Form Field Modification",
+  "type": "html",
+  "description": "Modify form field styling, labels, placeholders, and validation. Perfect for form optimization tests.",
+  "tags": ["form", "input", "field", "validation", "placeholder", "label"],
+  "content": "<script>\n(function() {\n  var field = document.querySelector('{{SELECTOR}}');\n  if (!field) return;\n  \n  // Inject CSS for form field styling\n  var style = document.createElement('style');\n  style.textContent = '' +\n    '.at-form-field { padding: 12px; border-radius: 4px; border: 2px solid {{BORDER_COLOR}}; font-size: 16px; width: 100%; transition: border-color 0.3s ease; }' +\n    '.at-form-field:focus { outline: none; border-color: {{FOCUS_COLOR}}; box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1); }' +\n    '.at-form-label { display: block; margin-bottom: 8px; font-weight: 600; color: {{LABEL_COLOR}}; font-size: 14px; }' +\n    '.at-form-helper { display: block; margin-top: 4px; font-size: 12px; color: #6c757d; }' +\n    '.at-form-error { display: none; margin-top: 4px; font-size: 12px; color: #dc3545; }' +\n    '.at-form-field.error { border-color: #dc3545; }' +\n    '.at-form-field.error + .at-form-error { display: block; }' +\n    '@media (max-width: 768px) {' +\n    '  .at-form-field { padding: 10px; font-size: 14px; }' +\n    '}';\n  document.head.appendChild(style);\n  \n  // Apply field modifications\n  field.classList.add('at-form-field');\n  field.placeholder = '{{PLACEHOLDER}}';\n  \n  if ('{{LABEL}}' !== '') {\n    // Check if label already exists\n    var existingLabel = field.previousElementSibling;\n    if (!existingLabel || existingLabel.tagName !== 'LABEL') {\n      var label = document.createElement('label');\n      label.className = 'at-form-label';\n      label.textContent = '{{LABEL}}';\n      label.htmlFor = field.id || '';\n      field.parentNode.insertBefore(label, field);\n    } else {\n      existingLabel.textContent = '{{LABEL}}';\n      existingLabel.className = 'at-form-label';\n    }\n  }\n  \n  if ('{{HELPER_TEXT}}' !== '') {\n    var helper = document.createElement('span');\n    helper.className = 'at-form-helper';\n    helper.textContent = '{{HELPER_TEXT}}';\n    field.parentNode.insertBefore(helper, field.nextSibling);\n  }\n  \n  // Add validation if enabled\n  var enableValidation = {{ENABLE_VALIDATION}};\n  if (enableValidation) {\n    var errorMsg = document.createElement('span');\n    errorMsg.className = 'at-form-error';\n    errorMsg.textContent = '{{ERROR_MESSAGE}}';\n    field.parentNode.insertBefore(errorMsg, field.nextSibling);\n    \n    field.addEventListener('blur', function() {\n      if (field.value.trim() === '') {\n        field.classList.add('error');\n      } else {\n        field.classList.remove('error');\n      }\n    });\n    \n    field.addEventListener('input', function() {\n      if (field.classList.contains('error') && field.value.trim() !== '') {\n        field.classList.remove('error');\n      }\n    });\n  }\n})();\n</script>",
+  "variables": [
+    {
+      "name": "{{SELECTOR}}",
+      "description": "CSS selector for the form field",
+      "example": "#email-input",
+      "required": true
+    },
+    {
+      "name": "{{PLACEHOLDER}}",
+      "description": "Placeholder text for the field",
+      "example": "Enter your email address",
+      "required": true
+    },
+    {
+      "name": "{{LABEL}}",
+      "description": "Label text (leave empty to skip)",
+      "example": "Email Address",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{HELPER_TEXT}}",
+      "description": "Helper text below field (leave empty to skip)",
+      "example": "We'll never share your email with anyone",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{BORDER_COLOR}}",
+      "description": "Border color",
+      "example": "#ced4da",
+      "required": false,
+      "default": "#ced4da"
+    },
+    {
+      "name": "{{FOCUS_COLOR}}",
+      "description": "Border color when focused",
+      "example": "#007bff",
+      "required": false,
+      "default": "#007bff"
+    },
+    {
+      "name": "{{LABEL_COLOR}}",
+      "description": "Label text color",
+      "example": "#212529",
+      "required": false,
+      "default": "#212529"
+    },
+    {
+      "name": "{{ENABLE_VALIDATION}}",
+      "description": "Enable client-side validation (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{ERROR_MESSAGE}}",
+      "description": "Error message to show if validation fails",
+      "example": "This field is required",
+      "required": false,
+      "default": "This field is required"
+    }
+  ]
+}

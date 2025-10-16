@@ -1,0 +1,206 @@
+{
+  "name": "Hero Banner Configuration",
+  "type": "json",
+  "description": "Hero banner/section configuration data for SPAs and headless CMSs. Includes heading, media, CTA, and styling options.",
+  "tags": ["hero", "banner", "configuration", "spa", "headless", "cms", "content"],
+  "content": {
+    "heading": "{{HEADING}}",
+    "subheading": "{{SUBHEADING}}",
+    "description": "{{DESCRIPTION}}",
+    "media": {
+      "type": "{{MEDIA_TYPE}}",
+      "url": "{{MEDIA_URL}}",
+      "mobileUrl": "{{MOBILE_MEDIA_URL}}",
+      "alt": "{{MEDIA_ALT}}"
+    },
+    "cta": {
+      "primary": {
+        "text": "{{PRIMARY_CTA_TEXT}}",
+        "url": "{{PRIMARY_CTA_URL}}",
+        "style": "{{PRIMARY_CTA_STYLE}}"
+      },
+      "secondary": {
+        "text": "{{SECONDARY_CTA_TEXT}}",
+        "url": "{{SECONDARY_CTA_URL}}",
+        "style": "{{SECONDARY_CTA_STYLE}}"
+      }
+    },
+    "styling": {
+      "backgroundColor": "{{BG_COLOR}}",
+      "textColor": "{{TEXT_COLOR}}",
+      "alignment": "{{ALIGNMENT}}",
+      "height": "{{HEIGHT}}",
+      "overlay": {{SHOW_OVERLAY}},
+      "overlayOpacity": "{{OVERLAY_OPACITY}}"
+    },
+    "badges": [
+      "{{BADGE_1}}",
+      "{{BADGE_2}}",
+      "{{BADGE_3}}"
+    ],
+    "layout": "{{LAYOUT}}"
+  },
+  "variables": [
+    {
+      "name": "{{HEADING}}",
+      "description": "Main hero heading text",
+      "example": "Transform Your Business Today",
+      "required": true
+    },
+    {
+      "name": "{{SUBHEADING}}",
+      "description": "Hero subheading",
+      "example": "The all-in-one platform for growth",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{DESCRIPTION}}",
+      "description": "Hero description/body text",
+      "example": "Join thousands of companies using our platform to scale their business",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{MEDIA_TYPE}}",
+      "description": "Media type: 'image' or 'video'",
+      "example": "image",
+      "options": ["image", "video"],
+      "required": true
+    },
+    {
+      "name": "{{MEDIA_URL}}",
+      "description": "Media URL (image or video)",
+      "example": "https://example.com/hero-image.jpg",
+      "required": true
+    },
+    {
+      "name": "{{MOBILE_MEDIA_URL}}",
+      "description": "Mobile-optimized media URL (optional)",
+      "example": "https://example.com/hero-mobile.jpg",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{MEDIA_ALT}}",
+      "description": "Media alt text for accessibility",
+      "example": "Business team collaborating",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{PRIMARY_CTA_TEXT}}",
+      "description": "Primary CTA button text",
+      "example": "Get Started Free",
+      "required": true
+    },
+    {
+      "name": "{{PRIMARY_CTA_URL}}",
+      "description": "Primary CTA button URL",
+      "example": "/signup",
+      "required": true
+    },
+    {
+      "name": "{{PRIMARY_CTA_STYLE}}",
+      "description": "Primary CTA button style",
+      "example": "primary",
+      "options": ["primary", "secondary", "outline"],
+      "required": false,
+      "default": "primary"
+    },
+    {
+      "name": "{{SECONDARY_CTA_TEXT}}",
+      "description": "Secondary CTA button text (optional)",
+      "example": "Watch Demo",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{SECONDARY_CTA_URL}}",
+      "description": "Secondary CTA button URL (optional)",
+      "example": "/demo",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{SECONDARY_CTA_STYLE}}",
+      "description": "Secondary CTA button style",
+      "example": "outline",
+      "options": ["primary", "secondary", "outline"],
+      "required": false,
+      "default": "secondary"
+    },
+    {
+      "name": "{{BG_COLOR}}",
+      "description": "Background color",
+      "example": "#F5F5F5",
+      "required": false,
+      "default": "#FFFFFF"
+    },
+    {
+      "name": "{{TEXT_COLOR}}",
+      "description": "Text color",
+      "example": "#000000",
+      "required": false,
+      "default": "#000000"
+    },
+    {
+      "name": "{{ALIGNMENT}}",
+      "description": "Content alignment",
+      "example": "center",
+      "options": ["left", "center", "right"],
+      "required": false,
+      "default": "center"
+    },
+    {
+      "name": "{{HEIGHT}}",
+      "description": "Hero height (e.g., '600px', '100vh')",
+      "example": "80vh",
+      "required": false,
+      "default": "600px"
+    },
+    {
+      "name": "{{SHOW_OVERLAY}}",
+      "description": "Show dark overlay over media (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{OVERLAY_OPACITY}}",
+      "description": "Overlay opacity (0.0 to 1.0)",
+      "example": "0.4",
+      "required": false,
+      "default": "0.3"
+    },
+    {
+      "name": "{{BADGE_1}}",
+      "description": "First badge text",
+      "example": "Trusted by 10,000+ companies",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{BADGE_2}}",
+      "description": "Second badge text",
+      "example": "Free 14-day trial",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{BADGE_3}}",
+      "description": "Third badge text",
+      "example": "No credit card required",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{LAYOUT}}",
+      "description": "Layout style",
+      "example": "split",
+      "options": ["full-width", "split", "centered"],
+      "required": false,
+      "default": "full-width"
+    }
+  ]
+}

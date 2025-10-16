@@ -1,0 +1,70 @@
+{
+  "name": "Sticky Header Banner",
+  "type": "html",
+  "description": "Sticky announcement banner that stays at top or bottom of viewport. Can be dismissed and includes CTA button. Perfect for promotions or announcements.",
+  "tags": ["sticky", "header", "banner", "announcement", "notification", "promotion", "fixed"],
+  "content": "<script>\n(function() {\n  var position = '{{POSITION}}';\n  var dismissible = {{DISMISSIBLE}};\n  \n  // Inject CSS\n  var style = document.createElement('style');\n  style.textContent = '' +\n    '.at-sticky-banner { position: fixed; left: 0; right: 0; z-index: 9999; padding: 15px 20px; display: flex; align-items: center; justify-content: center; gap: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }' +\n    '.at-sticky-banner.top { top: 0; }' +\n    '.at-sticky-banner.bottom { bottom: 0; }' +\n    '.at-sticky-banner.hidden { display: none; }' +\n    '.at-sticky-banner-content { flex: 1; text-align: center; font-size: 16px; font-weight: 500; }' +\n    '.at-sticky-banner-cta { padding: 10px 25px; font-size: 14px; font-weight: bold; text-decoration: none; border-radius: 4px; white-space: nowrap; border: none; cursor: pointer; }' +\n    '.at-sticky-banner-cta:hover { opacity: 0.9; }' +\n    '.at-sticky-banner-close { background: transparent; border: none; font-size: 24px; cursor: pointer; padding: 0; width: 30px; height: 30px; line-height: 1; opacity: 0.7; }' +\n    '.at-sticky-banner-close:hover { opacity: 1; }' +\n    '@media (max-width: 768px) {' +\n    '  .at-sticky-banner { flex-direction: column; gap: 10px; padding: 12px 15px; }' +\n    '  .at-sticky-banner-content { font-size: 14px; }' +\n    '  .at-sticky-banner-cta { width: 100%; padding: 12px 20px; }' +\n    '  .at-sticky-banner-close { position: absolute; top: 10px; right: 10px; }' +\n    '}';\n  document.head.appendChild(style);\n  \n  // Build banner HTML\n  var banner = document.createElement('div');\n  banner.className = 'at-sticky-banner ' + position;\n  banner.style.backgroundColor = '{{BANNER_COLOR}}';\n  banner.style.color = '{{TEXT_COLOR}}';\n  \n  var content = document.createElement('div');\n  content.className = 'at-sticky-banner-content';\n  content.textContent = '{{MESSAGE}}';\n  \n  var cta = document.createElement('a');\n  cta.className = 'at-sticky-banner-cta';\n  cta.href = '{{CTA_URL}}';\n  cta.textContent = '{{CTA_TEXT}}';\n  cta.style.backgroundColor = '{{CTA_COLOR}}';\n  cta.style.color = '{{CTA_TEXT_COLOR}}';\n  \n  banner.appendChild(content);\n  banner.appendChild(cta);\n  \n  if (dismissible) {\n    var closeBtn = document.createElement('button');\n    closeBtn.className = 'at-sticky-banner-close';\n    closeBtn.innerHTML = '&times;';\n    closeBtn.style.color = '{{TEXT_COLOR}}';\n    closeBtn.setAttribute('aria-label', 'Close banner');\n    closeBtn.addEventListener('click', function() {\n      banner.classList.add('hidden');\n      if (position === 'top') {\n        document.body.style.paddingTop = '';\n      }\n    });\n    banner.appendChild(closeBtn);\n  }\n  \n  document.body.appendChild(banner);\n  \n  // Add padding to body to prevent content overlap\n  if (position === 'top') {\n    var bannerHeight = banner.offsetHeight;\n    document.body.style.paddingTop = bannerHeight + 'px';\n  }\n})();\n</script>",
+  "variables": [
+    {
+      "name": "{{MESSAGE}}",
+      "description": "Banner message text",
+      "example": "Limited Time: Free Shipping on All Orders!",
+      "required": true
+    },
+    {
+      "name": "{{CTA_TEXT}}",
+      "description": "Call-to-action button text",
+      "example": "Shop Now",
+      "required": true
+    },
+    {
+      "name": "{{CTA_URL}}",
+      "description": "Call-to-action button URL",
+      "example": "/shop",
+      "required": true
+    },
+    {
+      "name": "{{BANNER_COLOR}}",
+      "description": "Banner background color",
+      "example": "#FF5733",
+      "required": false,
+      "default": "#007bff"
+    },
+    {
+      "name": "{{TEXT_COLOR}}",
+      "description": "Banner text color",
+      "example": "#FFFFFF",
+      "required": false,
+      "default": "#FFFFFF"
+    },
+    {
+      "name": "{{CTA_COLOR}}",
+      "description": "CTA button background color",
+      "example": "#FFFFFF",
+      "required": false,
+      "default": "#FFFFFF"
+    },
+    {
+      "name": "{{CTA_TEXT_COLOR}}",
+      "description": "CTA button text color",
+      "example": "#007bff",
+      "required": false,
+      "default": "#000000"
+    },
+    {
+      "name": "{{POSITION}}",
+      "description": "Banner position: 'top' or 'bottom'",
+      "example": "top",
+      "options": ["top", "bottom"],
+      "required": false,
+      "default": "top"
+    },
+    {
+      "name": "{{DISMISSIBLE}}",
+      "description": "Allow user to close banner (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "true"
+    }
+  ]
+}

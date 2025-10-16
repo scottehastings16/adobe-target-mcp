@@ -5,7 +5,7 @@ import https from 'https';
 
 export async function makeTargetRequest(config, method, path, body = null, apiVersion = 'v1') {
   if (!config.tenantId || !config.apiKey || !config.accessToken) {
-    throw new Error('Adobe Target API credentials not configured. Please set TARGET_TENANT_ID, TARGET_API_KEY, and TARGET_ACCESS_TOKEN environment variables.');
+    throw new Error('Adobe Target API credentials not configured. Please set TARGET_TENANT_ID, TARGET_API_KEY, and TARGET_ACCESS_TOKEN environment variables from adobe.io.');
   }
 
   // API version is now passed as a parameter (defaults to v1 for backward compatibility)

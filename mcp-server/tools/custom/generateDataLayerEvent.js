@@ -50,25 +50,28 @@ WORKFLOW:
 2. LLM identifies the conversion element selector
 3. LLM asks: "What should I name this activity?" (if not already provided)
 4. LLM asks: "What experience name should I use?" (e.g., "Experience A", "Control", "Variant B")
-5. LLM asks: "Which tag manager are you using?" (default: gtm)
+5. TAG MANAGER SELECTION:
+   - If full-page extraction was done earlier, check context for tagManagers.summary.recommendedForTracking
+   - If tag manager was auto-detected, use that (inform user: "I detected {name} on the page")
+   - If NOT detected or no full-page extraction in context, ask: "Which tag manager are you using?" (default: adobeLaunch)
 6. **LLM MUST ASK**: "When should this conversion event fire?" and present these options:
 
-   **1. Every time (no limit)** - Track every interaction
-   **2. Once per session**  RECOMMENDED for conversions - Track only once per session
+   **1. Every time (no limit)** - DEFAULT - Track every interaction
+   **2. Once per session** - Track only once per session (prevents duplicate conversions)
    **3. Once per page** - Track only once per page load
    **4. Once ever** - Track only once, stored permanently
    **5. Throttle** - Limit frequency (e.g., max once per second)
    **6. Debounce** - Wait for user to stop interacting
 
-   For conversion tracking, STRONGLY recommend "once_per_session" to prevent duplicate conversions.
+   Default is "always" (every time). User can override if needed.
 
-7. LLM calls this tool with selector, activity_name, experience_name, tag_manager, and firing_condition
+7. LLM calls this tool with selector, activity_name, experience_name, tag_manager (auto-detected or selected), and firing_condition
 8. Tool returns ES5-compatible click event listener code with firing condition logic
 9. LLM includes this code in the activity modifications
 
 FIRING CONDITIONS:
-- always: No limit, fires every time
-- once_per_session: Fires once per session (uses sessionStorage) - BEST FOR CONVERSIONS
+- always: No limit, fires every time - DEFAULT
+- once_per_session: Fires once per session (uses sessionStorage) - For preventing duplicate conversions
 - once_per_page: Fires once per page load (uses flag)
 - once_ever: Fires once ever (uses localStorage)
 - throttle: Limits frequency (requires interval parameter in ms)
@@ -76,8 +79,10 @@ FIRING CONDITIONS:
 
 IMPORTANT:
 - ALWAYS ask about firing conditions - don't assume
-- For conversion tracking, default to "once_per_session" if user is unsure
+- Default is "always" (fires every time) - user can override if needed
 - Attach to ALL conversion elements (buttons, CTAs, forms, etc.)
+- Attach to the most specific selector possible
+- Attach to negative user actions aswell, like ignoring a popup or closing a modal
 - activity_name should match the Target activity name
 - experience_name should be descriptive (e.g., "Control", "Variant A", "Green Button Test")
 - Generated code is ES5-compatible (no template literals, arrow functions, const/let)
@@ -100,12 +105,12 @@ IMPORTANT:
       },
       tag_manager: {
         type: 'string',
-        description: 'Tag manager to use: "gtm" (Google Tag Manager), "adobeLaunch" (Adobe Launch), "tealium" (Tealium iQ), "segment" (Segment), or "customDataLayer" (Custom implementation). Default: "gtm"',
+        description: 'Tag manager to use: "adobeLaunch" (Adobe Launch), "gtm" (Google Tag Manager), "tealium" (Tealium iQ), "segment" (Segment), or "customDataLayer" (Custom implementation). Default: "adobeLaunch"',
         enum: ['gtm', 'adobeLaunch', 'tealium', 'segment', 'customDataLayer'],
       },
       firing_condition: {
         type: 'string',
-        description: 'When should the event fire? Options: "always" (every time), "once_per_session" (recommended for conversions), "once_per_page", "once_ever", "throttle", "debounce". Default: "once_per_session"',
+        description: 'When should the event fire? Options: "always" (every time - DEFAULT), "once_per_session" (prevents duplicate conversions), "once_per_page", "once_ever", "throttle", "debounce". Default: "always"',
         enum: ['always', 'once_per_session', 'once_per_page', 'once_ever', 'throttle', 'debounce'],
       },
       firing_params: {
@@ -144,8 +149,8 @@ export async function handler(args, context) {
     selector,
     activity_name,
     experience_name,
-    tag_manager = 'gtm',
-    firing_condition = 'once_per_session',
+    tag_manager = 'adobeLaunch',
+    firing_condition = 'always',
     firing_params = {},
     event_name,
     event_type = 'click',

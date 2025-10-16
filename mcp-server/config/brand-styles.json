@@ -1,0 +1,309 @@
+{
+  "_readme": {
+    "note": "THIS IS AN EXAMPLE FILE FOR REFERENCE PURPOSES ONLY",
+    "description": "This file demonstrates how to structure brand style configurations for Adobe Target experiences. Nike is used as an example brand - you should create your own brand configuration based on your actual brand guidelines.",
+    "flexibility": "IMPORTANT: These styles are SUGGESTIONS and DEFAULTS only. Users can override any value during their conversation. These are NOT strict rules - they provide consistency when users don't specify custom values.",
+    "usage": "Copy this structure and customize all values to match your brand's design system, color palette, typography, and component styles.",
+    "integration": "Reference these styles in your Target offer generation tools to maintain brand consistency across all experiences, but always allow user overrides."
+  },
+  "nike": {
+    "name": "Nike (EXAMPLE ONLY)",
+    "description": "Example Nike brand style guidelines - FOR DEMONSTRATION PURPOSES. Replace with your actual brand styles. All values can be overridden by user during conversation.",
+    "colors": {
+      "primary": {
+        "black": "#111111",
+        "white": "#FFFFFF"
+      },
+      "secondary": {
+        "gray-dark": "#757575",
+        "gray-medium": "#CCCCCC",
+        "gray-light": "#F5F5F5"
+      },
+      "accent": {
+        "orange": "#FA5400",
+        "red": "#D43F21"
+      },
+      "semantic": {
+        "success": "#00A651",
+        "warning": "#FFA500",
+        "error": "#D43F21",
+        "info": "#0076CE"
+      }
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+        "secondary": "'Futura', 'Helvetica Neue', Arial, sans-serif",
+        "monospace": "'Courier New', Courier, monospace"
+      },
+      "fontSizes": {
+        "xs": "12px",
+        "sm": "14px",
+        "base": "16px",
+        "md": "18px",
+        "lg": "24px",
+        "xl": "32px",
+        "xxl": "48px",
+        "xxxl": "72px"
+      },
+      "fontWeights": {
+        "light": "300",
+        "regular": "400",
+        "medium": "500",
+        "bold": "700",
+        "black": "900"
+      },
+      "lineHeights": {
+        "tight": "1.2",
+        "normal": "1.5",
+        "relaxed": "1.75"
+      },
+      "letterSpacing": {
+        "tight": "-0.02em",
+        "normal": "0",
+        "wide": "0.05em"
+      }
+    },
+    "spacing": {
+      "xs": "4px",
+      "sm": "8px",
+      "md": "16px",
+      "lg": "24px",
+      "xl": "32px",
+      "xxl": "48px",
+      "xxxl": "64px"
+    },
+    "borderRadius": {
+      "none": "0",
+      "sm": "2px",
+      "md": "4px",
+      "lg": "8px",
+      "xl": "12px",
+      "full": "9999px"
+    },
+    "shadows": {
+      "none": "none",
+      "sm": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+      "md": "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+      "lg": "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
+      "xl": "0 20px 25px -5px rgba(0, 0, 0, 0.1)"
+    },
+    "transitions": {
+      "fast": "150ms ease-in-out",
+      "normal": "250ms ease-in-out",
+      "slow": "350ms ease-in-out"
+    },
+    "breakpoints": {
+      "mobile": "320px",
+      "tablet": "768px",
+      "desktop": "1024px",
+      "wide": "1440px"
+    },
+    "components": {
+      "button": {
+        "primary": {
+          "backgroundColor": "#111111",
+          "color": "#FFFFFF",
+          "padding": "12px 24px",
+          "fontSize": "16px",
+          "fontWeight": "500",
+          "borderRadius": "30px",
+          "border": "none",
+          "textTransform": "uppercase",
+          "letterSpacing": "0.5px",
+          "transition": "all 250ms ease-in-out",
+          "hover": {
+            "backgroundColor": "#757575",
+            "transform": "scale(1.02)"
+          }
+        },
+        "secondary": {
+          "backgroundColor": "transparent",
+          "color": "#111111",
+          "padding": "12px 24px",
+          "fontSize": "16px",
+          "fontWeight": "500",
+          "borderRadius": "30px",
+          "border": "1px solid #111111",
+          "textTransform": "uppercase",
+          "letterSpacing": "0.5px",
+          "transition": "all 250ms ease-in-out",
+          "hover": {
+            "backgroundColor": "#111111",
+            "color": "#FFFFFF"
+          }
+        },
+        "accent": {
+          "backgroundColor": "#FA5400",
+          "color": "#FFFFFF",
+          "padding": "12px 24px",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "borderRadius": "30px",
+          "border": "none",
+          "textTransform": "uppercase",
+          "letterSpacing": "0.5px",
+          "transition": "all 250ms ease-in-out",
+          "hover": {
+            "backgroundColor": "#D43F21",
+            "transform": "scale(1.05)"
+          }
+        }
+      },
+      "card": {
+        "backgroundColor": "#FFFFFF",
+        "padding": "24px",
+        "borderRadius": "8px",
+        "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+        "border": "1px solid #F5F5F5"
+      },
+      "banner": {
+        "backgroundColor": "#111111",
+        "color": "#FFFFFF",
+        "padding": "16px 24px",
+        "fontSize": "14px",
+        "textAlign": "center",
+        "fontWeight": "500"
+      },
+      "modal": {
+        "backgroundColor": "#FFFFFF",
+        "padding": "32px",
+        "borderRadius": "8px",
+        "boxShadow": "0 20px 25px -5px rgba(0, 0, 0, 0.1)",
+        "maxWidth": "600px",
+        "overlay": {
+          "backgroundColor": "rgba(0, 0, 0, 0.75)"
+        }
+      },
+      "input": {
+        "backgroundColor": "#F5F5F5",
+        "color": "#111111",
+        "padding": "12px 16px",
+        "fontSize": "16px",
+        "border": "1px solid #CCCCCC",
+        "borderRadius": "4px",
+        "transition": "all 250ms ease-in-out",
+        "focus": {
+          "borderColor": "#111111",
+          "outline": "none",
+          "boxShadow": "0 0 0 2px rgba(17, 17, 17, 0.1)"
+        }
+      },
+      "badge": {
+        "backgroundColor": "#FA5400",
+        "color": "#FFFFFF",
+        "padding": "4px 12px",
+        "fontSize": "12px",
+        "fontWeight": "700",
+        "borderRadius": "12px",
+        "textTransform": "uppercase",
+        "letterSpacing": "0.5px"
+      }
+    },
+    "cssVariablesTemplate": ":root {\n  /* Colors - Primary */\n  --brand-color-primary-black: {{colors.primary.black}};\n  --brand-color-primary-white: {{colors.primary.white}};\n  \n  /* Colors - Secondary */\n  --brand-color-secondary-gray-dark: {{colors.secondary.gray-dark}};\n  --brand-color-secondary-gray-medium: {{colors.secondary.gray-medium}};\n  --brand-color-secondary-gray-light: {{colors.secondary.gray-light}};\n  \n  /* Colors - Accent */\n  --brand-color-accent-orange: {{colors.accent.orange}};\n  --brand-color-accent-red: {{colors.accent.red}};\n  \n  /* Typography */\n  --brand-font-primary: {{typography.fontFamilies.primary}};\n  --brand-font-secondary: {{typography.fontFamilies.secondary}};\n  \n  /* Spacing */\n  --brand-spacing-xs: {{spacing.xs}};\n  --brand-spacing-sm: {{spacing.sm}};\n  --brand-spacing-md: {{spacing.md}};\n  --brand-spacing-lg: {{spacing.lg}};\n  --brand-spacing-xl: {{spacing.xl}};\n  \n  /* Border Radius */\n  --brand-radius-sm: {{borderRadius.sm}};\n  --brand-radius-md: {{borderRadius.md}};\n  --brand-radius-lg: {{borderRadius.lg}};\n  --brand-radius-full: {{borderRadius.full}};\n  \n  /* Transitions */\n  --brand-transition-fast: {{transitions.fast}};\n  --brand-transition-normal: {{transitions.normal}};\n}"
+  },
+  "generic": {
+    "name": "Generic Brand Template (STARTER TEMPLATE)",
+    "description": "TEMPLATE for creating custom brand styles - duplicate and modify for your brand. All values are suggestions and can be overridden.",
+    "colors": {
+      "primary": {
+        "main": "#000000",
+        "light": "#333333",
+        "dark": "#000000"
+      },
+      "secondary": {
+        "main": "#FFFFFF",
+        "light": "#F5F5F5",
+        "dark": "#E0E0E0"
+      },
+      "accent": {
+        "main": "#0066CC",
+        "light": "#3399FF",
+        "dark": "#004499"
+      },
+      "semantic": {
+        "success": "#28A745",
+        "warning": "#FFC107",
+        "error": "#DC3545",
+        "info": "#17A2B8"
+      }
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+        "secondary": "Georgia, 'Times New Roman', Times, serif",
+        "monospace": "'Courier New', Courier, monospace"
+      },
+      "fontSizes": {
+        "xs": "12px",
+        "sm": "14px",
+        "base": "16px",
+        "md": "18px",
+        "lg": "24px",
+        "xl": "32px",
+        "xxl": "48px"
+      },
+      "fontWeights": {
+        "light": "300",
+        "regular": "400",
+        "medium": "500",
+        "bold": "700"
+      },
+      "lineHeights": {
+        "tight": "1.25",
+        "normal": "1.5",
+        "relaxed": "1.75"
+      }
+    },
+    "spacing": {
+      "xs": "4px",
+      "sm": "8px",
+      "md": "16px",
+      "lg": "24px",
+      "xl": "32px",
+      "xxl": "48px"
+    },
+    "borderRadius": {
+      "sm": "4px",
+      "md": "8px",
+      "lg": "12px",
+      "full": "9999px"
+    },
+    "components": {
+      "button": {
+        "primary": {
+          "backgroundColor": "#0066CC",
+          "color": "#FFFFFF",
+          "padding": "10px 20px",
+          "fontSize": "16px",
+          "fontWeight": "500",
+          "borderRadius": "4px",
+          "border": "none"
+        }
+      }
+    }
+  },
+  "_instructions": {
+    "important": "THIS FILE IS FOR EXAMPLE AND REFERENCE PURPOSES ONLY. Nike styles shown are approximations for demonstration.",
+    "override_policy": "These styles are DEFAULT VALUES and SUGGESTIONS ONLY. Users can and should override any value during their conversation with the AI. Think of this as a brand style guide, not as hard-coded rules.",
+    "usage": "This configuration provides consistent starting points for Adobe Target experiences while allowing full flexibility for customization.",
+    "howToAdd": "To add your own brand: 1) Copy the 'generic' template, 2) Rename it to your brand name, 3) Customize all values to match your actual brand guidelines.",
+    "integration": "Reference these styles in your Target offers using the brand name as the key (e.g., brandStyles['nike']), but always prioritize user-specified values.",
+    "cssVariables": "Use the cssVariablesTemplate to generate CSS custom properties for your brand.",
+    "components": "Component styles provide consistent UI patterns but should be treated as starting points, not requirements.",
+    "example": {
+      "accessingColors": "brandStyles.nike.colors.primary.black → '#111111' (default)",
+      "userOverride": "User says 'use #000000 instead' → Use #000000, ignore brand config",
+      "accessingButton": "brandStyles.nike.components.button.primary.backgroundColor → '#111111' (default)",
+      "generatingCSS": "Replace {{tokens}} in cssVariablesTemplate with actual values from the brand configuration"
+    },
+    "bestPractices": [
+      "Use brand styles as intelligent defaults, not strict rules",
+      "Always allow users to override any style value in conversation",
+      "Ask users if they want to use brand defaults or customize",
+      "Keep color values consistent with your design system",
+      "Define component styles for reusable UI patterns",
+      "Document any brand-specific design tokens or guidelines"
+    ]
+  }
+}

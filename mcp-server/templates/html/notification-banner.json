@@ -1,0 +1,51 @@
+{
+  "name": "Notification Banner",
+  "type": "html",
+  "description": "Dismissible notification banner for announcements, alerts, or important messages. Can be positioned anywhere on page.",
+  "tags": ["notification", "alert", "banner", "message", "dismissible", "announcement"],
+  "content": "<script>\n(function() {\n  var type = '{{TYPE}}';\n  var position = '{{POSITION}}';\n  var dismissible = {{DISMISSIBLE}};\n  var autoHide = {{AUTO_HIDE}};\n  var autoHideDelay = {{AUTO_HIDE_DELAY}};\n  \n  // Inject CSS\n  var style = document.createElement('style');\n  style.textContent = '' +\n    '.at-notification { padding: 15px 20px; margin: 10px 0; border-radius: 4px; display: flex; align-items: center; justify-content: space-between; animation: slideIn 0.3s ease; }' +\n    '.at-notification.info { background: #d1ecf1; color: #0c5460; border-left: 4px solid #0c5460; }' +\n    '.at-notification.success { background: #d4edda; color: #155724; border-left: 4px solid #155724; }' +\n    '.at-notification.warning { background: #fff3cd; color: #856404; border-left: 4px solid #856404; }' +\n    '.at-notification.error { background: #f8d7da; color: #721c24; border-left: 4px solid #721c24; }' +\n    '.at-notification-content { flex: 1; display: flex; align-items: center; gap: 10px; }' +\n    '.at-notification-icon { font-size: 20px; }' +\n    '.at-notification-message { font-size: 14px; line-height: 1.5; }' +\n    '.at-notification-close { background: transparent; border: none; font-size: 20px; cursor: pointer; padding: 0; width: 24px; height: 24px; opacity: 0.7; margin-left: 15px; }' +\n    '.at-notification-close:hover { opacity: 1; }' +\n    '.at-notification.hidden { display: none; }' +\n    '@keyframes slideIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }' +\n    '@keyframes slideOut { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-20px); opacity: 0; } }' +\n    '@media (max-width: 768px) {' +\n    '  .at-notification { padding: 12px 15px; }' +\n    '  .at-notification-message { font-size: 13px; }' +\n    '}';\n  document.head.appendChild(style);\n  \n  // Icon mapping\n  var icons = {\n    info: '&#9432;',\n    success: '&#10004;',\n    warning: '&#9888;',\n    error: '&#10006;'\n  };\n  \n  // Build notification HTML\n  var notification = document.createElement('div');\n  notification.className = 'at-notification ' + type;\n  notification.setAttribute('role', 'alert');\n  \n  var content = document.createElement('div');\n  content.className = 'at-notification-content';\n  \n  var icon = document.createElement('span');\n  icon.className = 'at-notification-icon';\n  icon.innerHTML = icons[type] || icons.info;\n  \n  var message = document.createElement('div');\n  message.className = 'at-notification-message';\n  message.innerHTML = '{{MESSAGE}}';\n  \n  content.appendChild(icon);\n  content.appendChild(message);\n  notification.appendChild(content);\n  \n  // Add close button if dismissible\n  if (dismissible) {\n    var closeBtn = document.createElement('button');\n    closeBtn.className = 'at-notification-close';\n    closeBtn.innerHTML = '&times;';\n    closeBtn.setAttribute('aria-label', 'Close notification');\n    closeBtn.addEventListener('click', function() {\n      notification.style.animation = 'slideOut 0.3s ease';\n      setTimeout(function() {\n        notification.classList.add('hidden');\n      }, 300);\n    });\n    notification.appendChild(closeBtn);\n  }\n  \n  // Insert notification based on position\n  if (position === 'top') {\n    document.body.insertBefore(notification, document.body.firstChild);\n  } else if (position === 'bottom') {\n    document.body.appendChild(notification);\n  } else {\n    // position is a selector\n    var target = document.querySelector(position);\n    if (target) {\n      target.insertBefore(notification, target.firstChild);\n    } else {\n      document.body.insertBefore(notification, document.body.firstChild);\n    }\n  }\n  \n  // Auto-hide if enabled\n  if (autoHide) {\n    setTimeout(function() {\n      notification.style.animation = 'slideOut 0.3s ease';\n      setTimeout(function() {\n        notification.classList.add('hidden');\n      }, 300);\n    }, autoHideDelay);\n  }\n})();\n</script>",
+  "variables": [
+    {
+      "name": "{{MESSAGE}}",
+      "description": "Notification message text (HTML allowed)",
+      "example": "Your changes have been saved successfully!",
+      "required": true
+    },
+    {
+      "name": "{{TYPE}}",
+      "description": "Notification type: info, success, warning, or error",
+      "example": "success",
+      "options": ["info", "success", "warning", "error"],
+      "required": false,
+      "default": "info"
+    },
+    {
+      "name": "{{POSITION}}",
+      "description": "Position: 'top', 'bottom', or CSS selector (e.g., '#main-content')",
+      "example": "top",
+      "required": false,
+      "default": "top"
+    },
+    {
+      "name": "{{DISMISSIBLE}}",
+      "description": "Allow user to dismiss notification (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "true"
+    },
+    {
+      "name": "{{AUTO_HIDE}}",
+      "description": "Auto-hide notification after delay (true/false)",
+      "example": "false",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{AUTO_HIDE_DELAY}}",
+      "description": "Auto-hide delay in milliseconds (if AUTO_HIDE is true)",
+      "example": "5000",
+      "required": false,
+      "default": "5000"
+    }
+  ]
+}

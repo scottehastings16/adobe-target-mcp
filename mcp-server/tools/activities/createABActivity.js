@@ -7,19 +7,44 @@ import { applyActivityDefaults } from '../../helpers/applyDefaults.js';
 
 export const tool = {
   name: 'createABActivity',
-  description: `WARNING: ADVANCED/PROGRAMMATIC USE ONLY - API-CREATED ACTIVITIES CANNOT BE EDITED IN UI
+  description: `CRITICAL WARNING: DO NOT USE THIS TOOL FOR NORMAL WORKFLOWS
 
-Activities created via Admin API are LOCKED and cannot be edited in Adobe Target UI.
+Activities created via this API are PERMANENTLY LOCKED - they CANNOT be edited in Adobe Target UI.
 
-DO NOT USE THIS TOOL FOR NORMAL WORKFLOW
-Instead: Use createOffer to generate offers → User builds activity in Target UI
+DEFAULT WORKFLOW (USE THIS 99% OF THE TIME):
+1. Create offers using createOffer tool (HTML) or createJsonOffer tool (JSON)
+2. Provide user with offer IDs
+3. User manually builds A/B activity in Target UI with full editing flexibility
 
-ONLY use this tool for:
-- Bulk programmatic activity creation
-- Automated CI/CD workflows
-- Activities that will never need UI editing
+DO NOT USE THIS TOOL UNLESS:
+1. User is creating 10+ activities in bulk (programmatic bulk creation)
+2. This is part of an automated CI/CD workflow
+3. User has been EXPLICITLY WARNED that activities cannot be edited in Target UI
+4. User has confirmed they understand the limitation and still want to proceed
 
-For normal development: See createOffer tool documentation
+MANDATORY STEPS BEFORE USING THIS TOOL:
+You MUST complete ALL of these steps before calling this tool:
+1. Ask user: "Are you creating 10+ activities in bulk?"
+   - If NO: Stop. Tell user to use createOffer workflow instead
+   - If YES: Continue to step 2
+2. Warn user: "Activities created via API will be permanently locked and cannot be edited in Adobe Target UI. You will not be able to modify them later through the Target interface. Do you understand and want to proceed?"
+   - If NO: Stop. Use createOffer workflow instead
+   - If YES: Continue to step 3
+3. Confirm: "To confirm: You understand the activity will be locked in Target UI and you still want to create it programmatically?"
+   - If NO: Stop. Use createOffer workflow
+   - If YES: Proceed with this tool
+
+If user does NOT confirm all three steps, DO NOT use this tool. Use createOffer instead.
+
+RECOMMENDED ALTERNATIVE (99% of use cases):
+Use createOffer to create offers, then tell user:
+"I've created the offers. Here are the offer IDs: [list IDs]
+To create your A/B activity:
+1. Go to Adobe Target → Activities → Create Activity → A/B Test
+2. Choose Form-Based Experience Composer
+3. Add experiences and select these offer IDs
+4. Configure traffic split and metrics
+This gives you full editing flexibility in the Target UI."
 
 AUTO-FILLED DEFAULTS:
 - priority: ${process.env.TARGET_DEFAULT_PRIORITY || '5'}
@@ -248,7 +273,7 @@ REFERENCE - Complete Payload Structure:
 
 See full API documentation for complete field reference.
 
- REMINDER: For normal use cases, create offers with createOffer tool instead of using this advanced API.`,
+REMINDER: For normal use cases, create offers with createOffer tool instead of using this advanced API.`,
   inputSchema: {
     type: 'object',
     properties: {

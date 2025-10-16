@@ -1,0 +1,159 @@
+{
+  "name": "Feature Flags",
+  "type": "json",
+  "description": "Feature flag configuration for A/B testing features, beta releases, and progressive rollouts. Control application behavior without code deployments.",
+  "tags": ["feature-flags", "features", "beta", "rollout", "configuration", "settings", "toggle"],
+  "content": {
+    "features": {
+      "{{FEATURE_1_NAME}}": {{FEATURE_1_ENABLED}},
+      "{{FEATURE_2_NAME}}": {{FEATURE_2_ENABLED}},
+      "{{FEATURE_3_NAME}}": {{FEATURE_3_ENABLED}},
+      "{{FEATURE_4_NAME}}": {{FEATURE_4_ENABLED}},
+      "{{FEATURE_5_NAME}}": {{FEATURE_5_ENABLED}}
+    },
+    "config": {
+      "{{CONFIG_1_KEY}}": "{{CONFIG_1_VALUE}}",
+      "{{CONFIG_2_KEY}}": "{{CONFIG_2_VALUE}}",
+      "{{CONFIG_3_KEY}}": "{{CONFIG_3_VALUE}}"
+    },
+    "metadata": {
+      "version": "{{VERSION}}",
+      "environment": "{{ENVIRONMENT}}",
+      "timestamp": "{{TIMESTAMP}}"
+    }
+  },
+  "variables": [
+    {
+      "name": "{{FEATURE_1_NAME}}",
+      "description": "First feature flag name",
+      "example": "newCheckoutFlow",
+      "required": true
+    },
+    {
+      "name": "{{FEATURE_1_ENABLED}}",
+      "description": "First feature enabled (true/false)",
+      "example": "true",
+      "required": true
+    },
+    {
+      "name": "{{FEATURE_2_NAME}}",
+      "description": "Second feature flag name",
+      "example": "darkMode",
+      "required": false,
+      "default": "feature2"
+    },
+    {
+      "name": "{{FEATURE_2_ENABLED}}",
+      "description": "Second feature enabled (true/false)",
+      "example": "false",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{FEATURE_3_NAME}}",
+      "description": "Third feature flag name",
+      "example": "betaAccess",
+      "required": false,
+      "default": "feature3"
+    },
+    {
+      "name": "{{FEATURE_3_ENABLED}}",
+      "description": "Third feature enabled (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{FEATURE_4_NAME}}",
+      "description": "Fourth feature flag name",
+      "example": "aiRecommendations",
+      "required": false,
+      "default": "feature4"
+    },
+    {
+      "name": "{{FEATURE_4_ENABLED}}",
+      "description": "Fourth feature enabled (true/false)",
+      "example": "false",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{FEATURE_5_NAME}}",
+      "description": "Fifth feature flag name",
+      "example": "socialSharing",
+      "required": false,
+      "default": "feature5"
+    },
+    {
+      "name": "{{FEATURE_5_ENABLED}}",
+      "description": "Fifth feature enabled (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{CONFIG_1_KEY}}",
+      "description": "First config key",
+      "example": "maxItems",
+      "required": false,
+      "default": "config1"
+    },
+    {
+      "name": "{{CONFIG_1_VALUE}}",
+      "description": "First config value",
+      "example": "10",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{CONFIG_2_KEY}}",
+      "description": "Second config key",
+      "example": "apiEndpoint",
+      "required": false,
+      "default": "config2"
+    },
+    {
+      "name": "{{CONFIG_2_VALUE}}",
+      "description": "Second config value",
+      "example": "https://api.example.com/v2",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{CONFIG_3_KEY}}",
+      "description": "Third config key",
+      "example": "theme",
+      "required": false,
+      "default": "config3"
+    },
+    {
+      "name": "{{CONFIG_3_VALUE}}",
+      "description": "Third config value",
+      "example": "modern",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{VERSION}}",
+      "description": "Feature flags version",
+      "example": "1.0.0",
+      "required": false,
+      "default": "1.0.0"
+    },
+    {
+      "name": "{{ENVIRONMENT}}",
+      "description": "Environment name",
+      "example": "production",
+      "required": false,
+      "default": "production"
+    },
+    {
+      "name": "{{TIMESTAMP}}",
+      "description": "Configuration timestamp",
+      "example": "2025-10-15T12:00:00Z",
+      "required": false,
+      "default": "2025-01-01T00:00:00Z"
+    }
+  ],
+  "notes": "Your application should check features object for enabled flags. Config object can hold any additional configuration values needed."
+}

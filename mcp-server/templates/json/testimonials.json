@@ -1,0 +1,319 @@
+{
+  "name": "Testimonials / Reviews",
+  "type": "json",
+  "description": "Customer testimonials and reviews data for social proof. Includes ratings, quotes, author info, and display options.",
+  "tags": ["testimonials", "reviews", "social-proof", "ratings", "customers", "feedback"],
+  "content": {
+    "heading": "{{HEADING}}",
+    "subheading": "{{SUBHEADING}}",
+    "testimonials": [
+      {
+        "id": "{{TESTIMONIAL_1_ID}}",
+        "quote": "{{TESTIMONIAL_1_QUOTE}}",
+        "author": {
+          "name": "{{TESTIMONIAL_1_NAME}}",
+          "title": "{{TESTIMONIAL_1_TITLE}}",
+          "company": "{{TESTIMONIAL_1_COMPANY}}",
+          "avatar": "{{TESTIMONIAL_1_AVATAR}}"
+        },
+        "rating": {{TESTIMONIAL_1_RATING}},
+        "date": "{{TESTIMONIAL_1_DATE}}",
+        "featured": {{TESTIMONIAL_1_FEATURED}}
+      },
+      {
+        "id": "{{TESTIMONIAL_2_ID}}",
+        "quote": "{{TESTIMONIAL_2_QUOTE}}",
+        "author": {
+          "name": "{{TESTIMONIAL_2_NAME}}",
+          "title": "{{TESTIMONIAL_2_TITLE}}",
+          "company": "{{TESTIMONIAL_2_COMPANY}}",
+          "avatar": "{{TESTIMONIAL_2_AVATAR}}"
+        },
+        "rating": {{TESTIMONIAL_2_RATING}},
+        "date": "{{TESTIMONIAL_2_DATE}}",
+        "featured": {{TESTIMONIAL_2_FEATURED}}
+      },
+      {
+        "id": "{{TESTIMONIAL_3_ID}}",
+        "quote": "{{TESTIMONIAL_3_QUOTE}}",
+        "author": {
+          "name": "{{TESTIMONIAL_3_NAME}}",
+          "title": "{{TESTIMONIAL_3_TITLE}}",
+          "company": "{{TESTIMONIAL_3_COMPANY}}",
+          "avatar": "{{TESTIMONIAL_3_AVATAR}}"
+        },
+        "rating": {{TESTIMONIAL_3_RATING}},
+        "date": "{{TESTIMONIAL_3_DATE}}",
+        "featured": {{TESTIMONIAL_3_FEATURED}}
+      }
+    ],
+    "stats": {
+      "averageRating": {{AVERAGE_RATING}},
+      "totalReviews": {{TOTAL_REVIEWS}},
+      "recommendationRate": {{RECOMMENDATION_RATE}}
+    },
+    "config": {
+      "layout": "{{LAYOUT}}",
+      "showRatings": {{SHOW_RATINGS}},
+      "showDates": {{SHOW_DATES}},
+      "showAvatars": {{SHOW_AVATARS}},
+      "maxDisplay": {{MAX_DISPLAY}}
+    }
+  },
+  "variables": [
+    {
+      "name": "{{HEADING}}",
+      "description": "Testimonials section heading",
+      "example": "What Our Customers Say",
+      "required": true
+    },
+    {
+      "name": "{{SUBHEADING}}",
+      "description": "Testimonials section subheading",
+      "example": "Don't just take our word for it",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{TESTIMONIAL_1_ID}}",
+      "description": "First testimonial ID",
+      "example": "test1",
+      "required": true
+    },
+    {
+      "name": "{{TESTIMONIAL_1_QUOTE}}",
+      "description": "First testimonial quote",
+      "example": "This product has completely transformed how we work. Highly recommend!",
+      "required": true
+    },
+    {
+      "name": "{{TESTIMONIAL_1_NAME}}",
+      "description": "First testimonial author name",
+      "example": "Sarah Johnson",
+      "required": true
+    },
+    {
+      "name": "{{TESTIMONIAL_1_TITLE}}",
+      "description": "First testimonial author title",
+      "example": "CEO",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{TESTIMONIAL_1_COMPANY}}",
+      "description": "First testimonial author company",
+      "example": "Tech Innovations Inc",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{TESTIMONIAL_1_AVATAR}}",
+      "description": "First testimonial author avatar URL",
+      "example": "https://example.com/avatar1.jpg",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{TESTIMONIAL_1_RATING}}",
+      "description": "First testimonial rating (1-5)",
+      "example": "5",
+      "required": false,
+      "default": "5"
+    },
+    {
+      "name": "{{TESTIMONIAL_1_DATE}}",
+      "description": "First testimonial date",
+      "example": "2025-10-01",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{TESTIMONIAL_1_FEATURED}}",
+      "description": "First testimonial featured status (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{TESTIMONIAL_2_ID}}",
+      "description": "Second testimonial ID",
+      "example": "test2",
+      "required": true
+    },
+    {
+      "name": "{{TESTIMONIAL_2_QUOTE}}",
+      "description": "Second testimonial quote",
+      "example": "Outstanding customer service and an amazing product. Five stars!",
+      "required": true
+    },
+    {
+      "name": "{{TESTIMONIAL_2_NAME}}",
+      "description": "Second testimonial author name",
+      "example": "Michael Chen",
+      "required": true
+    },
+    {
+      "name": "{{TESTIMONIAL_2_TITLE}}",
+      "description": "Second testimonial author title",
+      "example": "Marketing Director",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{TESTIMONIAL_2_COMPANY}}",
+      "description": "Second testimonial author company",
+      "example": "Growth Co",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{TESTIMONIAL_2_AVATAR}}",
+      "description": "Second testimonial author avatar URL",
+      "example": "https://example.com/avatar2.jpg",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{TESTIMONIAL_2_RATING}}",
+      "description": "Second testimonial rating (1-5)",
+      "example": "5",
+      "required": false,
+      "default": "5"
+    },
+    {
+      "name": "{{TESTIMONIAL_2_DATE}}",
+      "description": "Second testimonial date",
+      "example": "2025-09-15",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{TESTIMONIAL_2_FEATURED}}",
+      "description": "Second testimonial featured status (true/false)",
+      "example": "false",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{TESTIMONIAL_3_ID}}",
+      "description": "Third testimonial ID",
+      "example": "test3",
+      "required": false,
+      "default": "test3"
+    },
+    {
+      "name": "{{TESTIMONIAL_3_QUOTE}}",
+      "description": "Third testimonial quote",
+      "example": "Best investment we've made this year. Results speak for themselves!",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{TESTIMONIAL_3_NAME}}",
+      "description": "Third testimonial author name",
+      "example": "Emily Rodriguez",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{TESTIMONIAL_3_TITLE}}",
+      "description": "Third testimonial author title",
+      "example": "Product Manager",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{TESTIMONIAL_3_COMPANY}}",
+      "description": "Third testimonial author company",
+      "example": "Startup Labs",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{TESTIMONIAL_3_AVATAR}}",
+      "description": "Third testimonial author avatar URL",
+      "example": "https://example.com/avatar3.jpg",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{TESTIMONIAL_3_RATING}}",
+      "description": "Third testimonial rating (1-5)",
+      "example": "5",
+      "required": false,
+      "default": "5"
+    },
+    {
+      "name": "{{TESTIMONIAL_3_DATE}}",
+      "description": "Third testimonial date",
+      "example": "2025-08-20",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{TESTIMONIAL_3_FEATURED}}",
+      "description": "Third testimonial featured status (true/false)",
+      "example": "false",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{AVERAGE_RATING}}",
+      "description": "Average rating across all reviews",
+      "example": "4.8",
+      "required": false,
+      "default": "5.0"
+    },
+    {
+      "name": "{{TOTAL_REVIEWS}}",
+      "description": "Total number of reviews",
+      "example": "1247",
+      "required": false,
+      "default": "0"
+    },
+    {
+      "name": "{{RECOMMENDATION_RATE}}",
+      "description": "Percentage who would recommend (0-100)",
+      "example": "98",
+      "required": false,
+      "default": "100"
+    },
+    {
+      "name": "{{LAYOUT}}",
+      "description": "Testimonials layout",
+      "example": "grid",
+      "options": ["grid", "carousel", "list", "masonry"],
+      "required": false,
+      "default": "grid"
+    },
+    {
+      "name": "{{SHOW_RATINGS}}",
+      "description": "Show star ratings (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "true"
+    },
+    {
+      "name": "{{SHOW_DATES}}",
+      "description": "Show review dates (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{SHOW_AVATARS}}",
+      "description": "Show author avatars (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "true"
+    },
+    {
+      "name": "{{MAX_DISPLAY}}",
+      "description": "Maximum testimonials to display at once",
+      "example": "3",
+      "required": false,
+      "default": "3"
+    }
+  ],
+  "notes": "Template includes 3 testimonials. Your application should loop through testimonials array to render reviews. Use featured flag to highlight specific testimonials."
+}

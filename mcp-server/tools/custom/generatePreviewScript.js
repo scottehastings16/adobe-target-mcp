@@ -1,17 +1,17 @@
 /**
- * Send Preview to Chrome DevTools Tool
- * Provides instructions for previewing modifications using Chrome DevTools MCP
+ * Generate Preview Script Tool
+ * Generates a preview script for injecting modifications via Chrome DevTools MCP
  */
 
 export const tool = {
-  name: 'sendPreviewToExtension',
+  name: 'generatePreviewScript',
   description: `Generate a preview script for Chrome DevTools MCP to inject modifications into a live page.
 
 WORKFLOW REQUIREMENTS FOR LLM:
 1. Before calling this tool, explain to the user what modifications you're about to preview
 2. Show them the specific selectors and changes (e.g., "I'll change the button .cta-primary to have a blue background")
 3. Call this tool to get the preview script
-4. Use Chrome DevTools MCP 'navigate_to' to load the page (if not already open)
+4. Use Chrome DevTools MCP 'navigate_to' to load the page (if not already open) IMPORTANT: use a timeout of 30000 ms to ensure the page fully loads
 5. Use Chrome DevTools MCP 'evaluate_script' with the provided script to inject the modifications
 6. Ask the user to review the changes visually in their browser
 7. Wait for user approval before creating the activity
@@ -64,7 +64,7 @@ export async function handler(args, context) {
       cursor: pointer;
       animation: fadeIn 0.3s ease-in;
     \`;
-    indicator.innerHTML = '🎯 Target Preview Active';
+    indicator.innerHTML = 'Target Preview Active';
     indicator.title = 'Click to remove preview';
 
     // Add animation
@@ -108,19 +108,17 @@ export async function handler(args, context) {
 
   return {
     instructions: [
-      '✓ Preview script generated successfully',
+      'Preview script generated successfully',
       '',
       'NEXT STEPS - Execute these with Chrome DevTools MCP:',
       '',
-      '1. Navigate to the target page (if not already open):',
-      `   Tool: navigate_to`,
-      `   Args: { "url": "${args.url}" }`,
+      `1. Navigate to ${args.url}`,
+      '   (Use the Chrome DevTools MCP navigation tool)',
       '',
-      '2. Execute the preview script:',
-      `   Tool: evaluate_script`,
-      `   Args: { "script": "<use the script below>" }`,
+      '2. Execute the preview script below',
+      '   (Use the Chrome DevTools MCP script evaluation tool)',
       '',
-      '3. The page will show a red "🎯 Target Preview Active" indicator',
+      '3. The page will show a red "Target Preview Active" indicator',
       '',
       '4. Ask the user to review the visual changes',
       '',

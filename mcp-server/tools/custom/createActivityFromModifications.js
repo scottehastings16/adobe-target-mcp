@@ -6,15 +6,53 @@ import { makeTargetRequest } from '../../helpers/makeTargetRequest.js';
 
 export const tool = {
   name: 'createActivityFromModifications',
-  description: `Create a Target XT activity from approved modifications. This creates offers from the JavaScript code and builds a complete activity.
+  description: `CRITICAL WARNING: DO NOT USE THIS TOOL FOR NORMAL WORKFLOWS
 
-CRITICAL WORKFLOW REQUIREMENTS FOR LLM:
+Activities created via this API are PERMANENTLY LOCKED - they CANNOT be edited in Adobe Target UI.
+
+DEFAULT WORKFLOW (USE THIS 99% OF THE TIME):
+1. Create offers using createOffer tool (HTML) or createJsonOffer tool (JSON)
+2. Provide user with offer IDs
+3. User manually builds XT activity in Target UI with full editing flexibility
+
+DO NOT USE THIS TOOL UNLESS:
+1. User is creating 10+ activities in bulk (programmatic bulk creation)
+2. This is part of an automated CI/CD workflow
+3. User has been EXPLICITLY WARNED that activities cannot be edited in Target UI
+4. User has confirmed they understand the limitation and still want to proceed
+
+MANDATORY STEPS BEFORE USING THIS TOOL:
+You MUST complete ALL of these steps before calling this tool:
+1. Ask user: "Are you creating 10+ activities in bulk?"
+   - If NO: Stop. Tell user to use createOffer workflow instead
+   - If YES: Continue to step 2
+2. Warn user: "Activities created via API will be permanently locked and cannot be edited in Adobe Target UI. You will not be able to modify them later through the Target interface. Do you understand and want to proceed?"
+   - If NO: Stop. Use createOffer workflow instead
+   - If YES: Continue to step 3
+3. Confirm: "To confirm: You understand the activity will be locked in Target UI and you still want to create it programmatically?"
+   - If NO: Stop. Use createOffer workflow
+   - If YES: Proceed with this tool
+
+If user does NOT confirm all three steps, DO NOT use this tool. Use createOffer instead.
+
+RECOMMENDED ALTERNATIVE (99% of use cases):
+Use createOffer to create offers, then tell user:
+"I've created the offers. Here are the offer IDs: [list IDs]
+To create your XT activity:
+1. Go to Adobe Target → Activities → Create Activity → Experience Targeting
+2. Choose Form-Based Experience Composer
+3. Add experiences and select these offer IDs
+4. Configure audience targeting
+This gives you full editing flexibility in the Target UI."
+
+CRITICAL WORKFLOW REQUIREMENTS FOR LLM (IF YOU MUST USE THIS TOOL):
 1. BEFORE generating code, ask user: "Do you have any links or image assets that need to be used in this experience?"
    - If user provides links/images: Use the exact URLs provided
    - If user says "no" or doesn't provide assets: Use placeholder links (e.g., "https://example.com/image.jpg" or "#" for links)
    - Document any placeholders clearly so user knows what to replace
 
 2. Generate the modification code following ALL Adobe Target coding rules
+   CRITICAL: NEVER include emojis in generated code, HTML, text, or comments
 
 3. PREVIEW THE CODE FIRST - Use Chrome DevTools MCP to inject and test:
    - Use Chrome DevTools MCP to navigate to the target URL
@@ -46,25 +84,14 @@ CRITICAL WORKFLOW REQUIREMENTS FOR LLM:
    6. Ask: "Check desktop view in Chrome. Does it look correct?"
    7. Only proceed if both viewports are approved
 
-4. AUDIENCE TARGETING - Before creating the activity, ask about audiences:
-   - Ask: "Do you want to target this activity to a specific audience?"
-   - If user says YES:
-     * Use the listAudiences tool to retrieve all available audiences
-     * Display the audiences to the user with their IDs and names
-     * Ask user to choose one (or multiple if needed)
-     * Capture the audience ID(s) from their selection
-     * Pass the audienceIds parameter when creating the activity
-   - If user says NO:
-     * Activity will target "All Visitors" (default behavior)
-     * Do not pass audienceIds parameter (or pass empty array)
-
-5. After user approves preview and selects audience, create the activity:
+4. After user approves preview, create the activity:
    - Show the user a summary of what will be created
    - List any placeholder assets that need to be replaced
    - Call this tool to create the activity
+   - NOTE: Audience targeting will be handled by the user manually in Target UI
 
-6. NEVER create an activity without previewing it first
-7. NEVER create an activity based on assumptions - always confirm via preview
+5. NEVER create an activity without previewing it first
+6. NEVER create an activity based on assumptions - always confirm via preview
 
 Example workflow:
 LLM: "Do you have any links or images for this experience?"
@@ -78,12 +105,7 @@ User: "Yes"
 LLM: [Resizes viewport to 1920x1080 desktop]
 LLM: "Now check desktop view. Does it look correct?"
 User: "Yes, looks good"
-LLM: "Do you want to target this activity to a specific audience?"
-User: "Yes"
-LLM: [Calls listAudiences tool]
-LLM: "Here are the available audiences: 1) Mobile Users (ID: 12345), 2) Desktop Users (ID: 67890), 3) Returning Visitors (ID: 11111). Which would you like to target?"
-User: "Mobile Users"
-LLM: [Calls this tool with audienceIds: [12345] and the clean modification code - NO preview indicator]
+LLM: [Calls this tool with the clean modification code - NO preview indicator]
 
 ADOBE TARGET CODE GENERATION RULES:
 You MUST follow these rules when generating JavaScript code for the modifications parameter:
@@ -141,6 +163,7 @@ Documentation:
 
 Conversion Tracking:
 - ALWAYS add dataLayer tracking to conversion elements (buttons, CTAs, forms, etc.)
+- Add datalayer tracking to any negative user actions too like closing a popup or offer
 - Use the generateDataLayerEvent tool to generate tracking code
 - Ask the User for the name of the test to populate at_activity
 - Attach click/submit event listeners that fire: dataLayer.push({event: "target_conversion", at_activity: "...", at_experience: "..."})

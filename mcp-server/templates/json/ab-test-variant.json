@@ -1,0 +1,266 @@
+{
+  "name": "A/B Test Variant Data",
+  "type": "json",
+  "description": "Simple A/B test variant configuration for testing different content, styles, and behaviors. Perfect for quick SPA tests.",
+  "tags": ["ab-test", "variant", "testing", "experiment", "optimization", "conversion"],
+  "content": {
+    "variant": "{{VARIANT_NAME}}",
+    "test": {
+      "id": "{{TEST_ID}}",
+      "name": "{{TEST_NAME}}",
+      "experience": "{{EXPERIENCE_NAME}}"
+    },
+    "content": {
+      "headline": "{{HEADLINE}}",
+      "subheadline": "{{SUBHEADLINE}}",
+      "bodyText": "{{BODY_TEXT}}",
+      "ctaPrimary": {
+        "text": "{{CTA_PRIMARY_TEXT}}",
+        "url": "{{CTA_PRIMARY_URL}}",
+        "color": "{{CTA_PRIMARY_COLOR}}",
+        "size": "{{CTA_SIZE}}"
+      },
+      "ctaSecondary": {
+        "text": "{{CTA_SECONDARY_TEXT}}",
+        "url": "{{CTA_SECONDARY_URL}}",
+        "style": "{{CTA_SECONDARY_STYLE}}"
+      }
+    },
+    "media": {
+      "type": "{{MEDIA_TYPE}}",
+      "url": "{{MEDIA_URL}}",
+      "alt": "{{MEDIA_ALT}}"
+    },
+    "styling": {
+      "theme": "{{THEME}}",
+      "primaryColor": "{{PRIMARY_COLOR}}",
+      "backgroundColor": "{{BACKGROUND_COLOR}}",
+      "textColor": "{{TEXT_COLOR}}",
+      "fontFamily": "{{FONT_FAMILY}}"
+    },
+    "behavior": {
+      "showModal": {{SHOW_MODAL}},
+      "modalDelay": {{MODAL_DELAY}},
+      "enableChatbot": {{ENABLE_CHATBOT}},
+      "showSocialProof": {{SHOW_SOCIAL_PROOF}},
+      "socialProofText": "{{SOCIAL_PROOF_TEXT}}"
+    },
+    "tracking": {
+      "conversionGoal": "{{CONVERSION_GOAL}}",
+      "additionalMetrics": [
+        "{{METRIC_1}}",
+        "{{METRIC_2}}"
+      ]
+    }
+  },
+  "variables": [
+    {
+      "name": "{{VARIANT_NAME}}",
+      "description": "Variant identifier (e.g., 'A', 'B', 'Control', 'Variant 1')",
+      "example": "B",
+      "required": true
+    },
+    {
+      "name": "{{TEST_ID}}",
+      "description": "A/B test ID",
+      "example": "homepage-hero-test-001",
+      "required": true
+    },
+    {
+      "name": "{{TEST_NAME}}",
+      "description": "A/B test name",
+      "example": "Homepage Hero CTA Test",
+      "required": true
+    },
+    {
+      "name": "{{EXPERIENCE_NAME}}",
+      "description": "Experience name",
+      "example": "Green CTA Button",
+      "required": true
+    },
+    {
+      "name": "{{HEADLINE}}",
+      "description": "Main headline text",
+      "example": "Transform Your Business in 30 Days",
+      "required": true
+    },
+    {
+      "name": "{{SUBHEADLINE}}",
+      "description": "Subheadline text",
+      "example": "Join 10,000+ companies already growing with us",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{BODY_TEXT}}",
+      "description": "Body text/description",
+      "example": "Our proven system helps you achieve results faster than ever before.",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{CTA_PRIMARY_TEXT}}",
+      "description": "Primary CTA button text",
+      "example": "Start Free Trial",
+      "required": true
+    },
+    {
+      "name": "{{CTA_PRIMARY_URL}}",
+      "description": "Primary CTA button URL",
+      "example": "/signup",
+      "required": true
+    },
+    {
+      "name": "{{CTA_PRIMARY_COLOR}}",
+      "description": "Primary CTA button color",
+      "example": "#28a745",
+      "required": false,
+      "default": "#007bff"
+    },
+    {
+      "name": "{{CTA_SIZE}}",
+      "description": "CTA button size",
+      "example": "large",
+      "options": ["small", "medium", "large"],
+      "required": false,
+      "default": "medium"
+    },
+    {
+      "name": "{{CTA_SECONDARY_TEXT}}",
+      "description": "Secondary CTA text (optional)",
+      "example": "Watch Demo",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{CTA_SECONDARY_URL}}",
+      "description": "Secondary CTA URL",
+      "example": "/demo",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{CTA_SECONDARY_STYLE}}",
+      "description": "Secondary CTA style",
+      "example": "outline",
+      "options": ["outline", "text", "ghost"],
+      "required": false,
+      "default": "outline"
+    },
+    {
+      "name": "{{MEDIA_TYPE}}",
+      "description": "Media type",
+      "example": "image",
+      "options": ["image", "video", "none"],
+      "required": false,
+      "default": "image"
+    },
+    {
+      "name": "{{MEDIA_URL}}",
+      "description": "Media URL",
+      "example": "https://example.com/hero-image.jpg",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{MEDIA_ALT}}",
+      "description": "Media alt text",
+      "example": "Happy customers using our product",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{THEME}}",
+      "description": "Visual theme",
+      "example": "modern",
+      "options": ["modern", "classic", "minimal", "bold"],
+      "required": false,
+      "default": "modern"
+    },
+    {
+      "name": "{{PRIMARY_COLOR}}",
+      "description": "Primary brand color",
+      "example": "#007bff",
+      "required": false,
+      "default": "#007bff"
+    },
+    {
+      "name": "{{BACKGROUND_COLOR}}",
+      "description": "Background color",
+      "example": "#ffffff",
+      "required": false,
+      "default": "#ffffff"
+    },
+    {
+      "name": "{{TEXT_COLOR}}",
+      "description": "Text color",
+      "example": "#333333",
+      "required": false,
+      "default": "#333333"
+    },
+    {
+      "name": "{{FONT_FAMILY}}",
+      "description": "Font family",
+      "example": "Inter, sans-serif",
+      "required": false,
+      "default": "system-ui, sans-serif"
+    },
+    {
+      "name": "{{SHOW_MODAL}}",
+      "description": "Show modal popup (true/false)",
+      "example": "false",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{MODAL_DELAY}}",
+      "description": "Modal delay in milliseconds",
+      "example": "3000",
+      "required": false,
+      "default": "3000"
+    },
+    {
+      "name": "{{ENABLE_CHATBOT}}",
+      "description": "Enable chatbot widget (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{SHOW_SOCIAL_PROOF}}",
+      "description": "Show social proof badge (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{SOCIAL_PROOF_TEXT}}",
+      "description": "Social proof text",
+      "example": "Trusted by 50,000+ customers",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{CONVERSION_GOAL}}",
+      "description": "Primary conversion goal",
+      "example": "signup",
+      "required": false,
+      "default": "click"
+    },
+    {
+      "name": "{{METRIC_1}}",
+      "description": "Additional metric to track",
+      "example": "time_on_page",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{METRIC_2}}",
+      "description": "Additional metric to track",
+      "example": "scroll_depth",
+      "required": false,
+      "default": ""
+    }
+  ],
+  "notes": "This template provides a complete variant configuration for A/B testing. Your application should consume this JSON to render the variant dynamically."
+}

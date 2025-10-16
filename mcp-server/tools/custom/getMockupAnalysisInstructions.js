@@ -1,11 +1,11 @@
 /**
- * Prepare Page for Mockup Comparison Tool
- * Extract detailed page structure for comparing against a mockup screenshot
+ * Get Mockup Analysis Instructions Tool
+ * Provides instructions for mockup analysis and experience generation workflow
  */
 import { makeTargetRequest } from '../../helpers/makeTargetRequest.js';
 
 export const tool = {
-  name: 'preparePageForMockupComparison',
+  name: 'getMockupAnalysisInstructions',
   description: `Extract detailed page structure to prepare for mockup comparison and experience generation.
 
 MOCKUP-TO-EXPERIENCE WORKFLOW:
@@ -74,7 +74,7 @@ export async function handler(args, context) {
     url: args.url,
     focusArea: args.focusArea || 'entire page',
     instructions: [
-      '✓ Page URL received: ' + args.url,
+      'Page URL received: ' + args.url,
       '',
       'NEXT STEPS FOR MOCKUP ANALYSIS:',
       '',
@@ -118,26 +118,26 @@ export async function handler(args, context) {
       'Take screenshot for comparison with mockup',
     ],
     mockupAnalysisChecklist: [
-      '□ What text content is different?',
-      '□ What colors are different? (backgrounds, text, borders)',
-      '□ What fonts/sizes are different?',
-      '□ What layout/positioning is different?',
-      '□ What elements are new/added?',
-      '□ What elements are hidden/removed?',
-      '□ What images are different?',
-      '□ What spacing/margins/padding are different?',
-      '□ What element dimensions (width/height) are different?',
-      '□ What interactive elements (buttons, links) are different?',
+      '- What text content is different?',
+      '- What colors are different? (backgrounds, text, borders)',
+      '- What fonts/sizes are different?',
+      '- What layout/positioning is different?',
+      '- What elements are new/added?',
+      '- What elements are hidden/removed?',
+      '- What images are different?',
+      '- What spacing/margins/padding are different?',
+      '- What element dimensions (width/height) are different?',
+      '- What interactive elements (buttons, links) are different?',
     ],
     codeGenerationReminders: [
-      '✓ ES5 only - NO backticks, arrow functions, const/let, template literals',
-      '✓ All new classes prefixed with "at-"',
-      '✓ Use specific selectors - NOT broad classes like .button',
-      '✓ Wait for elements to exist using polling pattern',
-      '✓ Wrap in IIFE to avoid global pollution',
-      '✓ Add detailed comments',
-      '✓ Cache DOM queries',
-      '✓ Use inline styles for specificity',
+      '- ES5 only - NO backticks, arrow functions, const/let, template literals',
+      '- All new classes prefixed with "at-"',
+      '- Use specific selectors - NOT broad classes like .button',
+      '- Wait for elements to exist using polling pattern',
+      '- Wrap in IIFE to avoid global pollution',
+      '- Add detailed comments',
+      '- Cache DOM queries',
+      '- Use inline styles for specificity',
     ],
   };
 }

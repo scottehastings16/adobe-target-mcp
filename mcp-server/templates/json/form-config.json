@@ -1,0 +1,363 @@
+{
+  "name": "Form Configuration",
+  "type": "json",
+  "description": "Dynamic form configuration for A/B testing form fields, validation rules, and layouts. Perfect for form optimization.",
+  "tags": ["form", "fields", "validation", "configuration", "dynamic", "inputs"],
+  "content": {
+    "formId": "{{FORM_ID}}",
+    "title": "{{FORM_TITLE}}",
+    "description": "{{FORM_DESCRIPTION}}",
+    "fields": [
+      {
+        "id": "{{FIELD_1_ID}}",
+        "type": "{{FIELD_1_TYPE}}",
+        "label": "{{FIELD_1_LABEL}}",
+        "placeholder": "{{FIELD_1_PLACEHOLDER}}",
+        "required": {{FIELD_1_REQUIRED}},
+        "validation": {
+          "pattern": "{{FIELD_1_PATTERN}}",
+          "errorMessage": "{{FIELD_1_ERROR}}"
+        },
+        "helpText": "{{FIELD_1_HELP}}"
+      },
+      {
+        "id": "{{FIELD_2_ID}}",
+        "type": "{{FIELD_2_TYPE}}",
+        "label": "{{FIELD_2_LABEL}}",
+        "placeholder": "{{FIELD_2_PLACEHOLDER}}",
+        "required": {{FIELD_2_REQUIRED}},
+        "validation": {
+          "pattern": "{{FIELD_2_PATTERN}}",
+          "errorMessage": "{{FIELD_2_ERROR}}"
+        },
+        "helpText": "{{FIELD_2_HELP}}"
+      },
+      {
+        "id": "{{FIELD_3_ID}}",
+        "type": "{{FIELD_3_TYPE}}",
+        "label": "{{FIELD_3_LABEL}}",
+        "placeholder": "{{FIELD_3_PLACEHOLDER}}",
+        "required": {{FIELD_3_REQUIRED}},
+        "options": [
+          "{{FIELD_3_OPTION_1}}",
+          "{{FIELD_3_OPTION_2}}",
+          "{{FIELD_3_OPTION_3}}"
+        ],
+        "helpText": "{{FIELD_3_HELP}}"
+      },
+      {
+        "id": "{{FIELD_4_ID}}",
+        "type": "{{FIELD_4_TYPE}}",
+        "label": "{{FIELD_4_LABEL}}",
+        "text": "{{FIELD_4_TEXT}}",
+        "required": {{FIELD_4_REQUIRED}}
+      }
+    ],
+    "submitButton": {
+      "text": "{{SUBMIT_TEXT}}",
+      "loadingText": "{{SUBMIT_LOADING_TEXT}}",
+      "successText": "{{SUBMIT_SUCCESS_TEXT}}"
+    },
+    "config": {
+      "layout": "{{LAYOUT}}",
+      "showProgressBar": {{SHOW_PROGRESS}},
+      "enableAutosave": {{ENABLE_AUTOSAVE}},
+      "submitUrl": "{{SUBMIT_URL}}",
+      "successRedirect": "{{SUCCESS_REDIRECT}}",
+      "errorHandling": "{{ERROR_HANDLING}}"
+    }
+  },
+  "variables": [
+    {
+      "name": "{{FORM_ID}}",
+      "description": "Form ID",
+      "example": "contact-form",
+      "required": true
+    },
+    {
+      "name": "{{FORM_TITLE}}",
+      "description": "Form title/heading",
+      "example": "Contact Us",
+      "required": true
+    },
+    {
+      "name": "{{FORM_DESCRIPTION}}",
+      "description": "Form description text",
+      "example": "Fill out the form below and we'll get back to you soon",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{FIELD_1_ID}}",
+      "description": "First field ID",
+      "example": "name",
+      "required": true
+    },
+    {
+      "name": "{{FIELD_1_TYPE}}",
+      "description": "First field type",
+      "example": "text",
+      "options": ["text", "email", "tel", "number", "textarea"],
+      "required": true
+    },
+    {
+      "name": "{{FIELD_1_LABEL}}",
+      "description": "First field label",
+      "example": "Full Name",
+      "required": true
+    },
+    {
+      "name": "{{FIELD_1_PLACEHOLDER}}",
+      "description": "First field placeholder",
+      "example": "Enter your full name",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{FIELD_1_REQUIRED}}",
+      "description": "First field required (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "true"
+    },
+    {
+      "name": "{{FIELD_1_PATTERN}}",
+      "description": "First field validation pattern (regex)",
+      "example": "^[a-zA-Z ]+$",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{FIELD_1_ERROR}}",
+      "description": "First field error message",
+      "example": "Please enter a valid name",
+      "required": false,
+      "default": "Invalid input"
+    },
+    {
+      "name": "{{FIELD_1_HELP}}",
+      "description": "First field help text",
+      "example": "Enter your first and last name",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{FIELD_2_ID}}",
+      "description": "Second field ID",
+      "example": "email",
+      "required": true
+    },
+    {
+      "name": "{{FIELD_2_TYPE}}",
+      "description": "Second field type",
+      "example": "email",
+      "options": ["text", "email", "tel", "number", "textarea"],
+      "required": true
+    },
+    {
+      "name": "{{FIELD_2_LABEL}}",
+      "description": "Second field label",
+      "example": "Email Address",
+      "required": true
+    },
+    {
+      "name": "{{FIELD_2_PLACEHOLDER}}",
+      "description": "Second field placeholder",
+      "example": "you@example.com",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{FIELD_2_REQUIRED}}",
+      "description": "Second field required (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "true"
+    },
+    {
+      "name": "{{FIELD_2_PATTERN}}",
+      "description": "Second field validation pattern",
+      "example": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{FIELD_2_ERROR}}",
+      "description": "Second field error message",
+      "example": "Please enter a valid email address",
+      "required": false,
+      "default": "Invalid email"
+    },
+    {
+      "name": "{{FIELD_2_HELP}}",
+      "description": "Second field help text",
+      "example": "We'll never share your email",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{FIELD_3_ID}}",
+      "description": "Third field ID (dropdown/select)",
+      "example": "reason",
+      "required": false,
+      "default": "field3"
+    },
+    {
+      "name": "{{FIELD_3_TYPE}}",
+      "description": "Third field type",
+      "example": "select",
+      "options": ["select", "radio", "checkbox"],
+      "required": false,
+      "default": "select"
+    },
+    {
+      "name": "{{FIELD_3_LABEL}}",
+      "description": "Third field label",
+      "example": "Reason for Contact",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{FIELD_3_PLACEHOLDER}}",
+      "description": "Third field placeholder",
+      "example": "Choose an option",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{FIELD_3_REQUIRED}}",
+      "description": "Third field required (true/false)",
+      "example": "false",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{FIELD_3_OPTION_1}}",
+      "description": "Third field - first option",
+      "example": "General Inquiry",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{FIELD_3_OPTION_2}}",
+      "description": "Third field - second option",
+      "example": "Support",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{FIELD_3_OPTION_3}}",
+      "description": "Third field - third option",
+      "example": "Sales",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{FIELD_3_HELP}}",
+      "description": "Third field help text",
+      "example": "Select the best option",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{FIELD_4_ID}}",
+      "description": "Fourth field ID (message/textarea)",
+      "example": "message",
+      "required": false,
+      "default": "message"
+    },
+    {
+      "name": "{{FIELD_4_TYPE}}",
+      "description": "Fourth field type",
+      "example": "textarea",
+      "required": false,
+      "default": "textarea"
+    },
+    {
+      "name": "{{FIELD_4_LABEL}}",
+      "description": "Fourth field label",
+      "example": "Message",
+      "required": false,
+      "default": "Message"
+    },
+    {
+      "name": "{{FIELD_4_TEXT}}",
+      "description": "Fourth field placeholder",
+      "example": "Enter your message here",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{FIELD_4_REQUIRED}}",
+      "description": "Fourth field required (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{SUBMIT_TEXT}}",
+      "description": "Submit button text",
+      "example": "Send Message",
+      "required": false,
+      "default": "Submit"
+    },
+    {
+      "name": "{{SUBMIT_LOADING_TEXT}}",
+      "description": "Submit button loading text",
+      "example": "Sending...",
+      "required": false,
+      "default": "Submitting..."
+    },
+    {
+      "name": "{{SUBMIT_SUCCESS_TEXT}}",
+      "description": "Submit button success text",
+      "example": "Sent!",
+      "required": false,
+      "default": "Success!"
+    },
+    {
+      "name": "{{LAYOUT}}",
+      "description": "Form layout",
+      "example": "vertical",
+      "options": ["vertical", "horizontal", "inline"],
+      "required": false,
+      "default": "vertical"
+    },
+    {
+      "name": "{{SHOW_PROGRESS}}",
+      "description": "Show progress bar (true/false)",
+      "example": "false",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{ENABLE_AUTOSAVE}}",
+      "description": "Enable autosave (true/false)",
+      "example": "false",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{SUBMIT_URL}}",
+      "description": "Form submission URL",
+      "example": "/api/contact",
+      "required": true
+    },
+    {
+      "name": "{{SUCCESS_REDIRECT}}",
+      "description": "Redirect URL on success (leave empty for no redirect)",
+      "example": "/thank-you",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "{{ERROR_HANDLING}}",
+      "description": "Error handling strategy",
+      "example": "inline",
+      "options": ["inline", "modal", "banner"],
+      "required": false,
+      "default": "inline"
+    }
+  ],
+  "notes": "Template includes 4 fields of different types. Your application should loop through fields array to render the form dynamically."
+}

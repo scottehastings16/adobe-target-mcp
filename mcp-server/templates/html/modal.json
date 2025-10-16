@@ -1,0 +1,69 @@
+{
+  "name": "Modal Popup",
+  "type": "html",
+  "description": "Responsive modal/popup with overlay, close button, and customizable content. Can trigger on page load, scroll, or exit intent.",
+  "tags": ["modal", "popup", "overlay", "lightbox", "dialog", "exit-intent", "promotion"],
+  "content": "<script>\n(function() {\n  var triggerType = '{{TRIGGER_TYPE}}';\n  var delay = {{DELAY}};\n  var scrollPercent = {{SCROLL_PERCENT}};\n  \n  // Inject CSS\n  var style = document.createElement('style');\n  style.textContent = '' +\n    '.at-modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 9998; display: none; align-items: center; justify-content: center; }' +\n    '.at-modal-overlay.active { display: flex; }' +\n    '.at-modal { position: relative; background: white; padding: 40px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }' +\n    '.at-modal-close { position: absolute; top: 15px; right: 15px; background: transparent; border: none; font-size: 28px; cursor: pointer; color: #666; line-height: 1; padding: 0; width: 30px; height: 30px; }' +\n    '.at-modal-close:hover { color: #000; }' +\n    '.at-modal-heading { font-size: 28px; font-weight: bold; margin: 0 0 15px 0; }' +\n    '.at-modal-content { font-size: 16px; line-height: 1.6; margin: 0 0 25px 0; }' +\n    '.at-modal-cta { display: inline-block; padding: 15px 40px; font-size: 18px; font-weight: bold; text-decoration: none; border-radius: 5px; cursor: pointer; border: none; }' +\n    '.at-modal-cta:hover { opacity: 0.9; }' +\n    '@media (max-width: 768px) {' +\n    '  .at-modal { padding: 30px 20px; width: 95%; }' +\n    '  .at-modal-heading { font-size: 24px; }' +\n    '  .at-modal-content { font-size: 14px; }' +\n    '  .at-modal-cta { padding: 12px 30px; font-size: 16px; width: 100%; }' +\n    '}';\n  document.head.appendChild(style);\n  \n  // Build modal HTML\n  var overlay = document.createElement('div');\n  overlay.className = 'at-modal-overlay';\n  \n  var modal = document.createElement('div');\n  modal.className = 'at-modal';\n  \n  var closeBtn = document.createElement('button');\n  closeBtn.className = 'at-modal-close';\n  closeBtn.innerHTML = '&times;';\n  closeBtn.setAttribute('aria-label', 'Close modal');\n  \n  var heading = document.createElement('h2');\n  heading.className = 'at-modal-heading';\n  heading.textContent = '{{HEADING}}';\n  \n  var content = document.createElement('p');\n  content.className = 'at-modal-content';\n  content.textContent = '{{CONTENT}}';\n  \n  var cta = document.createElement('a');\n  cta.className = 'at-modal-cta';\n  cta.href = '{{CTA_URL}}';\n  cta.textContent = '{{CTA_TEXT}}';\n  cta.style.backgroundColor = '{{CTA_COLOR}}';\n  cta.style.color = '{{CTA_TEXT_COLOR}}';\n  \n  modal.appendChild(closeBtn);\n  modal.appendChild(heading);\n  modal.appendChild(content);\n  modal.appendChild(cta);\n  overlay.appendChild(modal);\n  document.body.appendChild(overlay);\n  \n  // Modal functions\n  function showModal() {\n    overlay.classList.add('active');\n    document.body.style.overflow = 'hidden';\n  }\n  \n  function hideModal() {\n    overlay.classList.remove('active');\n    document.body.style.overflow = '';\n  }\n  \n  // Close button handler\n  closeBtn.addEventListener('click', hideModal);\n  \n  // Click outside to close\n  overlay.addEventListener('click', function(e) {\n    if (e.target === overlay) {\n      hideModal();\n    }\n  });\n  \n  // ESC key to close\n  document.addEventListener('keydown', function(e) {\n    if (e.key === 'Escape' && overlay.classList.contains('active')) {\n      hideModal();\n    }\n  });\n  \n  // Trigger logic\n  var hasShown = false;\n  \n  if (triggerType === 'load') {\n    setTimeout(function() {\n      if (!hasShown) {\n        showModal();\n        hasShown = true;\n      }\n    }, delay);\n  } else if (triggerType === 'scroll') {\n    window.addEventListener('scroll', function() {\n      if (hasShown) return;\n      var scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;\n      if (scrolled >= scrollPercent) {\n        showModal();\n        hasShown = true;\n      }\n    });\n  } else if (triggerType === 'exit') {\n    document.addEventListener('mouseout', function(e) {\n      if (hasShown) return;\n      if (e.clientY < 0) {\n        showModal();\n        hasShown = true;\n      }\n    });\n  }\n})();\n</script>",
+  "variables": [
+    {
+      "name": "{{HEADING}}",
+      "description": "Modal heading text",
+      "example": "Special Offer!",
+      "required": true
+    },
+    {
+      "name": "{{CONTENT}}",
+      "description": "Modal body content/description",
+      "example": "Get 20% off your first order when you sign up today!",
+      "required": true
+    },
+    {
+      "name": "{{CTA_TEXT}}",
+      "description": "Call-to-action button text",
+      "example": "Claim Offer",
+      "required": true
+    },
+    {
+      "name": "{{CTA_URL}}",
+      "description": "Call-to-action button URL",
+      "example": "/signup",
+      "required": true
+    },
+    {
+      "name": "{{CTA_COLOR}}",
+      "description": "CTA button background color",
+      "example": "#FF5733",
+      "required": false,
+      "default": "#007bff"
+    },
+    {
+      "name": "{{CTA_TEXT_COLOR}}",
+      "description": "CTA button text color",
+      "example": "#FFFFFF",
+      "required": false,
+      "default": "#FFFFFF"
+    },
+    {
+      "name": "{{TRIGGER_TYPE}}",
+      "description": "When to show modal: 'load' (on page load), 'scroll' (after scrolling %), or 'exit' (exit intent)",
+      "example": "load",
+      "options": ["load", "scroll", "exit"],
+      "required": false,
+      "default": "load"
+    },
+    {
+      "name": "{{DELAY}}",
+      "description": "Delay in milliseconds before showing (for 'load' trigger)",
+      "example": "3000",
+      "required": false,
+      "default": "3000"
+    },
+    {
+      "name": "{{SCROLL_PERCENT}}",
+      "description": "Scroll percentage to trigger (for 'scroll' trigger)",
+      "example": "50",
+      "required": false,
+      "default": "50"
+    }
+  ]
+}

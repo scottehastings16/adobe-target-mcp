@@ -1,0 +1,35 @@
+{
+  "name": "Responsive Carousel",
+  "type": "html",
+  "description": "A touch-friendly image carousel with navigation arrows, dots, and auto-play support. Fully responsive with mobile swipe support.",
+  "tags": ["carousel", "slider", "gallery", "images", "swipe", "navigation", "responsive"],
+  "content": "<script>\n(function() {\n  var container = document.querySelector('{{SELECTOR}}');\n  if (!container) return;\n  \n  var images = '{{IMAGES}}'.split(',');\n  var autoPlay = {{AUTO_PLAY}};\n  var interval = {{INTERVAL}};\n  \n  // Inject CSS\n  var style = document.createElement('style');\n  style.textContent = '' +\n    '.at-carousel { position: relative; overflow: hidden; width: 100%; max-width: 1200px; margin: 0 auto; }' +\n    '.at-carousel-track { display: flex; transition: transform 0.3s ease; }' +\n    '.at-carousel-slide { min-width: 100%; flex-shrink: 0; }' +\n    '.at-carousel-slide img { width: 100%; display: block; }' +\n    '.at-carousel-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 15px; cursor: pointer; z-index: 10; font-size: 20px; }' +\n    '.at-carousel-nav:hover { background: rgba(0,0,0,0.8); }' +\n    '.at-carousel-prev { left: 10px; }' +\n    '.at-carousel-next { right: 10px; }' +\n    '.at-carousel-dots { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; }' +\n    '.at-carousel-dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.5); border: none; cursor: pointer; padding: 0; }' +\n    '.at-carousel-dot.active { background: white; }' +\n    '@media (max-width: 768px) {' +\n    '  .at-carousel-nav { padding: 10px; font-size: 16px; }' +\n    '  .at-carousel-prev { left: 5px; }' +\n    '  .at-carousel-next { right: 5px; }' +\n    '}';\n  document.head.appendChild(style);\n  \n  // Build carousel HTML\n  var track = document.createElement('div');\n  track.className = 'at-carousel-track';\n  \n  for (var i = 0; i < images.length; i++) {\n    var slide = document.createElement('div');\n    slide.className = 'at-carousel-slide';\n    var img = document.createElement('img');\n    img.src = images[i].trim();\n    img.alt = 'Slide ' + (i + 1);\n    slide.appendChild(img);\n    track.appendChild(slide);\n  }\n  \n  container.innerHTML = '';\n  container.className = 'at-carousel';\n  container.appendChild(track);\n  \n  // Add navigation arrows\n  var prevBtn = document.createElement('button');\n  prevBtn.className = 'at-carousel-nav at-carousel-prev';\n  prevBtn.innerHTML = '&#8249;';\n  prevBtn.setAttribute('aria-label', 'Previous slide');\n  \n  var nextBtn = document.createElement('button');\n  nextBtn.className = 'at-carousel-nav at-carousel-next';\n  nextBtn.innerHTML = '&#8250;';\n  nextBtn.setAttribute('aria-label', 'Next slide');\n  \n  container.appendChild(prevBtn);\n  container.appendChild(nextBtn);\n  \n  // Add dots\n  var dotsContainer = document.createElement('div');\n  dotsContainer.className = 'at-carousel-dots';\n  for (var j = 0; j < images.length; j++) {\n    var dot = document.createElement('button');\n    dot.className = 'at-carousel-dot';\n    dot.setAttribute('data-index', j);\n    dot.setAttribute('aria-label', 'Go to slide ' + (j + 1));\n    dotsContainer.appendChild(dot);\n  }\n  container.appendChild(dotsContainer);\n  \n  // Carousel logic\n  var currentIndex = 0;\n  var autoPlayTimer = null;\n  \n  function updateCarousel() {\n    track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';\n    var dots = dotsContainer.querySelectorAll('.at-carousel-dot');\n    for (var k = 0; k < dots.length; k++) {\n      dots[k].classList.remove('active');\n    }\n    dots[currentIndex].classList.add('active');\n  }\n  \n  function nextSlide() {\n    currentIndex = (currentIndex + 1) % images.length;\n    updateCarousel();\n  }\n  \n  function prevSlide() {\n    currentIndex = (currentIndex - 1 + images.length) % images.length;\n    updateCarousel();\n  }\n  \n  function goToSlide(index) {\n    currentIndex = index;\n    updateCarousel();\n  }\n  \n  function startAutoPlay() {\n    if (autoPlay) {\n      autoPlayTimer = setInterval(nextSlide, interval);\n    }\n  }\n  \n  function stopAutoPlay() {\n    if (autoPlayTimer) {\n      clearInterval(autoPlayTimer);\n      autoPlayTimer = null;\n    }\n  }\n  \n  // Event listeners\n  prevBtn.addEventListener('click', function() {\n    stopAutoPlay();\n    prevSlide();\n  });\n  \n  nextBtn.addEventListener('click', function() {\n    stopAutoPlay();\n    nextSlide();\n  });\n  \n  var dots = dotsContainer.querySelectorAll('.at-carousel-dot');\n  for (var m = 0; m < dots.length; m++) {\n    dots[m].addEventListener('click', function() {\n      stopAutoPlay();\n      goToSlide(parseInt(this.getAttribute('data-index')));\n    });\n  }\n  \n  // Touch support for mobile\n  var touchStartX = 0;\n  var touchEndX = 0;\n  \n  container.addEventListener('touchstart', function(e) {\n    touchStartX = e.changedTouches[0].screenX;\n  });\n  \n  container.addEventListener('touchend', function(e) {\n    touchEndX = e.changedTouches[0].screenX;\n    if (touchStartX - touchEndX > 50) {\n      stopAutoPlay();\n      nextSlide();\n    } else if (touchEndX - touchStartX > 50) {\n      stopAutoPlay();\n      prevSlide();\n    }\n  });\n  \n  // Initialize\n  updateCarousel();\n  startAutoPlay();\n})();\n</script>",
+  "variables": [
+    {
+      "name": "{{SELECTOR}}",
+      "description": "CSS selector for carousel container element",
+      "example": "#hero-carousel",
+      "required": true
+    },
+    {
+      "name": "{{IMAGES}}",
+      "description": "Comma-separated list of image URLs",
+      "example": "https://example.com/img1.jpg,https://example.com/img2.jpg,https://example.com/img3.jpg",
+      "required": true
+    },
+    {
+      "name": "{{AUTO_PLAY}}",
+      "description": "Auto-advance slides (true/false)",
+      "example": "true",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "{{INTERVAL}}",
+      "description": "Auto-play interval in milliseconds",
+      "example": "5000",
+      "required": false,
+      "default": "5000"
+    }
+  ]
+}
