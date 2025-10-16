@@ -186,14 +186,6 @@ Copy `.claude.json.example` to your MCP client's configuration file and update t
       "env": {
         "CHROME_PATH": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
       }
-    },
-    "filesystem": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "C:\\Users\\YourUsername\\adobe-target-mcp-agent"
-      ]
     }
   }
 }
