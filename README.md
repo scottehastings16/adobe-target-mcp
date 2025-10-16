@@ -203,11 +203,16 @@ Copy `.claude.json.example` to your MCP client's configuration file and update t
 ### 6. Start Using
 
 Once configured, you can ask your AI assistant to:
-- "Create a carousel for my homepage"
-- "Show me available templates"
-- "Generate conversion tracking for my signup button using GTM"
+- "Create a carousel under the hero image on my website www.example.com"
+- "Show me what response tokens are avilable in my targt propert"
+- "Generate a popup module for my page www.example.com, add a CTA and this image: example.com/image.png... add a CTA that links to the products page at this link example.com/products"
 - "Create a JSON offer for feature flags"
 - "List all active Target activities"
+- "List avilable mboxes in my property"
+- "Generate a conversion report for the Buy Now CTA Test"
+- Show me avilable OOTB templates
+- Help me create a new response token
+- Update the "Buy Now" Offer with a new stlying using by configured brand colors
 
 The agent will use its 34 tools and 19 templates to interact with Adobe Target on your behalf.
 
