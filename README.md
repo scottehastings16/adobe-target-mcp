@@ -394,10 +394,11 @@ The template system provides 19 pre-built, templates for common Adobe Target use
 ### How Templates Work
 
 1. **Automatic Discovery**: When you request content (e.g., "Create a carousel"), the agent automatically searches for matching templates
-2. **Template Selection**: Matches templates by filename, tags, and description
-3. **Variable Population**: Agent asks for required values and populates template variables
-4. **Code Generation**: Template generates production-ready code
-5. **Offer Creation**: Creates offer in Adobe Target
+2. **Customizeable**: Create your own template for frequently used content to speed up personalization efforts
+3. **Template Selection**: Matches templates by filename, tags, and description
+4. **Variable Population**: Agent asks for required values and populates template variables
+5. **Code Generation**: Template generates production-ready code
+6. **Offer Creation**: Creates offer in Adobe Target
 
 ### Using Templates
 
