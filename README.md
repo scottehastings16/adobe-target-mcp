@@ -112,7 +112,7 @@ Add to `.cursor/config/servers.json`:
 ## Available Tools
 
 ### Activities (5 tools)
-| Tool | Description |
+| Tool | Description | 
 |------|-------------|
 | `listActivities` | List all activities with filtering options |
 | `createABActivity` | Create A/B test activity via API |
@@ -121,10 +121,10 @@ Add to `.cursor/config/servers.json`:
 | `updateActivityState` | Change activity state (activate/pause/deactivate) |
 
 ### Offers (4 tools)
-| Tool | Description |
+| Tool | Description | 
 |------|-------------|
 | `listOffers` | List all offers with filtering |
-| `createOffer` |  Create HTML offers with templates |
+| `createOffer` |  Create custom or templated HTML Offers |
 | `createJsonOffer` | Create JSON offers |
 | `updateOffer` | Update existing offer content |
 
