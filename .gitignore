@@ -21,6 +21,11 @@ Thumbs.db
 .claude/
 .claude.json
 .claude.json.backup
+.claudecode/
+/claudecode
+claude-code/
+*.claude-code
+.claude-*
 
 # Temp files
 *.tmp
