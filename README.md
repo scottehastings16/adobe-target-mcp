@@ -25,8 +25,8 @@ This is an experimental MCP.
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/at-mcp.git
-cd at-mcp
+git clone https://github.com/scottehastings16/adobe-target-mcp.git
+cd adobe-target-mcp
 
 # Install dependencies
 cd mcp-server
@@ -47,14 +47,12 @@ Edit `.env` with your Adobe Target credentials:
 # Required - Adobe Target API Credentials
 TARGET_TENANT_ID=your_tenant_id          # e.g., mycompany
 TARGET_API_KEY=your_api_key              # From Adobe Developer Console
-TARGET_ACCESS_TOKEN=your_access_token    # Generate via JWT or OAuth
+TARGET_ACCESS_TOKEN=your_access_token    # Generate via From Adobe Developer Console
 
 # Optional - Default Configuration
 TARGET_WORKSPACE_ID=                     # Filter by workspace (leave empty for all)
 TARGET_DEFAULT_MBOXES=target-global-mbox # Default mboxes for activities
 TARGET_DEFAULT_PRIORITY=0                # Default activity priority (0-999)
-TARGET_A4T_ENABLED=false                 # Analytics for Target
-TARGET_A4T_REPORT_SUITE=                 # A4T report suite ID
 TARGET_DEFAULT_METRIC_NAME=conversion    # Default success metric name
 TARGET_DEFAULT_METRIC_MBOX=              # Mbox for conversion tracking
 ```
