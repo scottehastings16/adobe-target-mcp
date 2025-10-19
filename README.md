@@ -1,4 +1,4 @@
-# Adobe Target MCP Agent
+# Adobe Target MCP
 
 An (**Unofficial**) Model Context Protocol Agent Framework for Adobe Target, enabling your favorite MCP Clients to create and manage Adobe Target activities, content creation, offers, audiences, and automated dataLayer event generation all through natrual language.
 
@@ -69,17 +69,6 @@ This agent requires **two MCP servers** working together:
 - Provides live browser DOM access and page analysis
 - Automatically installed via `npx` when adobe-target-mcp is configured
 - Requires Chrome or Chromium browser
-
-
-**Install Chrome Browser:**
-```bash
-# You ONLY need Chrome browser installed
-# The chrome-devtools-mcp package is auto-installed by npx
-
-# Windows: Download from https://www.google.com/chrome/
-# Mac: brew install --cask google-chrome
-# Linux: sudo apt install google-chrome-stable
-``
 
 ### 4. Configure Environment
 
