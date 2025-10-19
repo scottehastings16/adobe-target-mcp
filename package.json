@@ -1,5 +1,5 @@
 {
-  "name": "adobe-target-admin-api-mcp",
+  "name": "adobe-target-mcp",
   "version": "2.0.0",
   "description": "MCP server for Adobe Target Admin API - manage Target activities, offers, and audiences from Cursor IDE",
   "type": "module",

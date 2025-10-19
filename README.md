@@ -1,7 +1,5 @@
 # Adobe Target MCP Agent
 
-**Version 2.2.0**
-
 An (**Unofficial**) Model Context Protocol Agent Framework for Adobe Target, enabling your favorite MCP Clients to create and manage Adobe Target activities, content creation, offers, audiences, and automated dataLayer event generation all through natrual language.
 
 **MCP Standard Compliance:** This project follows the open Model Context Protocol standard and works with any MCP-compatible client (Claude Desktop, Cursor, or other MCP clients). Configuration examples below use Claude Desktop/Code, but the same `mcpServers` format applies to all MCP clients.
@@ -15,24 +13,12 @@ Adobe Target API Documentation: https://developer.adobe.com/target/administer/ad
 
 ## Table of Contents
 
-- [Features](#features)
-- [Important: API Activity Limitations](#important-api-activity-limitations)
+- [Core Capabilities](#core-capabilities)
 - [Quick Start](#quick-start)
-- [Dependencies](#dependencies)
 - [Project Structure](#project-structure)
-- [Template System](#template-system)
-- [Available Tools (33 total)](#available-tools-33-total)
-- [Configuration Files](#configuration-files)
-- [Code Generation Rules](#code-generation-rules)
-- [DataLayer Event Tracking](#datalayer-event-tracking)
-- [Working with Chrome DevTools MCP](#working-with-chrome-devtools-mcp)
-- [Recommended Workflow](#recommended-workflow)
-- [Example Workflows](#example-workflows)
-- [Customization & Extensibility](#customization--extensibility)
-- [Troubleshooting](#troubleshooting)
+- [Available Tools](#available-tools)
 - [License](#license)
 - [Links](#links)
-- [Version History](#version-history)
 
 ---
 
