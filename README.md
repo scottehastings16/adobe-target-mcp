@@ -162,13 +162,6 @@ The agent will use its 33 tools to interact with Adobe Target on your behalf.
    - Installation: Automatic on first run via `npx -y chrome-devtools-mcp`
    - Requirements: Chrome/Chromium browser
 
-### Development Dependencies
-
-```json
-{
-  "@types/node": "^20.10.0"  // TypeScript definitions for Node.js
-}
-```
 
 ### System Requirements
 
