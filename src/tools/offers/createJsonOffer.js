@@ -251,7 +251,7 @@ IMPORTANT NOTES ABOUT JSON TEMPLATES:
 - Templates provide structured, tested JSON schemas for common use cases
 - Templates ensure consistent data structure across offers
 - You can modify template JSON after populating variables if user requests changes
-- Templates are located in mcp-server/templates/json/
+- Templates are located in src/templates/json/
 - Each template has a variables array defining what needs to be replaced
 - Variable replacement in JSON templates:
   * String values: {{VARIABLE}} → "user value"

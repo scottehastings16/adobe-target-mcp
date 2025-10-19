@@ -1,4 +1,7 @@
-{
+{  "_readme": {
+  "note": "This configuration file defines various firing conditions for conversion tracking events. Each condition includes a name, description, use cases, implementation details, and a code template. Additionally, there is guidance for large language models (LLMs) on how to recommend firing conditions based on user scenarios.",
+  "customizeation": "You can add, modify, or remove firing conditions as needed to fit your tracking requirements."
+},
   "firingConditions": {
     "always": {
       "name": "Every time (no limit)",

@@ -26,7 +26,7 @@ import { unlinkSync, existsSync, readdirSync, readFileSync } from 'fs';
 const __filename = process.argv[1];
 const __dirname = dirname(__filename);
 
-// Load .env from the mcp-server directory
+// Load .env from the src directory
 // Suppress any stdout output during dotenv loading (it breaks JSON-RPC over stdio)
 const originalLog = console.log;
 console.log = () => {}; // Temporarily silence console.log
@@ -43,7 +43,7 @@ const config = {
 
   // Paths
   // Hardcoded to project directory since __dirname resolves to Claude's installation directory
-  templatesDir: 'C:\\Users\\scott\\at-mcp\\mcp-server\\templates',
+  templatesDir: 'C:\\Users\\scott\\at-mcp\\src\\templates',
 
   // Activity Defaults
   defaults: {

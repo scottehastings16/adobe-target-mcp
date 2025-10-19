@@ -1,6 +1,6 @@
 # Adobe Target Content Templates
 
-This directory contains pre-built templates for common Adobe Target use cases. Templates allow you to quickly create offers with best practices built-in.
+This directory contains example pre-built templates for common Adobe Target use cases. Templates allow you to quickly create offers. Update these templates with your own frequently used components for scalable content creation
 
 ## Directory Structure
 
@@ -300,6 +300,6 @@ The LLM uses the filesystem MCP to:
 ## Support
 
 For questions or issues with templates:
-- Check the main README in `mcp-server/`
+- Check the main README in `src/`
 - Review Adobe Target coding rules in `tools/offers/createOffer.js`
 - Test templates in Target UI before deploying

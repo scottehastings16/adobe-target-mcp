@@ -2,7 +2,7 @@
   "mcpServers": {
     "adobe-target": {
       "command": "node",
-      "args": ["C:\\Users\\YourUsername\\at-cursor-extension\\mcp-server\\index.js"],
+      "args": ["C:\\Users\\YourUsername\\adobe-target-mcp\\src\\index.js"],
       "env": {
         "TARGET_TENANT_ID": "your-tenant-id",
         "TARGET_API_KEY": "your-api-key",
@@ -10,9 +10,6 @@
         "TARGET_WORKSPACE_ID": "your-workspace-id",
         "TARGET_DEFAULT_MBOXES": "target-global-mbox",
         "TARGET_DEFAULT_PRIORITY": "5",
-        "TARGET_A4T_DATA_COLLECTION_HOST": "company.sc.omtrdc.net",
-        "TARGET_A4T_COMPANY_NAME": "Your Company",
-        "TARGET_A4T_REPORT_SUITES": "prod-rsid",
         "MCP_TRANSPORT": "stdio"
       }
     },

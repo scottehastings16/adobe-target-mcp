@@ -280,7 +280,7 @@ IMPORTANT NOTES ABOUT TEMPLATES:
 - Templates already follow all Adobe Target rules (ES5, IIFE, responsive, defensive coding, no emojis)
 - Templates are tested and working - use them when available to save time
 - You can modify template code after populating variables if user requests changes
-- Templates are located in mcp-server/templates/html/
+- Templates are located in src/templates/html/
 - Each template has a variables array defining what needs to be replaced
 
 STEP 1: ASK CLARIFYING QUESTIONS
@@ -308,7 +308,7 @@ a) TAG MANAGER SELECTION:
    - If full-page extraction was done earlier (getPageStructureSnippets with extractionType: 'full-page'), check context for tagManagers.summary.recommendedForTracking
    - If tag manager was auto-detected, use that and inform user: "I detected {name} on the page, I'll use that for tracking"
    - If NOT detected or no full-page extraction in context:
-     * Read mcp-server/config/tag-managers.json to discover available tag managers
+     * Read src/config/tag-managers.json to discover available tag managers
      * Ask the user: "Which tag manager are you using?" (default: adobeLaunch)
      * Present the available options from the config file
 b) Ask the user: "When should the conversion event fire?" (default: always)
@@ -366,7 +366,7 @@ a) TAG MANAGER SELECTION (same as STEP 3A.2a):
    - If full-page extraction was done earlier, check context for tagManagers.summary.recommendedForTracking
    - If tag manager was auto-detected, use that and inform user: "I detected {name} on the page, I'll use that for tracking"
    - If NOT detected or no full-page extraction in context:
-     * Read mcp-server/config/tag-managers.json to discover available tag managers
+     * Read src/config/tag-managers.json to discover available tag managers
      * Ask the user: "Which tag manager are you using?" (default: adobeLaunch)
      * Present the available options from the config file
 b) Ask the user: "When should the conversion event fire?" (default: always)

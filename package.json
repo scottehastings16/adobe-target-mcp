@@ -4,8 +4,8 @@
   "description": "MCP server for Adobe Target Admin API - manage Target activities, offers, and audiences from Cursor IDE",
   "type": "module",
   "scripts": {
-    "dev": "node mcp-server/index.js",
-    "start": "node mcp-server/index.js"
+    "dev": "node src/index.js",
+    "start": "node src/index.js"
   },
   "keywords": [
     "adobe-target",
