@@ -108,14 +108,7 @@ Copy `.claude.json.example` to your MCP client's configuration file and update t
     "adobe-target": {
       "command": "node",
       "args": ["C:\\Users\\YourUsername\\adobe-target-mcp\\src\\index.js"],
-      "env": {
-        "TARGET_TENANT_ID": "your-tenant-id",
-        "TARGET_API_KEY": "your-api-key",
-        "TARGET_ACCESS_TOKEN": "your-access-token",
-        "TARGET_WORKSPACE_ID": "your-workspace-id",
-        "TARGET_DEFAULT_MBOXES": "target-global-mbox",
-        "TARGET_DEFAULT_PRIORITY": "5"
-      }
+      "env": {}
     },
     "chrome-devtools": {
       "command": "npx",
