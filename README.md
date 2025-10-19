@@ -23,7 +23,7 @@ Adobe Target API Documentation: https://developer.adobe.com/target/administer/ad
 ---
 
 ### Core Capabilities
-- **Adobe Target Admin API Integration**: Complete suite of 33 tools for managing A/B tests, Experience Targeting, offers (HTML/JSON), audiences, mboxes, properties, activity performance reports and response tokens
+- **Adobe Target Admin API Integration**: Complete suite of 33 tools for managing A/B tests, Experience Targeting, offer creation (HTML/JSON), audiences, mboxes, properties, activity performance reports and response tokens
 - **Activity Reporting**: Query results for live and past activities
 - **Response Token Managment**: Create new resposne tokens and take inventory of existing ones
 - **Intelligent Offer Creation**: Generate HTML offers, or JSON offers for headless/SPA implementations with structured data templates
